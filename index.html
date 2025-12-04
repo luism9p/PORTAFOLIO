@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Agency | Systems Engineering & Design</title>
+  <meta name="description"
+    content="A premium digital agency founded by Systems Engineers. Engineering behind the Design." />
+  <!-- Google Fonts: Inter for that clean Swiss Style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <header class="fixed-header">
+    <div class="logo">AGENCY</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about" class="magnetic">About</a></li>
+        <li><a href="#work" class="magnetic">Work</a></li>
+        <li><a href="#contact" class="magnetic">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- Hero Section -->
+      <section id="hero" class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="reveal-text">Ingeniería</span><br>
+            <span class="reveal-text">detrás del</span><br>
+            <span class="reveal-text">Diseño</span>
+          </h1>
+          <div class="hero-abstract-visual">
+            <!-- Abstract geometric animation container -->
+            <canvas id="hero-canvas"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <h2 class="section-title">Who We Are</h2>
+          <p class="about-text">
+            We are a duo of Systems Engineers. We don't just design interfaces; we architect robust digital ecosystems.
+            Precision, performance, and aesthetics converge in our work.
+          </p>
+        </div>
+      </section>
+
+      <!-- Selected Work Section -->
+      <section id="work" class="work-section">
+        <div class="container">
+          <h2 class="section-title">Selected Work</h2>
+          <div class="work-grid">
+            <!-- Project 1 -->
+            <div class="work-item item-1 magnetic-area" data-image="/project1.jpg">
+              <div class="work-info">
+                <span class="work-number">01</span>
+                <h3 class="work-title">Fintech Core</h3>
+                <p class="work-cat">System Architecture</p>
+              </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="work-item item-2 magnetic-area" data-image="/project2.jpg">
+              <div class="work-info">
+                <span class="work-number">02</span>
+                <h3 class="work-title">Luxe Commerce</h3>
+                <p class="work-cat">E-commerce Experience</p>
+              </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="work-item item-3 magnetic-area" data-image="/project3.jpg">
+              <div class="work-info">
+                <span class="work-number">03</span>
+                <h3 class="work-title">Data Viz</h3>
+                <p class="work-cat">Dashboard Design</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="work-preview-media">
+          <!-- Floating preview container -->
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services-section">
+        <div class="container">
+          <h2 class="section-title">Services</h2>
+          <ul class="services-list">
+            <li class="reveal-item">Full-Stack Development</li>
+            <li class="reveal-item">UI/UX Design</li>
+            <li class="reveal-item">System Architecture</li>
+            <li class="reveal-item">Performance Optimization</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Footer / CTA -->
+      <footer id="contact" class="footer-section">
+        <div class="container">
+          <h2 class="footer-cta">Let's build something<br>extraordinary.</h2>
+          <a href="mailto:hello@agency.com" class="footer-email magnetic">hello@agency.com</a>
+          <div class="footer-bottom">
+            <button class="cta-button magnetic">Start Project</button>
+            <span class="copyright">© 2024 Agency. Systems & Design.</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script type="module" src="/main.ts"></script>
+</body>
+
+</html>
