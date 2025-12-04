@@ -102,15 +102,15 @@ if (canvas) {
     }
 }
 
-// Selected Work Hover Reveal
-const workItems = document.querySelectorAll('.work-item')
-const previewMedia = document.querySelector('.work-preview-media') as HTMLElement
+// Selected PROYECTOS Hover Reveal
+const PROYECTOSItems = document.querySelectorAll('.PROYECTOS-item')
+const previewMedia = document.querySelector('.PROYECTOS-preview-media') as HTMLElement
 
-workItems.forEach((item) => {
-    const workItem = item as HTMLElement
+PROYECTOSItems.forEach((item) => {
+    const PROYECTOSItem = item as HTMLElement
 
-    workItem.addEventListener('mouseenter', () => {
-        const imageUrl = workItem.getAttribute('data-image')
+    PROYECTOSItem.addEventListener('mouseenter', () => {
+        const imageUrl = PROYECTOSItem.getAttribute('data-image')
         if (imageUrl) {
             // In a real app, we would load the image/video here
             // For now, we'll just change the background color to simulate content
@@ -126,7 +126,7 @@ workItems.forEach((item) => {
         })
     })
 
-    workItem.addEventListener('mouseleave', () => {
+    PROYECTOSItem.addEventListener('mouseleave', () => {
         gsap.to(previewMedia, {
             autoAlpha: 0,
             scale: 0.8,
@@ -134,7 +134,7 @@ workItems.forEach((item) => {
         })
     })
 
-    workItem.addEventListener('mousemove', (e) => {
+    PROYECTOSItem.addEventListener('mousemove', (e) => {
         const x = e.clientX
         const y = e.clientY
 
@@ -165,10 +165,10 @@ serviceItems.forEach((item, index) => {
     })
 })
 
-// Parallax Effect for About Text
-gsap.from('.about-text', {
+// Parallax Effect for NOSOTROS Text
+gsap.from('.NOSOTROS-text', {
     scrollTrigger: {
-        trigger: '.about-section',
+        trigger: '.NOSOTROS-section',
         start: 'top 80%',
         scrub: 1
     },

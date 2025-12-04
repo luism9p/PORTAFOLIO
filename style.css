@@ -7,11 +7,14 @@
   --container-width: 1400px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none; /* Custom cursor everywhere */
+  cursor: none;
+  /* Custom cursor everywhere */
 }
 
 body {
@@ -56,7 +59,10 @@ body.hovering .cursor-outline {
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -85,7 +91,8 @@ a {
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-  mix-blend-mode: difference; /* Ensures visibility on white/black */
+  mix-blend-mode: difference;
+  /* Ensures visibility on white/black */
 }
 
 .logo {
@@ -143,20 +150,20 @@ a {
   pointer-events: none;
 }
 
-/* About Section */
-.about-section {
+/* NOSOTROS Section */
+.NOSOTROS-section {
   padding: 10rem 0;
 }
 
-.about-text {
+.NOSOTROS-text {
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 300;
   max-width: 900px;
   line-height: 1.4;
 }
 
-/* Work Section */
-.work-section {
+/* PROYECTOS Section */
+.PROYECTOS-section {
   padding: 5rem 0;
   position: relative;
 }
@@ -170,13 +177,13 @@ a {
   padding-bottom: 1rem;
 }
 
-.work-grid {
+.PROYECTOS-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 2rem;
 }
 
-.work-item {
+.PROYECTOS-item {
   grid-column: span 12;
   padding: 4rem 0;
   border-bottom: 1px solid #222;
@@ -184,39 +191,49 @@ a {
   transition: opacity 0.3s;
 }
 
-.work-item:hover {
+.PROYECTOS-item:hover {
   opacity: 0.7;
 }
 
 @media (min-width: 768px) {
-  .item-1 { grid-column: 1 / 8; }
-  .item-2 { grid-column: 5 / 13; margin-top: 5rem; }
-  .item-3 { grid-column: 2 / 9; margin-top: 5rem; }
+  .item-1 {
+    grid-column: 1 / 8;
+  }
+
+  .item-2 {
+    grid-column: 5 / 13;
+    margin-top: 5rem;
+  }
+
+  .item-3 {
+    grid-column: 2 / 9;
+    margin-top: 5rem;
+  }
 }
 
-.work-info {
+.PROYECTOS-info {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.work-number {
+.PROYECTOS-number {
   font-size: 0.8rem;
   opacity: 0.5;
   margin-bottom: 1rem;
 }
 
-.work-title {
+.PROYECTOS-title {
   font-size: clamp(2rem, 4vw, 4rem);
 }
 
-.work-cat {
+.PROYECTOS-cat {
   font-size: 1rem;
   opacity: 0.6;
   font-weight: 300;
 }
 
-.work-preview-media {
+.PROYECTOS-preview-media {
   position: fixed;
   top: 50%;
   left: 50%;
