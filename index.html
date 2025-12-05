@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="FOTOS/logoFlowHive.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Agency | Systems Engineering & Design</title>
+  <title>FlowHive | Agencia Digital</title>
   <meta name="description"
     content="A premium digital agency founded by Systems Engineers. Engineering behind the Design." />
   <!-- Google Fonts: Inter for that clean Swiss Style -->
@@ -152,6 +152,21 @@
 
   <!-- Main Application Script -->
   <script type="module" src="/main.ts"></script>
+  <!-- Smooth Scroll Script -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
