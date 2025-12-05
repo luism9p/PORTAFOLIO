@@ -17,13 +17,46 @@
   /* Custom cursor everywhere */
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-main);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ambient Background */
+#ambient-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #000000;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+#ambient-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  /* Dark overlay */
+  z-index: 1;
 }
 
 /* Custom Cursor */
@@ -75,9 +108,12 @@ a {
 
 /* Layout Utilities */
 .container {
+  width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
+
+  /* Ensure container doesn't overflow */
 }
 
 /* Header */
@@ -88,8 +124,12 @@ a {
   width: 100%;
   padding: 2rem;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  /* Mobile: Column layout */
+  justify-content: center;
   align-items: center;
+  gap: 15px;
+  /* Mobile: Spacing between logo and nav */
   z-index: 100;
   mix-blend-mode: difference;
   /* Ensures visibility on white/black */
@@ -117,10 +157,13 @@ a {
   display: flex;
   gap: 2rem;
   list-style: none;
+  justify-content: center;
+  /* Center links on mobile */
 }
 
 .nav-links a {
-  font-size: 0.9rem;
+  font-size: 14px;
+  /* Mobile: Slightly smaller font */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   opacity: 0.7;
@@ -168,10 +211,17 @@ a {
 }
 
 .NOSOTROS-text {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: 1rem;
+  /* Mobile font size */
   font-weight: 300;
   max-width: 900px;
-  line-height: 1.4;
+  line-height: 1.5;
+  /* Increased line height */
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  box-sizing: border-box;
+  padding-bottom: 40px;
 }
 
 /* PROYECTOS Section */
@@ -195,19 +245,90 @@ a {
   gap: 2rem;
 }
 
+/* Mobile Project Styles (Default) */
+.mobile-project-img {
+  display: block;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+}
+
 .PROYECTOS-item {
   grid-column: span 12;
-  padding: 4rem 0;
+  padding: 3rem 0;
   border-bottom: 1px solid #222;
   position: relative;
   transition: opacity 0.3s;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 .PROYECTOS-item:hover {
-  opacity: 0.7;
+  opacity: 1;
 }
 
+.PROYECTOS-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.PROYECTOS-number {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.PROYECTOS-title {
+  font-size: 1.5rem;
+  /* Mobile font size */
+  line-height: 1.2;
+}
+
+.PROYECTOS-cat {
+  font-size: 1rem;
+  opacity: 0.6;
+  font-weight: 300;
+}
+
+.PROYECTOS-text {
+  line-height: 1.6;
+  /* Improved readability */
+}
+
+/* Desktop Styles */
 @media (min-width: 768px) {
+
+  /* Restore Header Layout */
+  .fixed-header {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
+
+  /* Restore Project Layout */
+  .mobile-project-img {
+    display: none;
+  }
+
+  .PROYECTOS-item {
+    padding: 4rem 0;
+    display: block;
+  }
+
+  .PROYECTOS-title {
+    font-size: clamp(2rem, 4vw, 4rem);
+  }
+
   .item-1 {
     grid-column: 1 / 8;
   }
@@ -221,43 +342,17 @@ a {
     grid-column: 2 / 9;
     margin-top: 5rem;
   }
-}
 
-.PROYECTOS-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
+  /* Restore Footer Email Size */
+  .footer-email {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    word-break: normal;
+  }
 
-.PROYECTOS-number {
-  font-size: 0.8rem;
-  opacity: 0.5;
-  margin-bottom: 1rem;
-}
-
-.PROYECTOS-title {
-  font-size: clamp(2rem, 4vw, 4rem);
-}
-
-.PROYECTOS-cat {
-  font-size: 1rem;
-  opacity: 0.6;
-  font-weight: 300;
-}
-
-.PROYECTOS-preview-media {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 300px;
-  background-color: #111;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, transform 0.3s;
+  /* Restore Quienes Somos Font Size */
+  .NOSOTROS-text {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+  }
 }
 
 /* Services Section */
@@ -294,11 +389,15 @@ a {
 }
 
 .footer-email {
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: 1rem;
+  /* Mobile: Smaller font */
+  word-break: break-all;
+  /* Mobile: Break long words */
   border-bottom: 2px solid white;
   padding-bottom: 0.5rem;
   display: inline-block;
   margin-bottom: 5rem;
+  max-width: 100%;
 }
 
 .footer-bottom {
@@ -310,6 +409,7 @@ a {
 }
 
 .cta-button {
+  display: inline-block;
   background: white;
   color: black;
   border: none;

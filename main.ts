@@ -102,49 +102,25 @@ if (canvas) {
     }
 }
 
-// Selected PROYECTOS Hover Reveal
+// Ambient Background Hover Effect
 const PROYECTOSItems = document.querySelectorAll('.PROYECTOS-item')
-const previewMedia = document.querySelector('.PROYECTOS-preview-media') as HTMLElement
+const ambientBackground = document.getElementById('ambient-background') as HTMLElement
 
 PROYECTOSItems.forEach((item) => {
     const PROYECTOSItem = item as HTMLElement
 
     PROYECTOSItem.addEventListener('mouseenter', () => {
         const imageUrl = PROYECTOSItem.getAttribute('data-image')
-        if (imageUrl) {
-            // In a real app, we would load the image/video here
-            // For now, we'll just change the background color to simulate content
-            previewMedia.style.backgroundColor = '#333'
-            // previewMedia.style.backgroundImage = `url(${imageUrl})` // Uncomment when images exist
-            previewMedia.style.backgroundSize = 'cover'
+        if (imageUrl && ambientBackground) {
+            ambientBackground.style.backgroundImage = `url(${imageUrl})`
         }
-
-        gsap.to(previewMedia, {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.3
-        })
     })
 
     PROYECTOSItem.addEventListener('mouseleave', () => {
-        gsap.to(previewMedia, {
-            autoAlpha: 0,
-            scale: 0.8,
-            duration: 0.3
-        })
-    })
-
-    PROYECTOSItem.addEventListener('mousemove', (e) => {
-        const x = e.clientX
-        const y = e.clientY
-
-        // Move the preview container near the cursor
-        gsap.to(previewMedia, {
-            x: x - window.innerWidth / 2 + 20, // Offset to not cover cursor
-            y: y - window.innerHeight / 2 + 20,
-            duration: 0.5,
-            ease: 'power2.out'
-        })
+        if (ambientBackground) {
+            ambientBackground.style.backgroundImage = 'none'
+            // Or set back to a default image if desired, but 'none' reveals the black background color
+        }
     })
 })
 
