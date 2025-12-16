@@ -34,7 +34,8 @@ body {
 }
 
 /* Ambient Background */
-#ambient-background {
+#ambient-background,
+#ambient-background-back {
   position: fixed;
   top: 0;
   left: 0;
@@ -44,10 +45,27 @@ body {
   background-color: #000000;
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease-in-out;
 }
 
-#ambient-background::after {
+/* Back layer should be behind the main one */
+#ambient-background-back {
+  z-index: -2;
+}
+
+@media (max-width: 767px) {
+  #ambient-background {
+    opacity: 1 !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #ambient-background {
+    transition: opacity 0.5s ease-in-out;
+  }
+}
+
+#ambient-background::after,
+#ambient-background-back::after {
   content: '';
   position: absolute;
   top: 0;
@@ -208,20 +226,185 @@ a {
 /* NOSOTROS Section */
 .NOSOTROS-section {
   padding: 10rem 0;
+  /* overflow: hidden; Removed to allow sticky positioning*/
+}
+
+/* Mobile First: Stacked Text, Side-by-Side Images */
+.nosotros-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .NOSOTROS-text {
   font-size: 1rem;
-  /* Mobile font size */
   font-weight: 300;
   max-width: 900px;
   line-height: 1.5;
-  /* Increased line height */
-  overflow: visible !important;
-  height: auto !important;
-  max-height: none !important;
-  box-sizing: border-box;
-  padding-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nosotros-visuals {
+  position: relative;
+  height: auto;
+  /* Reset fixed height for mobile */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Vertical Column */
+  align-items: center;
+  /* Center everything */
+  gap: 0;
+  /* Removing gap, using margin-bottom on items */
+  margin-top: 30px;
+}
+
+.visual-item {
+  width: 220px !important;
+  /* Fixed small width */
+  max-width: none;
+  margin: 0 0 40px 0;
+  /* Margin bottom 40px */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  bottom: auto;
+}
+
+/* Remove margin from last item to avoid extra space */
+.visual-item:last-child {
+  margin-bottom: 0;
+}
+
+.tech-portrait {
+  width: 100%;
+  aspect-ratio: 4/5;
+  /* Refined vertical ratio */
+  object-fit: cover;
+  object-position: top center;
+  /* CRITICAL: Focus on top/face */
+  display: block;
+  filter: grayscale(100%) contrast(1.2) brightness(0.9);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tech-portrait:hover {
+  filter: grayscale(0%) contrast(1) brightness(1);
+  transform: scale(1.02);
+}
+
+.tech-label {
+  position: relative;
+  /* Normal flow */
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  background: none;
+  /* Clean layout */
+  backdrop-filter: none;
+  color: #FFFFFF;
+  font-family: var(--font-main);
+  font-size: 11px;
+  /* 10-11px */
+  font-weight: 600;
+  padding: 0;
+  margin-top: 8px;
+  /* Spacing from image */
+  text-align: center;
+  /* Centered */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  z-index: 10;
+}
+
+/* Desktop Styles - Strict Grid & Absolute Positioning */
+@media (min-width: 768px) {
+  .nosotros-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 1. Contenedor Grid 2 columnas iguales */
+    gap: 4rem;
+    align-items: center;
+    /* Vertically center text if desireable, or 'start' */
+  }
+
+  .NOSOTROS-text {
+    /* Ensure text stays in left column */
+    max-width: 100%;
+  }
+
+  /* 2. Contenedor de Imágenes (Columna Derecha) */
+  .nosotros-visuals {
+    position: relative;
+    min-height: 600px;
+    /* 2. Altura mínima para el escalonado */
+    height: 600px;
+    width: 100%;
+    margin-top: 0;
+    display: block;
+    /* Ensure it's not flex column anymore */
+  }
+
+  /* 3. FORZAR TAMAÑO DE IMAGEN FIJO */
+  .visual-item {
+    width: 240px !important;
+    height: 340px !important;
+    position: absolute !important;
+    margin: 0 !important;
+    max-width: none !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .visual-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 4. Posicionamiento Asimétrico (Staggering Absoluto) */
+
+  /* Foto 1 (Elias): Arriba Izquierda */
+  .elias-wrapper {
+    top: 0;
+    left: 10%;
+    right: auto;
+    bottom: auto;
+    transform: none;
+  }
+
+  /* Foto 2 (Luis): Abajo Derecha */
+  .luis-wrapper {
+    top: auto;
+    bottom: 0;
+    right: 10%;
+    left: auto;
+    margin-top: 0;
+    transform: none;
+  }
+
+  /* 5. Labels */
+  .tech-label {
+    position: absolute;
+    /* Restore absolute positioning for desktop */
+    top: auto;
+    bottom: 0;
+    /* Pegado al borde inferior */
+    right: 0;
+    /* Default right alignment inside wrapper */
+    left: auto;
+    font-size: 11px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
 }
 
 /* PROYECTOS Section */
@@ -428,4 +611,97 @@ a {
 .copyright {
   opacity: 0.4;
   font-size: 0.9rem;
+}
+
+/* ========================================
+   MOBILE OVERRIDE - MAXIMUM SPECIFICITY
+   ======================================== */
+@media (max-width: 768px) {
+
+  /* Force vertical column layout */
+  #NOSOTROS .container .nosotros-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  /* 1. Breathing Room & Header Space */
+  #NOSOTROS {
+    padding-top: 100px !important;
+  }
+
+  #NOSOTROS .container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 2. Text Typography & Spacing */
+  #NOSOTROS .NOSOTROS-text {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* 3. Horizontal Row Layout */
+  #NOSOTROS .nosotros-visuals {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 16px !important;
+    margin-top: 0 !important;
+  }
+
+  /* 4. Small Images Side-by-Side */
+  #NOSOTROS .visual-item,
+  #NOSOTROS .elias-wrapper,
+  #NOSOTROS .luis-wrapper {
+    width: 45% !important;
+    max-width: 160px !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #NOSOTROS .visual-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* 4. Image Centering (handled above) & Crop */
+  #NOSOTROS .visual-item img,
+  #NOSOTROS .tech-portrait {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4/5 !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+  }
+
+  /* Labels */
+  #NOSOTROS .tech-label {
+    position: relative !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-top: 8px !important;
+    background: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+    font-size: 10px !important;
+    color: #FFFFFF !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+  }
+
 }

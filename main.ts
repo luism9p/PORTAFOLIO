@@ -103,24 +103,60 @@ if (canvas) {
 }
 
 // Ambient Background Hover Effect
+// Ambient Background Hover Effect
 const PROYECTOSItems = document.querySelectorAll('.PROYECTOS-item')
 const ambientBackground = document.getElementById('ambient-background') as HTMLElement
+const ambientBackgroundBack = document.getElementById('ambient-background-back') as HTMLElement
+
+// State to track which layer is currently "active" (visible on top)
+// ambientBackground is the front layer (z-index -1), ambientBackgroundBack is back (z-index -2)
+// Initially, front layer is visible (opacity 1)
+let isFrontLayerVisible = true
+
+let currentLoadingUrl: string | null = null
+
+function performLayerSwap(bgImageValue: string) {
+    if (isFrontLayerVisible) {
+        if (ambientBackgroundBack) ambientBackgroundBack.style.backgroundImage = bgImageValue
+        if (ambientBackground) ambientBackground.style.opacity = '0'
+        isFrontLayerVisible = false
+    } else {
+        if (ambientBackground) ambientBackground.style.backgroundImage = bgImageValue
+        if (ambientBackground) ambientBackground.style.opacity = '1'
+        isFrontLayerVisible = true
+    }
+}
+
+function updateBackground(imageUrl: string | null) {
+    if (window.innerWidth < 768) return
+
+    if (!imageUrl) {
+        currentLoadingUrl = null
+        performLayerSwap('none')
+        return
+    }
+
+    currentLoadingUrl = imageUrl
+    const img = new Image()
+    img.src = imageUrl
+
+    img.onload = () => {
+        if (currentLoadingUrl === imageUrl) {
+            performLayerSwap(`url(${imageUrl})`)
+        }
+    }
+}
 
 PROYECTOSItems.forEach((item) => {
     const PROYECTOSItem = item as HTMLElement
 
     PROYECTOSItem.addEventListener('mouseenter', () => {
         const imageUrl = PROYECTOSItem.getAttribute('data-image')
-        if (imageUrl && ambientBackground) {
-            ambientBackground.style.backgroundImage = `url(${imageUrl})`
-        }
+        updateBackground(imageUrl)
     })
 
     PROYECTOSItem.addEventListener('mouseleave', () => {
-        if (ambientBackground) {
-            ambientBackground.style.backgroundImage = 'none'
-            // Or set back to a default image if desired, but 'none' reveals the black background color
-        }
+        updateBackground(null)
     })
 })
 
