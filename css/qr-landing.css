@@ -52,12 +52,12 @@ h1,h2,h3{font-family:'Archivo',sans-serif;letter-spacing:-.02em}
 
 /* ============ SECTIONS: shared rhythm ============ */
 main > section{padding:56px 20px;max-width:640px;margin:0 auto}
-section h2{font-size:clamp(24px,6vw,32px);line-height:1.25;margin-bottom:20px}
+section h2{font-size:clamp(24px,6vw,32px);line-height:1.25;margin-bottom:20px;text-wrap:balance}
 
 /* ============ HERO ============ */
 .qr-hero{padding-top:48px;text-align:left}
-.qr-hero h1{font-weight:900;font-size:clamp(28px,7.5vw,44px);line-height:1.15;color:var(--lime)}
-.qr-hero-sub{font-size:17px;color:#d8d8d8;margin-top:20px;line-height:1.55}
+.qr-hero h1{font-weight:900;font-size:clamp(28px,7.5vw,44px);line-height:1.15;color:var(--lime);text-wrap:balance}
+.qr-hero-sub{font-size:17px;color:#d8d8d8;margin-top:20px;line-height:1.55;text-wrap:pretty}
 .qr-anchor-btn{
   display:block;margin-top:32px;background:#fff;color:#000;font-weight:700;
   min-height:48px;padding:14px 22px;border-radius:10px;text-align:center;
