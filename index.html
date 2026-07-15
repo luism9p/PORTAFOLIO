@@ -1,196 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="FOTOS/logoFlowHive.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlowHive | Agencia Digital</title>
-  <meta name="description"
-    content="A premium digital agency founded by Systems Engineers. Engineering behind the Design." />
-  <!-- Google Fonts: Inter for that clean Swiss Style -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <style>
-    /* Inline critical styles for Hero to ensure 100vh and centering */
-    #hero-unicorn {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000000;
-      position: relative;
-      z-index: 10;
-    }
-
-    /* Override Unicorn Studio fixed dimensions */
-    div[data-us-project] {
-      width: 100% !important;
-      max-width: 100% !important;
-      height: 100vh !important;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowHive — Estudio de desarrollo web</title>
+<meta name="description" content="FlowHive: desarrollo frontend y full-stack de alta precisión. Interfaces rápidas, automatizaciones de backend y plataformas SaaS a medida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Expanded:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" type="image/png" href="assets/logo-white.png">
+<noscript><style>.logo,.main-nav a,.header-contact,.hero-title,.hero-image{opacity:1!important;transform:none!important}</style></noscript>
 </head>
-
 <body>
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
-  <div id="ambient-background-back"></div>
-  <div id="ambient-background"></div>
 
-  <header class="fixed-header">
-    <div class="brand-wrapper">
-      <img src="/FOTOS/FlowHive.png" alt="Logo de FlowHive" class="logo">
-      <span class="brand-name">FLOWHIVE</span>
+<div class="wrap">
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <a href="#top" class="logo">
+    <img src="assets/logo-white.png" alt="" class="logo-mark-img">
+    <span class="logo-word">flowhive</span>
+  </a>
+  <nav class="main-nav">
+    <a href="#works">WORKS</a>
+    <a href="#expertise">EXPERTISE</a>
+    <a href="#about">ABOUT</a>
+    <a href="#insights">INSIGHTS</a>
+  </nav>
+  <div class="header-contact">
+    <span class="divider-line"></span>
+    <a href="#footer" class="contact-link">CONTACT</a>
+  </div>
+  <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- mobile nav -->
+<nav class="mobile-nav">
+  <a href="#works">WORKS</a>
+  <a href="#expertise">EXPERTISE</a>
+  <a href="#about">ABOUT</a>
+  <a href="#insights">INSIGHTS</a>
+  <a href="#footer">CONTACT</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      FRONTEND · FULL-STACK · LOBITOS, PE
     </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#NOSOTROS" class="magnetic">NOSOTROS</a></li>
-        <li><a href="#PROYECTOS" class="magnetic">PROYECTOS</a></li>
-        <li><a href="#CONTACTO" class="magnetic">CONTACTO</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main id="smooth-wrapper">
-    <div id="smooth-content">
-
-      <!-- Hero Section with Unicorn Studio Animation -->
-      <section id="hero-unicorn">
-        <div data-us-project="Z2DXZYsTxh4I0nW6LVQD" style="width:1440px; height: 900px"></div>
-      </section>
-
-      <!-- NOSOTROS Section -->
-      <section id="NOSOTROS" class="NOSOTROS-section">
-        <div class="container">
-          <div class="nosotros-grid">
-            <div class="nosotros-content">
-              <h2 class="section-title">QUIENES SOMOS</h2>
-              <p class="NOSOTROS-text">
-                Somos Ingenieros de Sistemas, no solo diseñadores. No usamos plantillas genéricas; arquitectamos
-                ecosistemas
-                digitales a medida. Unimos la precisión del código con una estética de alto impacto para negocios que
-                buscan
-                escalar.
-              </p>
-            </div>
-            <div class="nosotros-visuals">
-              <div class="visual-item elias-wrapper">
-                <img src="/FOTOS/ING-ELIAS.png" alt="Elias - Ingeniero de Sistemas" class="tech-portrait">
-                <span class="tech-label">ELIAS - INGENIERO DE SISTEMAS</span>
-              </div>
-              <div class="visual-item luis-wrapper">
-                <img src="/FOTOS/ING-LUIS.png" alt="Luis - Co-Founder / Architect" class="tech-portrait">
-                <span class="tech-label">LUIS - CO-FOUNDER / ARCHITECT</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Selected PROYECTOS Section -->
-      <section id="PROYECTOS" class="PROYECTOS-section">
-        <div class="container">
-          <h2 class="section-title">CASOS DE ÉXITO</h2>
-          <div class="PROYECTOS-grid">
-            <!-- Project 1 -->
-            <div class="PROYECTOS-item item-1 magnetic-area" data-image="/FOTOS/pag1.png">
-              <img src="/FOTOS/pag1.png" alt="YAKU HIDRO ESTUDIO" class="mobile-project-img">
-              <div class="PROYECTOS-info">
-                <span class="PROYECTOS-number">01</span>
-                <h3 class="PROYECTOS-title">YAKU HIDRO ESTUDIO</h3>
-                <p class="PROYECTOS-cat">Web Corporativa & Ingeniería Hidráulica.</p>
-                <p class="PROYECTOS-text">Desarrollo de una plataforma institucional para una firma líder en saneamiento
-                  y recursos hídricos. Enfoque en la jerarquía de información técnica y credibilidad corporativa.</p>
-                <a href="https://yakuhidroestudio.com/" style="text-decoration: underline;">Ver Proyecto</a>
-              </div>
-            </div>
-            <!-- Project 2 -->
-            <div class="PROYECTOS-item item-2 magnetic-area" data-image="/FOTOS/pag2.png">
-              <img src="/FOTOS/pag2.png" alt="LOBITOS PONCHOS" class="mobile-project-img">
-              <div class="PROYECTOS-info">
-                <span class="PROYECTOS-number">02</span>
-                <h3 class="PROYECTOS-title">LOBITOS PONCHOS</h3>
-                <p class="PROYECTOS-cat">E-Commerce / Automatización de Ventas.</p>
-                <p class="PROYECTOS-text">Implementación de un catálogo digital interactivo con integración directa a
-                  WhatsApp API para el checkout. Esta solución eliminó fricción en el proceso de compra, conectando
-                  pedidos directamente al móvil del dueño y aumentando la tasa de conversión.</p>
-                <a href="https://lobitos-ponchos.vercel.app/" style="text-decoration: underline;">Ver Proyecto</a>
-              </div>
-            </div>
-            <!-- Project 3 -->
-            <div class="PROYECTOS-item item-3 magnetic-area" data-image="/FOTOS/pag3.png">
-              <img src="/FOTOS/pag3.png" alt="DIVINO AROMA" class="mobile-project-img">
-              <div class="PROYECTOS-info">
-                <span class="PROYECTOS-number">03</span>
-                <h3 class="PROYECTOS-title">DIVINO AROMA</h3>
-                <p class="PROYECTOS-cat">High-Performance E-Commerce / Live Commerce.</p>
-                <p class="PROYECTOS-text">Arquitectura web ligera diseñada específicamente para soportar altos picos de
-                  concurrencia durante ventas en vivo (TikTok Lives). Optimización de carga de imágenes (Lazy Loading)
-                  para latencia cero y retención de clientes en tiempo real, con cierre de venta directo vía API de
-                  WhatsApp.</p>
-                <a href="https://divino-aroma.vercel.app/" style="text-decoration: underline;">Ver Proyecto</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Services Section -->
-      <section id="services" class="services-section">
-        <div class="container">
-          <h2 class="section-title">Services</h2>
-          <ul class="services-list">
-            <li class="reveal-item">Desarrollo Web Full-Stack</li>
-            <li class="reveal-item">Diseño de Interfaces (UI/UX)</li>
-            <li class="reveal-item">Arquitectura de Software</li>
-            <li class="reveal-item">Optimización de Velocidad y SEO</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Footer / CTA -->
-      <footer id="CONTACTO" class="footer-section">
-        <div class="container">
-          <h2 class="footer-cta">¿Listo para digitalizar tu negocio?<br>Hagamos realidad tu visión.</h2>
-          <a href="mailto:flowhivecontac@gmail.com" class="footer-email magnetic">flowhivecontac@gmail.com</a>
-
-          <div class="footer-bottom">
-            <a href="https://wa.me/51904767959?text=Hola,%20estoy%20interesado%20en%20digitalizar%20mi%20negocio%20y%20quisiera%20solicitar%20una%20cotizaci%C3%B3n."
-              target="_blank" class="cta-button magnetic">COTIZAR AHORA</a>
-            <span class="copyright">© 2024 Flowhive. Systems & Design.</span>
-          </div>
-        </div>
-      </footer>
-
+    <h1 class="hero-title hero__content" id="heroTitle">Donde el código y el diseño crean experiencias web imparables.</h1>
+    <div class="hero-cta-row">
+      <a href="#works" class="btn-primary">Ver proyectos <span class="arrow">→</span></a>
+      <div class="hero-note">Desarrollador que construye interfaces de alta precisión y automatiza el backend.</div>
     </div>
-  </main>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image placeholder-ocean hero__bg"></div>
+    <div class="hero-card hero__content">
+      <div class="hero-card-tag">FLOWHIVE®</div>
+      <div class="hero-card-text">Un estudio de desarrollo web que da a las marcas una ventaja técnica real: rápido, dinámico, imparable.</div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span class="pulse-bar"></span>
+      <span class="pulse-arrow">↓</span>
+    </div>
+  </div>
+</section>
 
-  <!-- Unicorn Studio Script -->
-  <script type="text/javascript">
-    !function () { if (!window.UnicornStudio) { window.UnicornStudio = { isInitialized: !1 }; var i = document.createElement("script"); i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js", i.onload = function () { window.UnicornStudio.isInitialized || (UnicornStudio.init(), window.UnicornStudio.isInitialized = !0) }, (document.head || document.body).appendChild(i) } }();
-  </script>
+<!-- ============ BLUE REEL BAR ============ -->
+<section class="reel-bar">
+  <a href="#works" class="reel-link">EXPLORE WORKS →</a>
+  <button class="play-btn" aria-label="Reproducir reel" type="button">
+    <span>▶</span>
+  </button>
+  <div class="reel-right">
+    <div class="reel-title">PLAY REEL</div>
+    <div class="reel-sub">SCROLL DOWN <span>↓</span></div>
+  </div>
+</section>
 
-  <!-- Main Application Script -->
-  <script type="module" src="/main.ts"></script>
-  <!-- Smooth Scroll Script -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
+<!-- ============ COMMITMENT ============ -->
+<section id="about" class="commitment">
+  <div class="commitment-side">
+    <div class="vertical-label">CREEMOS EN EL PODER DEL CÓDIGO LIMPIO Y SU CAPACIDAD DE TRANSFORMAR MARCAS</div>
+    <a href="#about" class="vertical-label accent">SCROLL ↓</a>
+  </div>
+  <div class="commitment-body">
+    <p class="commitment-quote">— Es mi compromiso. Depuro y construyo interfaces de usuario interactivas de alta precisión, integro automatizaciones en el backend y desarrollo plataformas SaaS a medida.</p>
+    <p class="commitment-text">Mi expertise abarca el diseño de landing pages, la arquitectura responsiva, la integración de APIs y flujos de trabajo automatizados, y la optimización continua del rendimiento. Cada proyecto se construye para ser rápido, mantenible y escalable.</p>
+    <a href="#works" class="underline-link">VIEW ALL WORKS →</a>
+  </div>
+</section>
+
+<!-- ============ SELECTED WORKS ============ -->
+<section id="works" class="works">
+  <div class="works-head">
+    <div class="works-title-wrap" id="worksTitleWrap">
+      <h2 class="works-title" id="worksTitle">SELECTED<br>WORKS</h2>
+      <div class="glitch-blocks" id="glitchBlocks">
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+        <span class="glitch-block"></span>
+      </div>
+      <div class="glitch-banner" id="glitchBanner">WE BUILD INTERFACE</div>
+    </div>
+    <div class="works-hint">Pasa el cursor sobre cada proyecto para previsualizarlo.</div>
+  </div>
+
+  <div class="works-list">
+    <a href="#works" class="work-row" data-work="0">
+      <span class="work-num">01</span>
+      <span class="work-name">SURF FUN</span>
+      <span class="work-desc">Plataforma web para escuela de surf · reservas de equipamiento</span>
+    </a>
+    <a href="#works" class="work-row" data-work="1">
+      <span class="work-num">02</span>
+      <span class="work-name">YAKU HIDROE STUDIO</span>
+      <span class="work-desc">UI interactiva · optimización frontend</span>
+    </a>
+    <a href="#works" class="work-row" data-work="2">
+      <span class="work-num">03</span>
+      <span class="work-name">HERMANOS DEL NORTE</span>
+      <span class="work-desc">Web corporativa · taxis turísticos · captación</span>
+    </a>
+    <a href="#works" class="work-row" data-work="3">
+      <span class="work-num">04</span>
+      <span class="work-name">MENÚ RESTAURANTE CORA</span>
+      <span class="work-desc">Landing QR multilingüe · carga ultra rápida</span>
+    </a>
+  </div>
+
+  <!-- floating tracking-fade preview -->
+  <div class="work-tracker" id="workTracker">
+    <img class="work-preview" src="assets/surfun-web.jpg" data-preview="0" alt="">
+    <img class="work-preview" src="assets/yaku-web.jpg" data-preview="1" alt="">
+    <img class="work-preview" src="assets/hermanosdelnorte-web.jpg" data-preview="2" alt="">
+    <img class="work-preview" src="assets/cora-web.jpg" data-preview="3" alt="">
+  </div>
+</section>
+
+<!-- ============ EXPERTISE ACCORDION ============ -->
+<section id="expertise" class="expertise">
+  <div class="expertise-side">
+    <div class="expertise-labels">STRATEGY<br>DEVELOPMENT<br>INTEGRATION<br>OPTIMIZATION</div>
+    <a href="#about" class="vertical-label accent">ABOUT US</a>
+  </div>
+  <div class="expertise-body">
+    <div class="section-eyebrow">— EXPERTISE</div>
+    <div class="accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">
+          <span class="acc-num">01</span>
+          <span class="acc-title">RESEARCH &amp; STRATEGY</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <p>Análisis de requisitos, arquitectura de información y planificación técnica antes de escribir la primera línea de código. Definimos el stack, los flujos y los objetivos de rendimiento.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">
+          <span class="acc-num">02</span>
+          <span class="acc-title">UI ENGINEERING</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <p>Construcción y depuración de interfaces interactivas de alta precisión con React / Next.js. Componentes accesibles, animados y pixel-perfect en todos los breakpoints.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">
+          <span class="acc-num">03</span>
+          <span class="acc-title">BACKEND &amp; AUTOMATION</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <p>Integración de automatizaciones y flujos de trabajo en el backend: APIs, webhooks, bases de datos y lógica de negocio que conecta tu producto con el resto de tu operación.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">
+          <span class="acc-num">04</span>
+          <span class="acc-title">SAAS &amp; DYNAMIC WEB</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <p>Desarrollo de plataformas SaaS a medida y páginas web dinámicas: autenticación, paneles, suscripciones y contenido que se actualiza en tiempo real.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">
+          <span class="acc-num">05</span>
+          <span class="acc-title">OPTIMIZATION &amp; SUPPORT</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-panel">
+          <p>Optimización continua del rendimiento, Core Web Vitals, SEO técnico y mantenimiento. Sitios que cargan al instante y siguen mejorando después del lanzamiento.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#works" class="underline-link">VIEW ALL SERVICES →</a>
+  </div>
+</section>
+
+<!-- ============ ABOUT / STATS ============ -->
+<section class="stats-section">
+  <p class="stats-quote">— Un desarrollador que trata cada línea de código como diseño: preciso, rápido y hecho para durar.</p>
+  <div class="stats-grid">
+    <div class="stat-cell"><div class="stat-value">50+</div><div class="stat-label">Proyectos entregados</div></div>
+    <div class="stat-cell"><div class="stat-value">4</div><div class="stat-label">Años desarrollando</div></div>
+    <div class="stat-cell"><div class="stat-value">98</div><div class="stat-label">Score de rendimiento (Lighthouse)</div></div>
+    <div class="stat-cell"><div class="stat-value">3</div><div class="stat-label">Plataformas SaaS a medida</div></div>
+    <div class="stat-cell"><div class="stat-value">100%</div><div class="stat-label">Interfaces responsive</div></div>
+    <div class="stat-cell"><div class="stat-value">24/7</div><div class="stat-label">Soporte y optimización</div></div>
+  </div>
+</section>
+
+<!-- ============ TRUSTED PARTNERS ============ -->
+<section class="partners">
+  <div class="vertical-label">HISTORIAL DE SOCIOS DE CONFIANZA</div>
+  <div class="partners-body">
+    <div class="section-eyebrow">— TRUSTED PARTNERS</div>
+    <div class="partners-grid">
+      <div class="partner-cell"><span>Surf Fun</span></div>
+      <div class="partner-cell"><span>Yaku Hidroe</span></div>
+      <div class="partner-cell"><span>Hermanos Norte</span></div>
+      <div class="partner-cell"><span>Cora</span></div>
+      <div class="partner-cell"><span>Lobitos Co.</span></div>
+      <div class="partner-cell"><span>Talara Web</span></div>
+      <div class="partner-cell"><span>Piura Digital</span></div>
+      <div class="partner-cell"><span>Nazca Labs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCLUSION ============ -->
+<section class="conclusion">
+  <h2>— CONSTRUYO LAS WEBS QUE <span class="accent-text">NO SE PUEDEN IGNORAR.</span></h2>
+</section>
+
+<!-- ============ INSIGHTS ============ -->
+<section id="insights" class="insights">
+  <div class="insights-side">
+    <div class="insights-label">A VECES<br>ESCRIBIMOS.<br><a href="#insights" class="accent-text">VIEW ALL →</a></div>
+    <div class="vertical-label">FEATURED INSIGHTS</div>
+  </div>
+  <div class="insights-body">
+    <a href="#insights" class="featured-post">
+      <div class="featured-image placeholder-insight"></div>
+      <div class="featured-meta">
+        <h3>La historia detrás del rebranding de FlowHive y su nueva arquitectura web.</h3>
+        <span class="post-date">JUN 2026</span>
+      </div>
+    </a>
+    <div class="post-list">
+      <a href="#insights" class="post-row">
+        <span class="post-title">Revolucionando la experiencia de usuario con micro-interacciones</span>
+        <span class="post-date">MAY 2026</span>
+      </a>
+      <a href="#insights" class="post-row">
+        <span class="post-title">Cómo automaticé el backend de un SaaS con webhooks</span>
+        <span class="post-date">ABR 2026</span>
+      </a>
+      <a href="#insights" class="post-row">
+        <span class="post-title">Dominando el arte del diseño de landing pages que convierten</span>
+        <span class="post-date">MAR 2026</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer" class="site-footer">
+  <a href="mailto:portocarrerolopezluisangel@gmail.com" class="footer-cta">
+    <h2>HELLO@FLOWHIVE.DEV</h2>
+    <span class="cta-arrow">↗</span>
+  </a>
+  <div class="footer-grid">
+    <div class="footer-info">
+      <div class="footer-info-title">FlowHive Studio</div>
+      +51 904 767 959<br>
+      portocarrerolopezluisangel@gmail.com<br>
+      Lobitos, Talara — Piura, Perú
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">MENU</div>
+      <a href="#works">WORKS</a>
+      <a href="#expertise">EXPERTISE</a>
+      <a href="#about">ABOUT</a>
+      <a href="#insights">INSIGHTS</a>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-title">STUDIO</div>
+      <a href="#">CAREERS</a>
+      <a href="#footer">CONTACT</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 FLOWHIVE — ALL RIGHTS RESERVED · <span class="accent-text">LET'S MAKE YOUR IDEAS FLY.</span></div>
+  </div>
+  <div class="footer-wordmark-wrap">
+    <span class="footer-wordmark">flowhive</span>
+  </div>
+</footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/script.js"></script>
 </body>
-
 </html>
