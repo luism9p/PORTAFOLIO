@@ -10,6 +10,7 @@ import Conclusion from './components/Conclusion';
 import Insights from './components/Insights';
 import Footer from './components/Footer';
 import GradualBlur from './components/GradualBlur';
+import PixelTrail from './components/PixelTrail';
 import { usePageLoadAnimation } from './hooks/usePageLoadAnimation';
 import { navItems } from './data/navItems';
 
@@ -62,6 +63,21 @@ export default function App() {
           80, kept below BubbleMenu's nav (z-index 99) now that it replaces
           the old sticky header — see GradualBlur.jsx for the WebKit fix. */}
       <GradualBlur preset="page-header" strength={2} divCount={4} curve="bezier" zIndex={-20} />
+      {/* Moved here from Conclusion (was scoped to that one section) — now a
+          page-wide cursor trail, z-index 90 (above GradualBlur's 80, below
+          BubbleMenu's 99). fullPageTracking swaps the mesh's own hit-test
+          for a window-level pointermove listener — see PixelTrail.jsx. */}
+      <div className="page-pixel-trail">
+        <PixelTrail
+          gridSize={80}
+          trailSize={0.08}
+          maxAge={300}
+          interpolate={4.7}
+          color="#C8FF00"
+          gooeyFilter={{ id: 'page-goo-filter', strength: 2 }}
+          fullPageTracking
+        />
+      </div>
     </>
   );
 }

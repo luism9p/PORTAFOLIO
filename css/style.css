@@ -30,6 +30,13 @@ a:hover{color:var(--lime)}
    imported directly by the component — kept alongside it like the rest of
    this codebase's other component-owned concerns. */
 
+/* PixelTrail as a page-wide fixed layer — pointer-events:none so it never
+   blocks clicks on real content; the effect itself is near-fully-transparent
+   except right around the cursor (alpha comes from the trail texture), so it
+   reads as a cursor highlight rather than something that obscures text. */
+.page-pixel-trail{position:fixed;inset:0;z-index:90;pointer-events:none}
+.page-pixel-trail canvas{width:100%;height:100%;display:block}
+
 /* ============ PLACEHOLDER IMAGES ============ */
 .placeholder-ocean,.placeholder-insight{
   width:100%;height:100%;position:relative;overflow:hidden;background:#0c0c0e;
@@ -253,14 +260,14 @@ a:hover{color:var(--lime)}
 .partner-cell span{font-family:'Archivo';font-weight:700;font-size:18px;letter-spacing:-.01em}
 
 /* ============ CONCLUSION ============ */
-.conclusion{padding:140px 40px;overflow:hidden;position:relative}
-.conclusion-trail{position:absolute;inset:0;z-index:0}
-.conclusion-trail canvas{width:100%;height:100%;display:block}
+.conclusion{padding:140px 40px;overflow:hidden}
 .conclusion h2{
-  position:relative;z-index:1;pointer-events:none;
   font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:900;
   font-size:clamp(38px,8.4vw,150px);line-height:.9;letter-spacing:-.04em;text-wrap:balance;
 }
+
+/* PixelTrail is now a page-wide fixed layer (src/portfolio/App.jsx), not
+   scoped to this section — see .page-pixel-trail below. */
 .accent-text{color:var(--lime)}
 
 /* ============ INSIGHTS ============ */

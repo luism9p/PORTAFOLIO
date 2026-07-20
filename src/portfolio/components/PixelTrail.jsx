@@ -73,7 +73,7 @@ const DotMaterial = shaderMaterial(
   `
 );
 
-function Scene({ gridSize, trailSize, maxAge, interpolate, easingFunction, pixelColor }) {
+function Scene({ gridSize, trailSize, maxAge, interpolate, easingFunction, pixelColor, fullPageTracking }) {
   const size = useThree((s) => s.size);
   const viewport = useThree((s) => s.viewport);
 
@@ -95,10 +95,27 @@ function Scene({ gridSize, trailSize, maxAge, interpolate, easingFunction, pixel
     trail.wrapT = THREE.ClampToEdgeWrapping;
   }
 
+  // Not in the reference: it only ever tracks the cursor via the mesh's own
+  // R3F pointer events (onPointerMove), which requires the canvas to
+  // actually receive mouse events — fine for a contained section, but this
+  // effect needs to follow the cursor across the ENTIRE page while sitting
+  // behind everything else (pointer-events:none on the canvas, so it never
+  // blocks clicks on real links/buttons). A window-level listener feeds the
+  // same onMove() the mesh would have called, computing uv the same way R3F
+  // does for a mesh raycast hit (0-1, Y flipped to match texture space).
+  useEffect(() => {
+    if (!fullPageTracking) return undefined;
+    function handlePointerMove(e) {
+      onMove({ uv: { x: e.clientX / window.innerWidth, y: 1 - e.clientY / window.innerHeight } });
+    }
+    window.addEventListener('pointermove', handlePointerMove);
+    return () => window.removeEventListener('pointermove', handlePointerMove);
+  }, [fullPageTracking, onMove]);
+
   const scale = Math.max(viewport.width, viewport.height) / 2;
 
   return (
-    <mesh scale={[scale, scale, 1]} onPointerMove={onMove}>
+    <mesh scale={[scale, scale, 1]} onPointerMove={fullPageTracking ? undefined : onMove}>
       <planeGeometry args={[2, 2]} />
       <primitive
         object={dotMaterial}
@@ -125,6 +142,10 @@ export default function PixelTrail({
   gooeyFilter,
   color = '#ffffff',
   className = '',
+  // Not in the reference: opt into window-level pointer tracking (see Scene)
+  // and non-interactive pointer-events, for use as a page-wide fixed layer
+  // rather than a effect contained to one section.
+  fullPageTracking = false,
 }) {
   // Not in the reference: R3F v8's Canvas can measure a stale/zero size on
   // first mount when it sits inside certain layout chains (e.g. an
@@ -144,6 +165,11 @@ export default function PixelTrail({
     return () => timeoutIds.forEach(clearTimeout);
   }, []);
 
+  const canvasStyle = {
+    ...(gooeyFilter ? { filter: `url(#${gooeyFilter.id})` } : null),
+    ...(fullPageTracking ? { pointerEvents: 'none' } : null),
+  };
+
   return (
     <>
       {gooeyFilter && <GooeyFilter id={gooeyFilter.id} strength={gooeyFilter.strength} />}
@@ -151,7 +177,7 @@ export default function PixelTrail({
         {...canvasProps}
         gl={glProps}
         className={`pixel-canvas ${className}`}
-        style={gooeyFilter && { filter: `url(#${gooeyFilter.id})` }}
+        style={Object.keys(canvasStyle).length ? canvasStyle : undefined}
       >
         <Scene
           gridSize={gridSize}
@@ -160,6 +186,7 @@ export default function PixelTrail({
           interpolate={interpolate}
           easingFunction={easingFunction}
           pixelColor={color}
+          fullPageTracking={fullPageTracking}
         />
       </Canvas>
     </>
