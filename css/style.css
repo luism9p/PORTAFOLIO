@@ -91,12 +91,14 @@ a:hover{color:var(--lime)}
 .hero-title{
   font-family:'Archivo Expanded','Archivo',sans-serif;font-weight:800;
   font-size:clamp(40px,6.4vw,104px);line-height:.94;letter-spacing:-.035em;
-  color:var(--lime);text-wrap:balance;margin-bottom:36px;
+  color:var(--lime);margin-bottom:36px;
   opacity:0;will-change:transform;
 }
-.hero-title .line{overflow:hidden;display:block}
-.hero-title .line-inner{display:block;transform:translateY(100%);will-change:transform}
-.hero-title .word{display:inline-block}
+/* typewriter effect target — see typeText() in animations.js */
+.hero-title .text-type__content{display:inline}
+.hero-title .text-type__cursor{
+  display:inline-block;margin-left:.05em;font-weight:400;color:var(--lime);
+}
 .hero-cta-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 .btn-primary{
   display:inline-flex;align-items:center;gap:12px;background:#fff;color:#000;

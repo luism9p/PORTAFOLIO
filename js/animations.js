@@ -24,43 +24,67 @@
      1. PAGE LOAD SEQUENCE — header + hero headline mask reveal + bg
      ============================================================ */
 
-  function splitHeroTitleIntoLines(el) {
-    var words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words
-      .map(function (w) { return '<span class="word">' + w + '&nbsp;</span>'; })
-      .join('');
-
-    var wordEls = Array.prototype.slice.call(el.querySelectorAll('.word'));
-    var lines = [];
-    var lastTop = null;
-
-    wordEls.forEach(function (w) {
-      var top = w.offsetTop;
-      if (top !== lastTop) {
-        lines.push([]);
-        lastTop = top;
-      }
-      lines[lines.length - 1].push(w);
-    });
+  // Vanilla port of React Bits' <TextType /> — single static string, types once
+  // (no delete/loop, this is a permanent headline not a rotating hint), with a
+  // GSAP-driven blinking cursor exactly like the source component.
+  function typeText(el, text, opts) {
+    opts = opts || {};
+    var typingSpeed = opts.typingSpeed || 45;
+    var variableSpeed = opts.variableSpeed; // {min, max}
+    var initialDelay = opts.initialDelay || 0;
+    var cursorCharacter = opts.cursorCharacter || '|';
+    var showCursor = opts.showCursor !== false;
 
     el.innerHTML = '';
-    lines.forEach(function (lineWords) {
-      var outer = document.createElement('div');
-      outer.className = 'line';
-      var inner = document.createElement('div');
-      inner.className = 'line-inner';
-      lineWords.forEach(function (w) { inner.appendChild(w); });
-      outer.appendChild(inner);
-      el.appendChild(outer);
-    });
+    var contentSpan = document.createElement('span');
+    contentSpan.className = 'text-type__content';
+    el.appendChild(contentSpan);
 
-    return el.querySelectorAll('.line-inner');
+    if (showCursor) {
+      var cursorSpan = document.createElement('span');
+      cursorSpan.className = 'text-type__cursor';
+      cursorSpan.textContent = cursorCharacter;
+      el.appendChild(cursorSpan);
+      gsap.set(cursorSpan, { opacity: 1 });
+      gsap.to(cursorSpan, {
+        opacity: 0,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut'
+      });
+    }
+
+    function nextDelay() {
+      if (!variableSpeed) return typingSpeed;
+      return Math.random() * (variableSpeed.max - variableSpeed.min) + variableSpeed.min;
+    }
+
+    var i = 0;
+    function step() {
+      if (i < text.length) {
+        contentSpan.textContent += text.charAt(i);
+        i++;
+        setTimeout(step, nextDelay());
+      } else if (opts.onComplete) {
+        opts.onComplete();
+      }
+    }
+    setTimeout(step, initialDelay);
   }
 
   function runLoadSequence() {
     var heroTitle = document.getElementById('heroTitle');
-    var lineInners = heroTitle ? splitHeroTitleIntoLines(heroTitle) : [];
-    if (heroTitle) heroTitle.style.opacity = '1';
+    var heroTitleText = heroTitle ? heroTitle.textContent.trim() : '';
+    if (heroTitle) {
+      heroTitle.style.opacity = '1';
+      typeText(heroTitle, heroTitleText, {
+        typingSpeed: 45,
+        variableSpeed: { min: 30, max: 60 },
+        initialDelay: 300,
+        cursorCharacter: '|'
+      });
+    }
 
     var tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
@@ -68,16 +92,6 @@
     tl.fromTo('.logo', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0)
       .fromTo('.main-nav a', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, 0.1)
       .fromTo('.header-contact', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.4);
-
-    // Hero headline: masked lines slide up from y:100% -> 0% with expo.out.
-    if (lineInners.length) {
-      tl.to(lineInners, {
-        y: '0%',
-        duration: 1.2,
-        ease: 'expo.out',
-        stagger: 0.12
-      }, 0.15);
-    }
 
     // Background image: slow fade-in coupled with a subtle zoom-out.
     tl.to('.hero-image', {
