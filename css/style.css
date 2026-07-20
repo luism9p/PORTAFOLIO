@@ -26,8 +26,12 @@ a:hover{color:var(--lime)}
 
 .wrap{max-width:1600px;margin:0 auto;position:relative}
 
-/* ============ GRADUAL BLUR (built by js/gradual-blur.js) ============ */
-.gradual-blur{pointer-events:none;isolation:isolate}
+/* ============ GRADUAL BLUR (src/portfolio/components/GradualBlur.jsx) ============ */
+/* isolation:isolate deliberately omitted — tested and confirmed to make no
+   difference under Chromium; position:fixed + explicit z-index already forms
+   the needed stacking context, and it's one less rule touching the exact CSS
+   feature that was under suspicion for the original WebKit visibility bug. */
+.gradual-blur{pointer-events:none}
 .gradual-blur-page{position:fixed}
 @supports not (backdrop-filter: blur(1px)){
   .gradual-blur-inner > div{background:rgba(0,0,0,.3);opacity:.5}
