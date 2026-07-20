@@ -34,7 +34,9 @@ export default function App() {
         <Insights />
         <Footer />
       </div>
-      <GradualBlur target="page" position="top" height="10rem" strength={2} divCount={4} curve="bezier" zIndex={50} />
+      {/* page-header preset (top, 10rem, target:page) with strength/divCount/zIndex
+          overrides tuned for this header — see GradualBlur.jsx for the WebKit fix. */}
+      <GradualBlur preset="page-header" strength={2} divCount={4} curve="bezier" zIndex={50} />
     </>
   );
 }
