@@ -1,0 +1,19 @@
+.goo-filter-container {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.pixel-canvas {
+  position: absolute;
+  z-index: 1;
+  /* Not in the original reference CSS: without an explicit inset/size, this
+     wrapper (which is what R3F's Canvas actually applies position/className
+     to, not the raw <canvas> element) has no definite size for R3F's
+     ResizeObserver to measure, so the drawing buffer silently falls back to
+     the browser's default 300x150 canvas size. Needed for this to render at
+     all inside an absolutely-positioned parent. */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
