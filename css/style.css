@@ -26,6 +26,13 @@ a:hover{color:var(--lime)}
 
 .wrap{max-width:1600px;margin:0 auto;position:relative}
 
+/* ============ GRADUAL BLUR (built by js/gradual-blur.js) ============ */
+.gradual-blur{pointer-events:none;isolation:isolate}
+.gradual-blur-page{position:fixed}
+@supports not (backdrop-filter: blur(1px)){
+  .gradual-blur-inner > div{background:rgba(0,0,0,.3);opacity:.5}
+}
+
 /* ============ PLACEHOLDER IMAGES ============ */
 .placeholder-ocean,.placeholder-insight{
   width:100%;height:100%;position:relative;overflow:hidden;background:#0c0c0e;
