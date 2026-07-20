@@ -48,7 +48,10 @@ a:hover{color:var(--lime)}
 /* ============ HERO ============ */
 .hero{
   display:grid;grid-template-columns:1.7fr 1fr;gap:0;
-  padding:64px 40px 0;position:relative;
+  /* top padding clears BubbleMenu's floating bubbles (fixed, top:2em, up to
+     56px tall on desktop >=768px) — there's no solid header anymore reserving
+     that space in normal document flow, so content needs to make room itself */
+  padding:140px 40px 0;position:relative;
 }
 .hero-left{padding-right:24px}
 .hero-eyebrow{
@@ -331,12 +334,9 @@ a:hover{color:var(--lime)}
 }
 
 @media (max-width:800px){
-  .site-header{padding:0 20px}
-  .main-nav,.header-contact{display:none}
-  .menu-toggle{display:flex}
-  .mobile-nav{padding:8px 20px}
-
-  .hero{grid-template-columns:1fr;padding:40px 20px 0;gap:40px}
+  /* BubbleMenu bubbles are 48px tall below this breakpoint (top:2em offset),
+     so clearance needed here is a bit less than the desktop 140px above */
+  .hero{grid-template-columns:1fr;padding:110px 20px 0;gap:40px}
   .hero-left{padding-right:0}
   .hero-right{aspect-ratio:4/3;border-left:none}
 
