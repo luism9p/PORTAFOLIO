@@ -1,22 +1,17 @@
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 
-// Header logo/nav/contact staggered fade+slide, hero background fade+scale.
-// Unscoped (global selectors) to match the original — targets span across
-// Header and Hero, two separate components.
+// Hero background fade+scale on load. Used to also fade in the old
+// Header's logo/nav/contact — removed along with Header/MobileNav when
+// BubbleMenu took over navigation (it has its own open/close animation,
+// no load-in treatment needed for two floating bubbles).
 export function usePageLoadAnimation() {
   useGSAP(() => {
     let cancelled = false;
 
     function run() {
       if (cancelled) return;
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-      tl.fromTo('.logo', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0)
-        .fromTo('.main-nav a', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.1 }, 0.1)
-        .fromTo('.header-contact', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.4);
-
-      tl.to('.hero-image', { opacity: 1, scale: 1, duration: 2, ease: 'power2.out' }, 0.1);
+      gsap.to('.hero-image', { opacity: 1, scale: 1, duration: 2, ease: 'power2.out' });
     }
 
     if (document.fonts && document.fonts.ready) {

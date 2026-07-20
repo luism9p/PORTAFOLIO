@@ -41,45 +41,9 @@ a:hover{color:var(--lime)}
 }
 .placeholder-insight{background:linear-gradient(120deg,#05070c,#0d1830 50%,#040405);}
 
-/* ============ HEADER ============ */
-.site-header{
-  position:sticky;top:0;z-index:200;
-  display:flex;align-items:center;height:80px;padding:0 40px;
-  background:rgba(0,0,0,.72);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line-1);
-}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-mark-img{
-  display:block;width:30px;height:30px;object-fit:contain;
-  transition:transform .3s ease;
-}
-.logo:hover .logo-mark-img{transform:rotate(90deg)}
-.logo-word{font-family:'Archivo';font-weight:500;font-size:22px;letter-spacing:-1.5px}
-
-/* load-in hidden state, revealed by animations.js */
-.logo,.main-nav a,.header-contact{opacity:0}
-
-.main-nav{display:flex;gap:32px;margin-left:auto;font-size:13px;letter-spacing:.06em;font-weight:500}
-.main-nav a{transition:color .2s ease}
-
-.header-contact{display:flex;align-items:center;gap:20px;margin-left:36px}
-.divider-line{width:24px;height:1px;background:#333}
-.contact-link{font-size:13px;letter-spacing:.06em;font-weight:700;transition:color .2s ease}
-
-.menu-toggle{
-  display:none;background:none;border:none;cursor:pointer;margin-left:12px;
-  width:48px;height:48px;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-}
-.menu-toggle span{width:22px;height:2px;background:#fff;display:block}
-
-.mobile-nav{
-  display:none;position:sticky;top:80px;z-index:190;
-  background:#050505;border-bottom:1px solid var(--line-1);
-  flex-direction:column;padding:8px 40px;
-}
-.mobile-nav a{padding:14px 0;font-size:14px;letter-spacing:.06em;font-weight:600;border-bottom:1px solid var(--line-1)}
-.mobile-nav a:last-child{border-bottom:none}
-.mobile-nav.open{display:flex}
+/* HEADER — replaced by BubbleMenu (src/portfolio/components/BubbleMenu.css),
+   which owns its own nav styling entirely. Old .site-header/.main-nav/
+   .mobile-nav/.menu-toggle rules removed along with Header/MobileNav. */
 
 /* ============ HERO ============ */
 .hero{
