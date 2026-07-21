@@ -63,6 +63,12 @@ export default function App() {
           80, kept below BubbleMenu's nav (z-index 99) now that it replaces
           the old sticky header — see GradualBlur.jsx for the WebKit fix. */}
       <GradualBlur preset="page-header" strength={2} divCount={4} curve="bezier" zIndex={-20} />
+      {/* Same treatment, bottom edge — page-footer preset (bottom, 10rem,
+          target:page), same zIndex math so it sits at the same layer as the
+          header blur (effective 80). Nothing else is anchored to the bottom
+          of the viewport (no footer-nav equivalent), so no z-index conflict
+          to account for there the way BubbleMenu is at the top. */}
+      <GradualBlur preset="page-footer" strength={2} divCount={4} curve="bezier" zIndex={-20} />
       {/* Moved here from Conclusion (was scoped to that one section) — now a
           page-wide cursor trail, z-index 90 (above GradualBlur's 80, below
           BubbleMenu's 99). fullPageTracking swaps the mesh's own hit-test
