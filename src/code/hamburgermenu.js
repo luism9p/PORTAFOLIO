@@ -77,6 +77,13 @@ class MenuController {
 
     bindEvents() {
         this.elements.menuToggle.addEventListener("click", () => this.toggle());
+
+        this.elements.menuItems?.forEach((item) => {
+            const link = item.querySelector("a");
+            link?.addEventListener("click", () => {
+                if (this.isOpen) this.close();
+            });
+        });
     }
 
     toggle() {
