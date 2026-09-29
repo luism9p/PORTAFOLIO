@@ -1,0 +1,642 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Project from "../components/Project.astro";
+import projects from "../data/project";
+
+const works1 = projects.slice(0, 3);
+const works2 = projects.slice(3);
+---
+
+<Layout>
+    <div class="intro">
+        <div class="intro__wrapper">
+            <div class="logo">
+                <div class="logo__wrapper">
+                    <div class="logo__content">
+                        <img
+                            class="logo__icon"
+                            src="/images/logo-white.png"
+                            alt="FlowHive"
+                            style="height: auto;"
+                        />
+                        <span class="logo__text"> FlowHive </span>
+                    </div>
+                    <svg
+                        class="logo__border"
+                        viewBox="0 0 235 56"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            x="1"
+                            y="1"
+                            width="233"
+                            height="54"
+                            rx="27"
+                            stroke="white"
+                            stroke-width="2"></rect>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
+            <section class="hero">
+                <div class="hero__container container">
+                    <div class="hero__image">
+                        <img
+                            src="/images/logo-white.png"
+                            alt="FlowHive"
+                            width="620"
+                            height="559"
+                            loading="eager"
+                            fetchpriority="high"
+                        />
+                    </div>
+                    <div class="hero__data">
+                        <h1 class="hero__title">FlowHive</h1>
+                        <p class="hero__subtitle subtitle">
+                            Webs que traen clientes, sin que entiendas nada técnico
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section id="work" class="work">
+                <div class="work__container container">
+                    <div class="work__content work__content-col1">
+                        <div class="work__data">
+                            <h2 class="work__title title">PROYECTOS</h2>
+                            <p class="work__subtitle subtitle">
+                                Un vistazo a mis últimos trabajos
+                            </p>
+                        </div>
+                        {
+                            works1.map((project, index) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
+                    </div>
+                    <div class="work__content work__content-col2">
+                        {
+                            works2.map((project, index) => (
+                                <Project
+                                    title={project.title}
+                                    category={project.tag}
+                                    image={project.image}
+                                />
+                            ))
+                        }
+                        <div class="work__content__cta">
+                            <p class="cta__title">¿Te gusta lo que ves?</p>
+                            <div class="btn__wrapper"></div>
+                            <div class="buttonwrapper">
+                                <a
+                                    href="./works"
+                                    class="btn magnetic-button"
+                                    data-strength="1.5"
+                                    data-strength-text=".7"
+                                >
+                                    <span class="text">Ver más</span>
+                                    <span class="btn__bg"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="about" class="about">
+                <div class="about__background">
+                    <div class="about__container container">
+                        <div class="about__jafar">
+                            <div class="about__jafar__title">
+                                <h2>Sobre mí</h2>
+                            </div>
+                            <div class="about__jafar__content">
+                                <div class="summary">
+                                    <div class="split-word">
+                                        Soy Luis Ángel Portocarrero, fundador de
+                                        FlowHive: impresión 3D a tu medida, y
+                                        webs que traen clientes cuando las
+                                        necesitas.
+                                    </div>
+                                </div>
+                                <p class="description sta">
+                                    Desde FlowHive hago impresión 3D a medida:
+                                    trofeos, piezas personalizadas y
+                                    merchandising, como los premios y peines de
+                                    cera del Campeonato Relámpago de Corazón,
+                                    la línea Conchas de Mar o los peines de
+                                    Lobitos Wax. También ofrezco desarrollo
+                                    web: landing pages y sitios orientados a
+                                    conversión para negocios locales —
+                                    escuelas de surf, restaurantes, empresas de
+                                    transporte turístico y estudios de
+                                    ingeniería — con experiencia en bases de
+                                    datos relacionales (PostgreSQL, SQL),
+                                    automatización de flujos de trabajo y
+                                    optimización de interfaces con JavaScript.
+                                    Estudio Ingeniería de Sistemas e
+                                    Informática en la Universidad Tecnológica
+                                    del Perú (UTP), actualmente en octavo
+                                    ciclo. Español nativo, inglés intermedio.
+                                </p>
+                                <a
+                                    href="./works"
+                                    class="btn magnetic-button"
+                                    data-strength="1.5"
+                                    data-strength-text=".7"
+                                >
+                                    <span class="text">Ver más</span>
+                                    <span class="btn__bg"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="about__skills">
+                            <div class="about__skills__title">
+                                <h2>Habilidades</h2>
+                            </div>
+                            <div class="about__skills__content">
+                                <ul class="skill__block sta">
+                                    <li class="skill__item">Impresión 3D</li>
+                                    <li class="skill__item">
+                                        Arquitectura de Software
+                                    </li>
+                                    <li class="skill__item">
+                                        Bases de Datos Relacionales
+                                    </li>
+                                    <li class="skill__item">
+                                        Desarrollo de APIs
+                                    </li>
+                                    <li class="skill__item">
+                                        Metodologías Ágiles
+                                    </li>
+                                    <li class="skill__item">
+                                        HTML/CSS/JavaScript
+                                    </li>
+                                </ul>
+                                <ul class="skill__block">
+                                    <li class="skill__item">Python</li>
+                                    <li class="skill__item">Java</li>
+                                    <li class="skill__item">C++</li>
+                                    <li class="skill__item">SQL/MySQL</li>
+                                    <li class="skill__item">Git</li>
+                                    <li class="skill__item">AWS</li>
+                                    <li class="skill__item">Tableau</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="cta">
+                <div class="container cta__container">
+                    <div class="cta__content">
+                        <h2 class="cta__title cta__title--small">Let's</h2>
+                        <div class="cta__title-wrapper">
+                            <h2 class="cta__title cta__title--big">BUILD</h2>
+                            <a href="./contact" class="cta__rolling-text">
+                                <img src="/images/logo-white.png" alt="FlowHive" />
+                                <svg
+                                    viewBox="0 0 250.5 250.5"
+                                    height="250.5"
+                                    width="250.5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M.25,125.25a125,125,0,1,1,125,125,125,125,0,0,1-125-125"
+                                        id="e-path-bdad50e"></path>
+                                    <text>
+                                        <textPath
+                                            id="e-text-path-bdad50e"
+                                            href="#e-path-bdad50e"
+                                            startOffset="0%"
+                                        >
+                                            GET IN TOUCH ● GET IN TOUCH ●
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </a>
+                            <h2 class="cta__title cta__title--big">GREAT</h2>
+                        </div>
+                        <h2 class="cta__title cta__title--small">
+                            Things Together
+                        </h2>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</Layout>
+
+<script src="../code/preloader.js"></script>s
+<script src="../code/customcode.js"></script>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
+    .page-wrapper {
+        --round: clamp(3.75rem, -0.116rem + 16.279vw, 12.5rem);
+        position: relative;
+        background-color: var(--color-bg-dark);
+        border-radius: 0 0 var(--round) var(--round);
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: all;
+    }
+    .hero {
+        &__container {
+            flex-flow: column;
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+            padding-top: calc(var(--space-xl) + 100px);
+            padding-bottom: var(--space-xl);
+        }
+        &__image {
+            -webkit-mask: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(transparent),
+                color-stop(50%, white),
+                color-stop(0%, white),
+                to(transparent)
+            );
+            -webkit-mask: linear-gradient(
+                90deg,
+                transparent,
+                white 50%,
+                white 0%,
+                transparent
+            );
+            mask: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(transparent),
+                color-stop(50%, white),
+                color-stop(0%, white),
+                to(transparent)
+            );
+            mask: linear-gradient(
+                90deg,
+                transparent,
+                white 50%,
+                white 0%,
+                transparent
+            );
+            z-index: -1;
+
+            img {
+                max-width: 95%;
+                height: auto;
+                display: block;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                margin-inline: auto;
+                user-select: none;
+                pointer-events: none;
+                -webkit-mask: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    from(transparent),
+                    color-stop(40%, white),
+                    color-stop(80%, white),
+                    to(#fbfbfb)
+                );
+                -webkit-mask: linear-gradient(
+                    0deg,
+                    transparent,
+                    white 40%,
+                    white 80%,
+                    #fbfbfb
+                );
+                mask: -webkit-gradient(
+                    linear,
+                    left bottom,
+                    left top,
+                    from(transparent),
+                    color-stop(40%, white),
+                    color-stop(80%, white),
+                    to(#fbfbfb)
+                );
+                mask: linear-gradient(
+                    0deg,
+                    transparent,
+                    white 40%,
+                    white 80%,
+                    #fbfbfb
+                );
+            }
+        }
+
+        &__data {
+            .hero__title {
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            .hero__subtitle {
+                text-align: center;
+            }
+        }
+    }
+
+    .partners {
+        &__content {
+            width: 100%;
+            overflow: hidden;
+            .swiper {
+                -webkit-mask: linear-gradient(
+                    90deg,
+                    transparent,
+                    white 20%,
+                    white 80%,
+                    transparent
+                );
+                mask: linear-gradient(
+                    90deg,
+                    transparent,
+                    white 20%,
+                    white 80%,
+                    transparent
+                );
+            }
+            .swiper-wrapper {
+                width: 100% !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                pointer-events: none;
+                transition-timing-function: linear !important;
+                .swiper-slide {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: auto;
+                    padding: 0 20px;
+                }
+                img {
+                    width: clamp(6.875rem, 6.294rem + 2.326vw, 8.125rem);
+                }
+            }
+        }
+    }
+
+    .about {
+        padding-inline: var(--space-sm);
+
+        .word {
+            position: relative;
+        }
+        .line-mask {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #0d0d0d;
+            opacity: 0.8;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+        }
+
+        &__background {
+            border-radius: 3em;
+            background-color: var(--color-bg-white);
+        }
+        &__container {
+            padding-block: var(--space-xl);
+            flex-flow: column;
+            gap: var(--space-xl);
+        }
+
+        &__jafar {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            &__title {
+                text-transform: uppercase;
+                color: var(--color-heading-dark);
+            }
+
+            &__content {
+                color: var(--color-text-dark);
+                .summary {
+                    font-size: var(--fs-md);
+                    font-weight: 500;
+                    margin-bottom: 20px;
+                }
+                .btn {
+                    margin-top: var(--space-md);
+                }
+            }
+        }
+
+        &__skills {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            &__title {
+                color: var(--color-heading-dark);
+                text-transform: uppercase;
+            }
+
+            .skill__item {
+                opacity: 0;
+                color: var(--color-text-dark);
+                padding: 0.7em;
+                border-bottom: 2px solid black;
+            }
+        }
+    }
+
+    .work {
+        &__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            padding-block: var(--space-2xl);
+            gap: 2em;
+        }
+
+        &__content {
+            display: grid;
+            gap: 2em;
+            &__cta {
+                .cta__title {
+                    text-align: start;
+                    font-size: var(--fs-md);
+                    margin-bottom: var(--space-sm);
+                }
+
+                .btn {
+                    color: var(--color-text-white);
+                }
+            }
+        }
+    }
+
+    .cta {
+        padding-top: var(--space-2xl);
+        &__container {
+            max-width: 1280px;
+        }
+        &__content {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            width: 100%;
+            padding-bottom: var(--space-2xl);
+        }
+        &__title {
+            text-align: center;
+            &-wrapper {
+                width: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                gap: var(--space-sm);
+                .cta__image {
+                    width: clamp(10.625rem, 8.802rem + 7.674vw, 14.75rem);
+                    margin: var(--space-sm);
+                }
+            }
+            &--small {
+                font-size: var(--fs-xl);
+            }
+
+            &--big {
+                font-size: var(--fs-2xl);
+            }
+        }
+        &__rolling-text {
+            --size: clamp(9.375rem, 7.143rem + 7.143vw, 12.5rem);
+            width: var(--size);
+            min-height: var(--size);
+            position: relative;
+
+            img {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -52%);
+                width: calc(var(--size) - 30px);
+                height: calc(var(--size) - 30px);
+                object-fit: cover;
+                object-position: top center;
+                border-radius: 100vmax;
+            }
+            svg {
+                height: auto;
+                overflow: visible;
+                width: 100%;
+                fill: none;
+                animation: spinning 10s linear infinite;
+            }
+
+            svg textPath {
+                text-transform: uppercase;
+                word-spacing: 25px;
+                font-size: 1.4rem;
+                letter-spacing: 7px;
+                font-weight: 500;
+                /* color: red; */
+                fill: var(--color-heading-white);
+            }
+
+            @keyframes spinning {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+    }
+
+    @include responsive.respond-to("mobile") {
+        .hero {
+            &__container {
+                padding-top: 100px;
+            }
+            &__image {
+                max-width: 620px;
+                margin-bottom: -4em;
+            }
+        }
+
+        .work {
+            &__content-col1 {
+                order: 2;
+            }
+
+            &__data {
+                text-align: right;
+            }
+        }
+    }
+
+    @include responsive.respond-to("tablet") {
+        .about {
+            &__jafar,
+            &__skills {
+                flex-flow: row;
+                justify-content: space-between;
+                gap: 2em;
+            }
+
+            &__jafar__content,
+            &__skills__content {
+                width: 65%;
+            }
+
+            &__skills__content {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.3em;
+            }
+        }
+
+        .work {
+            &__container {
+                grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            }
+        }
+    }
+
+    @include responsive.respond-to("laptop") {
+        .about {
+            &__skills__content {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        .work {
+            &__container {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+        }
+
+        .cta {
+            &__title-wrapper {
+                flex-flow: row;
+                justify-content: space-between;
+            }
+        }
+    }
+</style>
