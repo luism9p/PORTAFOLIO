@@ -20,6 +20,17 @@
         <ul id="footer-socials" class="footer__socials">
             <li class="footer__socials-item">
                 <a
+                    href="/catalogo"
+                    class="footer__socials-item-link btn magnetic-button"
+                    data-strength="1.5"
+                    data-strength-text=".4"
+                >
+                    <span class="text">Catálogo</span>
+                    <span class="btn__bg"></span>
+                </a>
+            </li>
+            <li class="footer__socials-item">
+                <a
                     href="https://wa.me/51904767959"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -125,7 +136,8 @@
         #footer-socials {
             font-size: clamp(1rem, 0.89rem + 0.465vw, 1.25rem);
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 0.5em;
             width: 100%;
             max-width: max(60%, 400px);

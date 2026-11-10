@@ -1,0 +1,464 @@
+---
+import Layout from "../layouts/Layout.astro";
+import productos, { categorias } from "../data/productos";
+
+const WHATSAPP = "https://wa.me/51904767959";
+const etiquetas = Object.fromEntries(categorias.map((c) => [c.id, c.label]));
+
+const linkProducto = (nombre) =>
+    `${WHATSAPP}?text=${encodeURIComponent(
+        `Hola, me interesa "${nombre}" del catálogo de FlowHive. ¿Me das más información?`
+    )}`;
+
+const linkMedida = `${WHATSAPP}?text=${encodeURIComponent(
+    "Hola, vi el catálogo de FlowHive y quiero pedir algo a medida."
+)}`;
+---
+
+<Layout
+    title="Catálogo de impresión 3D — FlowHive"
+    description="Catálogo de FlowHive: lámparas, posavasos, clickers, llaveros, peines para cera y trofeos impresos en 3D. Pídelo por WhatsApp."
+>
+    <main>
+        <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
+            <section class="catalog">
+                <div class="catalog__container container">
+                    <div class="catalog__intro">
+                        <h1 class="catalog__title">CATÁLOGO</h1>
+                        <p class="catalog__subtitle subtitle">
+                            Piezas impresas en 3D, hechas a pedido
+                        </p>
+                        <p class="catalog__note">
+                            El precio depende del diseño, el color y la
+                            cantidad. Escríbeme por WhatsApp y te cotizo.
+                        </p>
+                    </div>
+
+                    <div
+                        class="catalog__filters"
+                        role="group"
+                        aria-label="Filtrar por categoría"
+                    >
+                        {
+                            categorias.map((categoria, index) => (
+                                <button
+                                    type="button"
+                                    class="catalog__filter"
+                                    data-filter={categoria.id}
+                                    aria-pressed={index === 0 ? "true" : "false"}
+                                >
+                                    {categoria.label}
+                                </button>
+                            ))
+                        }
+                    </div>
+
+                    <ul class="catalog__grid">
+                        {
+                            productos.map((producto) => (
+                                <li
+                                    class="product-card"
+                                    data-category={producto.categoria}
+                                >
+                                    <div class="product-card__media">
+                                        {producto.imagen ? (
+                                            <img
+                                                src={producto.imagen}
+                                                alt={producto.alt ?? producto.nombre}
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        ) : (
+                                            <div
+                                                class="product-card__empty"
+                                                role="img"
+                                                aria-label={`Foto próximamente: ${producto.nombre}`}
+                                            >
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="40"
+                                                    height="40"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.5"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    aria-hidden="true"
+                                                >
+                                                    <rect
+                                                        x="3"
+                                                        y="3"
+                                                        width="18"
+                                                        height="18"
+                                                        rx="3"
+                                                    />
+                                                    <circle
+                                                        cx="8.5"
+                                                        cy="8.5"
+                                                        r="1.5"
+                                                    />
+                                                    <path d="m3 16 5-5c.9-.9 2.1-.9 3 0l5 5" />
+                                                    <path d="m14 14 1-1c.9-.9 2.1-.9 3 0l3 3" />
+                                                </svg>
+                                                <span>Foto próximamente</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div class="product-card__body">
+                                        <span class="product-card__meta">
+                                            {etiquetas[producto.categoria]}
+                                        </span>
+                                        <h3 class="product-card__title">
+                                            {producto.nombre}
+                                        </h3>
+                                        <p class="product-card__text">
+                                            {producto.descripcion}
+                                        </p>
+                                        <a
+                                            href={linkProducto(producto.nombre)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="product-card__cta btn btn--fill magnetic-button"
+                                            data-strength=".5"
+                                            data-strength-text=".3"
+                                            aria-label={`Pedir por WhatsApp: ${producto.nombre}`}
+                                        >
+                                            <span class="text">
+                                                Pedir por WhatsApp
+                                            </span>
+                                            <span class="btn__bg"></span>
+                                        </a>
+                                    </div>
+                                </li>
+                            ))
+                        }
+                    </ul>
+
+                    <div class="catalog__custom">
+                        <h2 class="catalog__custom-title">
+                            ¿NO VES LO QUE BUSCAS?
+                        </h2>
+                        <p class="catalog__note">
+                            Si tienes un diseño, un logo o solo una idea, la
+                            imprimo en 3D a tu medida.
+                        </p>
+                        <a
+                            href={linkMedida}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn magnetic-button"
+                            data-strength="1.5"
+                            data-strength-text=".7"
+                        >
+                            <span class="text">Cuéntame tu idea</span>
+                            <span class="btn__bg"></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        import { gsap } from "gsap";
+        document.addEventListener("DOMContentLoaded", () => {
+            function cursorFollowerEffect() {
+                if (window.innerWidth <= 1024) return;
+                const follower = document.getElementById("cursorFollower");
+                const wrapper = document.querySelector(".page-wrapper");
+
+                let targetX = 0,
+                    targetY = 0;
+                let currentX = 0,
+                    currentY = 0;
+
+                wrapper.addEventListener("mousemove", (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+                });
+
+                gsap.ticker.add(() => {
+                    currentX += (targetX - currentX) * 0.04;
+                    currentY += (targetY - currentY) * 0.04;
+
+                    gsap.set(follower, {
+                        x: currentX,
+                        y: currentY,
+                    });
+                });
+            }
+
+            function buttonEffect() {
+                function resetMagnet(button, text) {
+                    gsap.to(button, {
+                        x: 0,
+                        y: 0,
+                        duration: 2.5,
+                        ease: "elastic.out(1.2, 0.2)",
+                    });
+
+                    gsap.to(text, {
+                        x: 0,
+                        y: 0,
+                        ease: "power3.out",
+                    });
+                }
+
+                const buttons = document.querySelectorAll(".magnetic-button");
+                buttons.forEach((button) => {
+                    const text = button.querySelector(".btn .text");
+                    const buttonMagnetPower = button.dataset.strength;
+                    const textMagnetPower = button.dataset.strengthText;
+                    const bg = button.querySelector(".btn__bg");
+
+                    const handleOrigin = (e) => {
+                        const rect = button.getBoundingClientRect();
+                        bg.style.left = `${e.clientX - rect.left}px`;
+                        bg.style.top = `${e.clientY - rect.top}px`;
+                    };
+
+                    button.addEventListener("mouseenter", (e) => {
+                        handleOrigin(e);
+                    });
+                    button.addEventListener("mousemove", function (e) {
+                        const rect = button.getBoundingClientRect();
+                        const offsetX = e.clientX - rect.left - rect.width / 2;
+                        const offsetY = e.clientY - rect.top - rect.height / 2;
+
+                        gsap.to(button, {
+                            x: offsetX * 0.5 * buttonMagnetPower,
+                            y: offsetY * 0.5 * buttonMagnetPower,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+
+                        gsap.to(text, {
+                            x: offsetX * textMagnetPower * 0.5,
+                            y: offsetY * textMagnetPower * 0.5,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+                    });
+
+                    button.addEventListener("mouseleave", (e) => {
+                        resetMagnet(button, text);
+                        handleOrigin(e);
+                    });
+                });
+            }
+
+            function catalogFilters() {
+                const filters = document.querySelectorAll(".catalog__filter");
+                const cards = document.querySelectorAll(".product-card");
+
+                filters.forEach((filter) => {
+                    filter.addEventListener("click", () => {
+                        const selected = filter.dataset.filter;
+
+                        filters.forEach((other) => {
+                            other.setAttribute(
+                                "aria-pressed",
+                                String(other === filter)
+                            );
+                        });
+
+                        cards.forEach((card) => {
+                            card.hidden =
+                                selected !== "todo" &&
+                                card.dataset.category !== selected;
+                        });
+                    });
+                });
+            }
+
+            buttonEffect();
+            cursorFollowerEffect();
+            catalogFilters();
+        });
+    </script>
+</Layout>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .catalog {
+        padding: calc(var(--space-md) + 100px) 0 var(--space-2xl) 0;
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: all;
+
+        &__container {
+            flex-flow: column;
+            gap: var(--space-xl);
+        }
+
+        &__intro,
+        &__custom {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            gap: var(--space-sm);
+            text-align: center;
+        }
+
+        &__note {
+            max-width: 40rem;
+            color: var(--color-offwhite);
+            font-size: clamp(1rem, 0.93rem + 0.3vw, 1.15rem);
+        }
+
+        &__filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        &__filter {
+            padding: 0.6em 1.4em;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text-white);
+            background-color: transparent;
+            border: 2px solid var(--color-primary);
+            border-radius: 100px;
+            transition:
+                background-color 0.3s ease,
+                color 0.3s ease;
+
+            &:hover,
+            &[aria-pressed="true"] {
+                color: var(--color-heading-dark);
+                background-color: var(--color-primary);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-text-white);
+                outline-offset: 3px;
+            }
+        }
+
+        &__grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 2em;
+        }
+    }
+
+    .product-card {
+        display: flex;
+        flex-direction: column;
+        color: var(--color-text-dark);
+        background-color: var(--color-bg-white);
+        border-radius: 40px;
+        overflow: hidden;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &__media {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: #f4f4f4;
+            border-radius: 40px;
+
+            img {
+                position: absolute;
+                inset: 6%;
+                width: 88%;
+                height: 88%;
+                object-fit: contain;
+            }
+        }
+
+        &__empty {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6em;
+            color: #8a8a8a;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        &__body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 0.6em;
+            padding: 1.6em;
+        }
+
+        &__meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6em;
+            font-size: 0.8rem;
+            font-weight: 500;
+
+            &::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: var(--color-primary);
+            }
+        }
+
+        &__title {
+            font-family: "Poppins";
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        &__text {
+            margin-bottom: 0.6em;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: #555;
+        }
+
+        &__cta {
+            width: 100%;
+            max-width: none;
+            margin-top: auto;
+            padding: 0.85em 1.2em;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-heading-dark);
+        }
+    }
+
+    .catalog__custom-title {
+        font-size: var(--fs-xl);
+    }
+
+    @include responsive.respond-to("tablet") {
+        .catalog__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @include responsive.respond-to("laptop") {
+        .catalog__grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+</style>

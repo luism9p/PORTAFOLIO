@@ -1,6 +1,11 @@
 ---
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+
+const {
+    title = "FlowHive — Luis Ángel Portocarrero",
+    description = "FlowHive — webs que traen clientes, sin que entiendas nada técnico. Landing pages, sitios de conversión e impresión 3D para negocios locales, por Luis Ángel Portocarrero.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,11 +15,8 @@ import Header from "../components/Header.astro";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/png" href="/images/logo-dark.png" />
         <meta name="generator" content={Astro.generator} />
-        <meta
-            name="description"
-            content="FlowHive — webs que traen clientes, sin que entiendas nada técnico. Landing pages, sitios de conversión e impresión 3D para negocios locales, por Luis Ángel Portocarrero."
-        />
-        <title>FlowHive — Luis Ángel Portocarrero</title>
+        <meta name="description" content={description} />
+        <title>{title}</title>
     </head>
     <body>
         <Header />
