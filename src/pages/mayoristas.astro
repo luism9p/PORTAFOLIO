@@ -1,0 +1,775 @@
+---
+import Layout from "../layouts/Layout.astro";
+import productos from "../data/productos";
+
+// Completa estos dos datos cuando los tengas. Si quedan vacíos, la página
+// no muestra nada de beneficios ni de pedido mínimo.
+const MINIMO_PEDIDO: string = "";
+const BENEFICIOS: string[] = [];
+
+const WHATSAPP = "https://wa.me/51904767959";
+
+const minimoPedido = MINIMO_PEDIDO.trim();
+const beneficios = BENEFICIOS.filter((beneficio) => beneficio.trim());
+const hayCondiciones = minimoPedido !== "" || beneficios.length > 0;
+
+const pasos = [
+    "Elige los productos del catálogo.",
+    "Cuéntanos tu negocio y la cantidad aproximada.",
+    "Te enviamos los precios por mayor por WhatsApp.",
+];
+
+const publico = [
+    "Tiendas",
+    "Surf shops",
+    "Hoteles y restaurantes",
+    "Emprendedores",
+    "Eventos y campeonatos",
+];
+
+const linkDirecto = `${WHATSAPP}?text=${encodeURIComponent(
+    "Hola, tengo un negocio y quiero revender los productos de FlowHive. ¿Me das los precios por mayor?"
+)}`;
+---
+
+<Layout
+    title="Precios por mayor para negocios — FlowHive"
+    description="Vende productos FlowHive en tu negocio: precio por mayor para tiendas, surf shops, hoteles, restaurantes y emprendedores, también con tu propia marca. Pídelo por WhatsApp."
+>
+    <main>
+        <div class="page-wrapper">
+            <span id="cursorFollower" class="cursorFollower"></span>
+            <section class="wholesale">
+                <div class="wholesale__container container">
+                    <div class="wholesale__intro">
+                        <h1 class="wholesale__title">
+                            VENDE PRODUCTOS FLOWHIVE EN TU NEGOCIO
+                        </h1>
+                        <p class="wholesale__subtitle subtitle">
+                            Precio por mayor para tiendas, hoteles y
+                            emprendedores
+                        </p>
+                    </div>
+
+                    <section class="wholesale__block" aria-labelledby="como-funciona">
+                        <h2 id="como-funciona" class="wholesale__heading">
+                            CÓMO FUNCIONA
+                        </h2>
+                        <ol class="wholesale__steps">
+                            {
+                                pasos.map((paso, index) => (
+                                    <li class="wholesale__step">
+                                        <span
+                                            class="wholesale__step-num"
+                                            aria-hidden="true"
+                                        >
+                                            {index + 1}
+                                        </span>
+                                        <p>{paso}</p>
+                                    </li>
+                                ))
+                            }
+                        </ol>
+                    </section>
+
+                    <section class="wholesale__block" aria-labelledby="para-quien">
+                        <h2 id="para-quien" class="wholesale__heading">
+                            PARA QUIÉN
+                        </h2>
+                        <ul class="wholesale__who">
+                            {publico.map((item) => <li>{item}</li>)}
+                        </ul>
+                    </section>
+
+                    {
+                        hayCondiciones && (
+                            <section class="wholesale__block wholesale__terms">
+                                {beneficios.length > 0 && (
+                                    <>
+                                        <h2 class="wholesale__heading">
+                                            BENEFICIOS
+                                        </h2>
+                                        <ul class="wholesale__who">
+                                            {beneficios.map((beneficio) => (
+                                                <li>{beneficio}</li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                )}
+                                {minimoPedido !== "" && (
+                                    <p class="wholesale__min">
+                                        <strong>Pedido mínimo:</strong>{" "}
+                                        {minimoPedido}
+                                    </p>
+                                )}
+                            </section>
+                        )
+                    }
+
+                    <section
+                        class="wholesale__block"
+                        id="pedido"
+                        aria-labelledby="pide-precios"
+                    >
+                        <h2 id="pide-precios" class="wholesale__heading">
+                            PIDE TUS PRECIOS POR MAYOR
+                        </h2>
+                        <form
+                            id="wholesale-form"
+                            class="wholesale__form"
+                            novalidate
+                            data-whatsapp={WHATSAPP}
+                        >
+                            <div class="wholesale__row">
+                                <div class="wholesale__field">
+                                    <label for="mayorista-nombre">
+                                        Tu nombre
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="mayorista-nombre"
+                                        name="nombre"
+                                        autocomplete="name"
+                                        required
+                                        aria-describedby="error-nombre"
+                                    />
+                                    <p
+                                        class="wholesale__error"
+                                        id="error-nombre"
+                                        role="alert"
+                                        hidden
+                                    >
+                                    </p>
+                                </div>
+                                <div class="wholesale__field">
+                                    <label for="mayorista-negocio">
+                                        Nombre de tu negocio
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="mayorista-negocio"
+                                        name="negocio"
+                                        autocomplete="organization"
+                                        required
+                                        aria-describedby="error-negocio"
+                                    />
+                                    <p
+                                        class="wholesale__error"
+                                        id="error-negocio"
+                                        role="alert"
+                                        hidden
+                                    >
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="wholesale__row">
+                                <div class="wholesale__field">
+                                    <label for="mayorista-ciudad">
+                                        Ciudad (opcional)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="mayorista-ciudad"
+                                        name="ciudad"
+                                        autocomplete="address-level2"
+                                    />
+                                </div>
+                                <div class="wholesale__field">
+                                    <label for="mayorista-cantidad">
+                                        Cantidad aproximada (opcional)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="mayorista-cantidad"
+                                        name="cantidad"
+                                        placeholder="Ej. 50 piezas"
+                                    />
+                                </div>
+                            </div>
+
+                            <fieldset
+                                class="wholesale__products"
+                                aria-describedby="error-productos"
+                            >
+                                <legend>¿Qué productos te interesan?</legend>
+                                <div class="wholesale__checks">
+                                    {
+                                        productos.map((producto) => (
+                                            <label class="wholesale__check">
+                                                <input
+                                                    type="checkbox"
+                                                    name="productos"
+                                                    value={producto.nombre}
+                                                />
+                                                <span>{producto.nombre}</span>
+                                            </label>
+                                        ))
+                                    }
+                                </div>
+                                <p
+                                    class="wholesale__error"
+                                    id="error-productos"
+                                    role="alert"
+                                    hidden
+                                >
+                                </p>
+                            </fieldset>
+
+                            <div class="wholesale__field">
+                                <label for="mayorista-mensaje">
+                                    Mensaje (opcional)
+                                </label>
+                                <textarea
+                                    id="mayorista-mensaje"
+                                    name="mensaje"
+                                    maxlength="600"></textarea>
+                            </div>
+
+                            <div class="wholesale__submit">
+                                <button
+                                    type="submit"
+                                    class="btn btn--fill magnetic-button"
+                                    data-strength="1.5"
+                                    data-strength-text=".7"
+                                >
+                                    <span class="text">Enviar por WhatsApp</span>
+                                    <span class="btn__bg"></span>
+                                </button>
+                                <p
+                                    id="wholesale-status"
+                                    class="wholesale__status"
+                                    aria-live="polite"
+                                >
+                                </p>
+                            </div>
+                        </form>
+                    </section>
+
+                    <div class="wholesale__alt">
+                        <p class="wholesale__note">
+                            ¿Prefieres escribir directo? Cuéntanos qué
+                            necesitas y te respondemos por WhatsApp.
+                        </p>
+                        <a
+                            href={linkDirecto}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn magnetic-button"
+                            data-strength="1.5"
+                            data-strength-text=".7"
+                        >
+                            <span class="text">Escribir directo por WhatsApp</span>
+                            <span class="btn__bg"></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        import { gsap } from "gsap";
+        document.addEventListener("DOMContentLoaded", () => {
+            function cursorFollowerEffect() {
+                if (window.innerWidth <= 1024) return;
+                const follower = document.getElementById("cursorFollower");
+                const wrapper = document.querySelector(".page-wrapper");
+
+                let targetX = 0,
+                    targetY = 0;
+                let currentX = 0,
+                    currentY = 0;
+
+                wrapper.addEventListener("mousemove", (e) => {
+                    const rect = wrapper.getBoundingClientRect();
+                    targetX = e.clientX - rect.left;
+                    targetY = e.clientY - rect.top;
+                });
+
+                gsap.ticker.add(() => {
+                    currentX += (targetX - currentX) * 0.04;
+                    currentY += (targetY - currentY) * 0.04;
+
+                    gsap.set(follower, {
+                        x: currentX,
+                        y: currentY,
+                    });
+                });
+            }
+
+            function buttonEffect() {
+                function resetMagnet(button, text) {
+                    gsap.to(button, {
+                        x: 0,
+                        y: 0,
+                        duration: 2.5,
+                        ease: "elastic.out(1.2, 0.2)",
+                    });
+
+                    gsap.to(text, {
+                        x: 0,
+                        y: 0,
+                        ease: "power3.out",
+                    });
+                }
+
+                const buttons = document.querySelectorAll(".magnetic-button");
+                buttons.forEach((button) => {
+                    const text = button.querySelector(".btn .text");
+                    const buttonMagnetPower = button.dataset.strength;
+                    const textMagnetPower = button.dataset.strengthText;
+                    const bg = button.querySelector(".btn__bg");
+
+                    const handleOrigin = (e) => {
+                        const rect = button.getBoundingClientRect();
+                        bg.style.left = `${e.clientX - rect.left}px`;
+                        bg.style.top = `${e.clientY - rect.top}px`;
+                    };
+
+                    button.addEventListener("mouseenter", (e) => {
+                        handleOrigin(e);
+                    });
+                    button.addEventListener("mousemove", function (e) {
+                        const rect = button.getBoundingClientRect();
+                        const offsetX = e.clientX - rect.left - rect.width / 2;
+                        const offsetY = e.clientY - rect.top - rect.height / 2;
+
+                        gsap.to(button, {
+                            x: offsetX * 0.5 * buttonMagnetPower,
+                            y: offsetY * 0.5 * buttonMagnetPower,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+
+                        gsap.to(text, {
+                            x: offsetX * textMagnetPower * 0.5,
+                            y: offsetY * textMagnetPower * 0.5,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            overwrite: "auto",
+                        });
+                    });
+
+                    button.addEventListener("mouseleave", (e) => {
+                        resetMagnet(button, text);
+                        handleOrigin(e);
+                    });
+                });
+            }
+
+            function wholesaleForm() {
+                const form = document.getElementById("wholesale-form");
+                const status = document.getElementById("wholesale-status");
+                if (!form || !status) return;
+
+                const required = [
+                    {
+                        input: form.elements.namedItem("nombre"),
+                        error: document.getElementById("error-nombre"),
+                        message: "Escribe tu nombre.",
+                    },
+                    {
+                        input: form.elements.namedItem("negocio"),
+                        error: document.getElementById("error-negocio"),
+                        message: "Escribe el nombre de tu negocio.",
+                    },
+                ];
+                const checks = [
+                    ...form.querySelectorAll('input[name="productos"]'),
+                ];
+                const productsError = document.getElementById("error-productos");
+
+                function showError(input, error, message) {
+                    error.textContent = message;
+                    error.hidden = false;
+                    input.setAttribute("aria-invalid", "true");
+                }
+
+                function clearError(input, error) {
+                    error.textContent = "";
+                    error.hidden = true;
+                    input.removeAttribute("aria-invalid");
+                }
+
+                function value(name) {
+                    return form.elements.namedItem(name).value.trim();
+                }
+
+                function openWhatsApp(url) {
+                    const link = document.createElement("a");
+                    link.href = url;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                }
+
+                form.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    let firstInvalid = null;
+
+                    required.forEach(({ input, error, message }) => {
+                        if (input.value.trim() === "") {
+                            showError(input, error, message);
+                            firstInvalid = firstInvalid || input;
+                        } else {
+                            clearError(input, error);
+                        }
+                    });
+
+                    const selected = checks
+                        .filter((check) => check.checked)
+                        .map((check) => check.value);
+
+                    if (selected.length === 0) {
+                        productsError.textContent =
+                            "Elige al menos un producto.";
+                        productsError.hidden = false;
+                        firstInvalid = firstInvalid || checks[0];
+                    } else {
+                        productsError.textContent = "";
+                        productsError.hidden = true;
+                    }
+
+                    if (firstInvalid) {
+                        status.textContent = "";
+                        firstInvalid.focus();
+                        return;
+                    }
+
+                    const lines = [
+                        "Hola, tengo un negocio y quiero los precios por mayor de FlowHive.",
+                        "",
+                        `*Nombre:* ${value("nombre")}`,
+                        `*Negocio:* ${value("negocio")}`,
+                    ];
+                    if (value("ciudad")) {
+                        lines.push(`*Ciudad:* ${value("ciudad")}`);
+                    }
+                    lines.push("*Productos de interés:*");
+                    selected.forEach((nombre) => lines.push(`• ${nombre}`));
+                    if (value("cantidad")) {
+                        lines.push(`*Cantidad aproximada:* ${value("cantidad")}`);
+                    }
+                    if (value("mensaje")) {
+                        lines.push(`*Mensaje:* ${value("mensaje")}`);
+                    }
+
+                    const url = `${form.dataset.whatsapp}?text=${encodeURIComponent(
+                        lines.join("\n")
+                    )}`;
+                    openWhatsApp(url);
+
+                    status.textContent = "Abriendo WhatsApp con tu mensaje. ";
+                    const fallback = document.createElement("a");
+                    fallback.href = url;
+                    fallback.target = "_blank";
+                    fallback.rel = "noopener noreferrer";
+                    fallback.textContent = "Si no se abrió, toca aquí.";
+                    status.appendChild(fallback);
+                });
+
+                form.addEventListener("input", (e) => {
+                    const match = required.find(({ input }) => input === e.target);
+                    if (match && match.input.value.trim() !== "") {
+                        clearError(match.input, match.error);
+                    }
+                });
+
+                form.addEventListener("change", (e) => {
+                    if (
+                        e.target.name === "productos" &&
+                        checks.some((check) => check.checked)
+                    ) {
+                        productsError.textContent = "";
+                        productsError.hidden = true;
+                    }
+                });
+            }
+
+            buttonEffect();
+            cursorFollowerEffect();
+            wholesaleForm();
+        });
+    </script>
+</Layout>
+
+<style lang="scss">
+    @use "../styles/utils" as responsive;
+
+    @mixin input-style() {
+        width: 100%;
+        padding: 0.7em 1em;
+        color: var(--color-text-white);
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.699);
+        }
+        &:focus {
+            border-bottom-color: var(--color-primary);
+            box-shadow: 0 1px 0 0 var(--color-primary);
+            outline: none;
+        }
+        &[aria-invalid="true"] {
+            border-bottom-color: var(--color-error);
+            box-shadow: 0 1px 0 0 var(--color-error);
+        }
+    }
+
+    main {
+        position: relative;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .wholesale {
+        padding: calc(var(--space-md) + 100px) 0 var(--space-2xl) 0;
+        z-index: 2;
+        overflow: hidden;
+        pointer-events: all;
+
+        &__container {
+            flex-flow: column;
+            gap: var(--space-xl);
+        }
+
+        &__intro,
+        &__alt {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            gap: var(--space-sm);
+            text-align: center;
+        }
+
+        &__title {
+            font-size: var(--fs-xl);
+        }
+
+        &__note {
+            max-width: 40rem;
+            color: var(--color-offwhite);
+            font-size: clamp(1rem, 0.93rem + 0.3vw, 1.15rem);
+        }
+
+        &__alt .btn {
+            color: var(--color-text-white);
+        }
+
+        &__block {
+            display: flex;
+            flex-flow: column;
+            gap: var(--space-md);
+        }
+
+        &__heading {
+            font-size: var(--fs-lg);
+            text-align: center;
+        }
+
+        &__steps {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 1.25rem;
+        }
+
+        &__step {
+            display: flex;
+            flex-flow: column;
+            gap: 0.6em;
+            padding: 1.6em;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 32px;
+
+            p {
+                font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+                font-weight: 500;
+            }
+        }
+
+        &__step-num {
+            font-family: "Saira Extra Condensed", system-ui, sans-serif;
+            font-size: var(--fs-lg);
+            font-weight: 900;
+            line-height: 1;
+            color: var(--color-primary);
+        }
+
+        &__who {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+
+            li {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.6em;
+                padding: 0.6em 1.2em;
+                font-weight: 500;
+                border: 2px solid var(--color-primary);
+                border-radius: 100px;
+
+                &::before {
+                    content: "";
+                    flex: none;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background-color: var(--color-primary);
+                }
+            }
+        }
+
+        &__terms {
+            align-items: center;
+        }
+
+        &__min {
+            text-align: center;
+            color: var(--color-offwhite);
+        }
+
+        &__form {
+            display: flex;
+            flex-flow: column;
+            gap: var(--space-sm);
+            width: 100%;
+            max-width: 56rem;
+            margin-inline: auto;
+        }
+
+        &__row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--space-sm);
+        }
+
+        &__field {
+            display: flex;
+            flex-flow: column;
+            gap: 0.3em;
+
+            label {
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: var(--color-offwhite);
+            }
+
+            input {
+                @include input-style();
+            }
+
+            textarea {
+                @include input-style();
+                min-height: 6em;
+            }
+        }
+
+        &__products {
+            display: flex;
+            flex-flow: column;
+            gap: 0.8em;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+            legend {
+                margin-bottom: 0.8em;
+                padding: 0;
+                font-size: 0.9rem;
+                font-weight: 500;
+                color: var(--color-offwhite);
+            }
+        }
+
+        &__checks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        &__check {
+            position: relative;
+            display: inline-flex;
+            cursor: pointer;
+
+            input {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            span {
+                padding: 0.5em 1.1em;
+                font-size: 1rem;
+                font-weight: 500;
+                color: var(--color-text-white);
+                border: 2px solid var(--color-primary);
+                border-radius: 100px;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
+            }
+
+            input:checked + span {
+                color: var(--color-heading-dark);
+                background-color: var(--color-primary);
+            }
+
+            input:focus-visible + span {
+                outline: 2px solid var(--color-text-white);
+                outline-offset: 3px;
+            }
+        }
+
+        &__error {
+            font-size: 0.9rem;
+            color: var(--color-error);
+        }
+
+        &__submit {
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            gap: var(--space-sm);
+
+            .btn {
+                font-weight: 600;
+                color: var(--color-heading-dark);
+            }
+        }
+
+        &__status {
+            min-height: 1.5em;
+            text-align: center;
+            color: var(--color-text-white);
+
+            a {
+                color: var(--color-primary);
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @include responsive.respond-to("mobile") {
+        .wholesale__row {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @include responsive.respond-to("tablet") {
+        .wholesale__steps {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+</style>

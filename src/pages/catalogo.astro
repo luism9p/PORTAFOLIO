@@ -13,6 +13,10 @@ const linkProducto = (nombre) =>
 const linkMedida = `${WHATSAPP}?text=${encodeURIComponent(
     "Hola, vi el catálogo de FlowHive y quiero pedir algo a medida."
 )}`;
+
+const linkRevender = `${WHATSAPP}?text=${encodeURIComponent(
+    "Hola, tengo un negocio y quiero revender los productos de FlowHive. ¿Me das los precios por mayor?"
+)}`;
 ---
 
 <Layout
@@ -135,6 +139,41 @@ const linkMedida = `${WHATSAPP}?text=${encodeURIComponent(
                             ))
                         }
                     </ul>
+
+                    <div class="catalog__resell">
+                        <h2 class="catalog__resell-title">
+                            ¿TIENES UN NEGOCIO? REVENDE NUESTROS PRODUCTOS
+                        </h2>
+                        <p class="catalog__note">
+                            Ofrecemos precio por mayor a tiendas, surf shops,
+                            hoteles, restaurantes y emprendedores que quieran
+                            vender nuestros productos o hacerlos con su propia
+                            marca: tu logo en llaveros, posavasos, clickers,
+                            peines y más.
+                        </p>
+                        <div class="catalog__resell-actions">
+                            <a
+                                href="/mayoristas"
+                                class="btn btn--fill magnetic-button"
+                                data-strength="1.5"
+                                data-strength-text=".7"
+                            >
+                                <span class="text">Pedir precios por mayor</span>
+                                <span class="btn__bg"></span>
+                            </a>
+                            <a
+                                href={linkRevender}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn magnetic-button"
+                                data-strength="1.5"
+                                data-strength-text=".7"
+                            >
+                                <span class="text">Escribir por WhatsApp</span>
+                                <span class="btn__bg"></span>
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="catalog__custom">
                         <h2 class="catalog__custom-title">
@@ -448,6 +487,44 @@ const linkMedida = `${WHATSAPP}?text=${encodeURIComponent(
 
     .catalog__custom-title {
         font-size: var(--fs-xl);
+    }
+
+    .catalog__custom .btn {
+        color: var(--color-text-white);
+    }
+
+    .catalog__resell {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-lg) var(--space-md);
+        text-align: center;
+        color: var(--color-text-dark);
+        background-color: var(--color-bg-white);
+        border-radius: 40px;
+
+        .catalog__note {
+            color: var(--color-text-dark);
+        }
+
+        .btn--fill {
+            font-weight: 600;
+            color: var(--color-heading-dark);
+        }
+    }
+
+    .catalog__resell-title {
+        font-size: var(--fs-lg);
+        color: var(--color-heading-dark);
+    }
+
+    .catalog__resell-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: var(--space-sm);
     }
 
     @include responsive.respond-to("tablet") {
