@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mayoristas y proyectos — FlowHive</title>
+<meta name="description" content="Precios por volumen, piezas a medida, trofeos y merchandising impresos en 3D en Piura para tiendas, hoteles, restaurantes y empresas.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="mayoristas">
+<main>
+  <div class="wrap page-hero">
+    <span class="label">Mayoristas y proyectos</span>
+    <h1>Piezas para tu negocio, <span class="serif">a escala.</span></h1>
+    <p>Para tiendas de decoración, hoteles y hospedajes de playa, restaurantes, eventos y marcas. Precios por volumen, colores a elección y piezas diseñadas a medida.</p>
+    <div class="hero-cta"><a href="#cotizar" class="btn btn-dark">Pedir cotización</a><a href="/catalogo" class="btn btn-line">Catálogo de impresión 3D</a></div>
+  </div>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="sec-head"><h2>Precios por volumen<span class="serif">.</span></h2><p>Descuento sobre el precio de tienda, combinando productos y colores.</p></div>
+      <!-- TODO: confirmar porcentajes y mínimos reales -->
+      <div class="tiers">
+        <div class="tier"><span class="label">Tiendas</span><div class="big">−10%</div><p>Desde 10 unidades</p><ul><li>Combina modelos y colores</li><li>Entrega en 7 a 10 días hábiles</li><li>Fotos para tu tienda</li></ul></div>
+        <div class="tier hl"><span class="label">Distribuidores</span><div class="big">−20%</div><p>Desde 30 unidades</p><ul><li>Todo lo anterior</li><li>Exhibidor para tu local</li><li>Prioridad de producción</li></ul></div>
+        <div class="tier"><span class="label">Proyectos</span><div class="big">A medida</div><p>Desde 50 unidades o diseño exclusivo</p><ul><li>Diseño con tu marca o logo</li><li>Prototipo antes de producir</li><li>Facturación con RUC</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head"><h2>Qué hacemos<span class="serif">.</span></h2></div>
+      <div class="values four">
+        <div class="value"><span class="n">01</span><h3>Decoración para locales</h3><p>Lámparas y maceteros en los colores de tu hotel, restaurante o tienda.</p></div>
+        <div class="value"><span class="n">02</span><h3>Trofeos y premios</h3><p>Para campeonatos de surf, deportes y eventos corporativos.</p></div>
+        <div class="value"><span class="n">03</span><h3>Merchandising</h3><p>Llaveros, peines de cera, portavasos y objetos con tu marca.</p></div>
+        <div class="value"><span class="n">04</span><h3>Piezas a medida</h3><p>Prototipos, repuestos y objetos únicos diseñados desde cero.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint">
+    <div class="wrap">
+      <div class="sec-head"><h2>Cómo funciona<span class="serif">.</span></h2></div>
+      <div class="steps">
+        <div class="step"><h3>Cuéntanos tu idea</h3><p>Llena el formulario o escríbenos. Una foto o un dibujo bastan.</p></div>
+        <div class="step"><h3>Cotización en 48 h</h3><p>Te enviamos precio, tiempos y una propuesta de diseño.</p></div>
+        <div class="step"><h3>Prototipo</h3><p>Imprimimos una muestra para que la apruebes antes de producir.</p></div>
+        <div class="step"><h3>Producción y entrega</h3><p>Fabricamos en Piura y entregamos o enviamos a todo el Perú.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cotizar">
+    <div class="wrap story" style="align-items:start">
+      <div>
+        <span class="label">Cotización</span>
+        <h2>Pide tu cotización <span class="serif">sin compromiso.</span></h2>
+        <p>Al enviar el formulario se abre WhatsApp con tu solicitud lista. Respondemos en menos de 48 horas hábiles.</p>
+        <p>¿Prefieres correo? Escríbenos a <a class="link" href="mailto:portocarrerolopezluisangel@gmail.com">portocarrerolopezluisangel@gmail.com</a>.</p>
+      </div>
+      <form class="form" data-wa="Hola FlowHive, quiero una cotización para mayoristas / proyecto:">
+        <div class="two">
+          <div class="field"><label for="m-n">Nombre <span class="req">*</span></label><input id="m-n" required data-label="Nombre" autocomplete="name"></div>
+          <div class="field"><label for="m-e">Empresa o negocio</label><input id="m-e" data-label="Empresa" autocomplete="organization"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="m-r">RUC</label><input id="m-r" data-label="RUC" inputmode="numeric" pattern="[0-9]{11}" title="11 dígitos"></div>
+          <div class="field"><label for="m-c">Ciudad <span class="req">*</span></label><input id="m-c" required data-label="Ciudad" value="Piura"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="m-t">Tipo de pedido <span class="req">*</span></label>
+            <select id="m-t" required data-label="Tipo de pedido"><option value="">Elige una opción</option><option>Productos de la tienda por volumen</option><option>Decoración para local</option><option>Trofeos o premios</option><option>Merchandising con mi marca</option><option>Pieza a medida</option></select></div>
+          <div class="field"><label for="m-q">Cantidad aproximada</label><input id="m-q" data-label="Cantidad" inputmode="numeric" placeholder="Ej. 40"></div>
+        </div>
+        <div class="field"><label for="m-f">Fecha que necesitas</label><input id="m-f" type="date" data-label="Fecha requerida"></div>
+        <div class="field"><label for="m-d">Cuéntanos tu idea <span class="req">*</span></label><textarea id="m-d" required data-label="Detalle" placeholder="Qué piezas, colores, medidas, si llevan logo…"></textarea></div>
+        <button class="btn btn-dark" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowHive — Decoración impresa en 3D en Piura</title>
+<meta name="description" content="Lámparas, floreros, maceteros y piezas a medida impresas en 3D en Piura, Perú. Envíos a todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="tienda" data-init="home">
+<main>
+  <div class="wrap hero">
+    <div>
+      <span class="label">Diseño impreso en 3D — Piura, Perú</span>
+      <h1>Objetos que se construyen <span class="serif">capa por capa.</span></h1>
+      <p>Lámparas, floreros y piezas para casa diseñadas e impresas en nuestro taller de Piura. Formas onduladas inspiradas en el mar y el desierto del norte, hechas con materiales de origen vegetal.</p>
+      <div class="hero-cta">
+        <a href="#tienda" class="btn btn-dark">Ver la tienda</a>
+        <a href="mayoristas.html" class="btn btn-line">Pieza a medida</a>
+      </div>
+    </div>
+    <a class="hero-art" id="heroArt" href="producto.html?id=ola&c=Arena">
+      <div class="hero-tag"><span>Lámpara Ola — Arena</span><span>S/ 289.00</span></div>
+    </a>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div id="mq"></div></div>
+
+  <section id="tienda">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Galería<span class="serif">.</span></h2>
+        <p>Empezamos por nuestros clásicos. Cada pieza sale de la impresora en 3 a 30 horas y la terminamos a mano.</p>
+      </div>
+      <div class="toolbar">
+        <div class="chips" id="chips"></div>
+        <label class="sort">Ordenar
+          <select id="sort">
+            <option value="feat">Destacados</option>
+            <option value="asc">Precio: menor a mayor</option>
+            <option value="desc">Precio: mayor a menor</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="tint" id="serie">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Serie Panal<span class="serif">.</span></h2>
+        <p>Nuestro macetero hexagonal en ocho colores. Combínalos, apílalos, regálalos. Desde S/ 89.</p>
+      </div>
+      <div class="series-grid" id="seriesGrid"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap story">
+      <div class="story-art">
+        <svg viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" id="layers"></svg>
+      </div>
+      <div>
+        <span class="label">Detrás del diseño</span>
+        <h2>Un taller pequeño en Piura, <span class="serif">hecho a pedido.</span></h2>
+        <p>FlowHive nació imprimiendo trofeos, peines para cera de surf de Lobitos y la línea Conchas de Mar. De ese oficio salió esta colección: objetos para casa que aprovechan lo que solo la impresión 3D puede hacer.</p>
+        <p>No tenemos almacén. Cada pieza se imprime cuando la pides, así no producimos de más y podemos cambiar el color o el tamaño para ti.</p>
+        <div class="sig">Luis Ángel Portocarrero<small>Fundador, FlowHive</small></div>
+        <a href="nosotros.html" class="btn btn-line" style="margin-top:28px">Conoce el taller</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="values">
+      <div class="value"><span class="n">01</span><h3>Material de origen vegetal</h3><p>Imprimimos en PLA, un bioplástico hecho a partir de almidón de maíz y caña. <a class="link" href="materiales.html">Más sobre materiales</a></p></div>
+      <div class="value"><span class="n">02</span><h3>Impreso a pedido en Piura</h3><p>Fabricamos en 5 a 7 días hábiles. Recojo en taller, delivery en Piura y envíos a todo el Perú.</p></div>
+      <div class="value"><span class="n">03</span><h3>Personalizable</h3><p>¿Otro color, otra medida o tu logo? Lo diseñamos contigo.</p></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="custom">
+        <div>
+          <span class="label">Proyectos y mayoristas</span>
+          <h2 style="margin-top:16px">¿Tienes una idea? <span class="serif">La imprimimos.</span></h2>
+        </div>
+        <div>
+          <p>Trofeos, merchandising, piezas para tu marca y decoración para restaurantes, hoteles y hospedajes de la costa norte. Desde una unidad hasta producción por volumen.</p>
+          <div class="hero-cta" style="margin-top:0">
+            <a class="btn btn-light" href="https://wa.me/51904767959?text=Hola%20FlowHive%2C%20quiero%20cotizar%20una%20pieza%20a%20medida" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+            <a class="btn btn-ghost" href="mayoristas.html">Ver mayoristas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="assets/app.js"></script>
+<script>
+(() => { let s=''; for(let i=0;i<46;i++){ const y=90+i*10, w=150+Math.sin(i/6)*60; s+=`<path d="M${250-w} ${y} Q250 ${y-14} ${250+w} ${y}" fill="none" stroke="${i%2?'#B8603C':'#F5F2ED'}" stroke-opacity="${.25+i/80}" stroke-width="3"/>`; }
+  document.getElementById('layers').innerHTML = s + '<text x="40" y="560" fill="#F5F2ED" font-family="Manrope" font-size="13" letter-spacing="3">0.2 MM POR CAPA</text>'; })();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — FlowHive</title>
+<meta name="description" content="Escríbenos por WhatsApp o correo. Taller de impresión 3D en Piura, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="contacto">
+<main>
+  <div class="wrap page-hero">
+    <span class="label">Contacto</span>
+    <h1>Hablemos<span class="serif">.</span></h1>
+    <p>Sobre un pedido, una pieza a medida o solo para saludar. La forma más rápida es WhatsApp.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="contact-grid">
+      <a class="c-card" href="https://wa.me/51904767959" target="_blank" rel="noopener"><span class="label">WhatsApp</span><h3>+51 904 767 959</h3><p>Lunes a sábado, 9:00 a 19:00. Respondemos el mismo día.</p></a>
+      <a class="c-card" href="mailto:portocarrerolopezluisangel@gmail.com"><span class="label">Correo</span><h3>Escríbenos</h3><p>portocarrerolopezluisangel@gmail.com</p></a>
+      <div class="c-card"><span class="label">Taller</span><h3>Piura, Perú</h3><p>Visitas y recojos con cita previa. Te enviamos la ubicación por WhatsApp.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap story" style="align-items:start">
+    <div>
+      <span class="label">Formulario</span>
+      <h2>Déjanos un <span class="serif">mensaje.</span></h2>
+      <p>Al enviar se abre WhatsApp con tu mensaje listo. Si tu consulta es sobre un pedido, incluye tu nombre y el producto.</p>
+      <div class="acc" style="margin-top:28px">
+        <details><summary>¿Cuánto demora mi pedido?</summary><div class="body"><p>Imprimimos a pedido: entre 5 y 7 días hábiles, más el tiempo de envío. <a class="link" href="envios.html">Ver envíos</a></p></div></details>
+        <details><summary>¿Puedo recoger en el taller?</summary><div class="body"><p>Sí, el recojo en Piura es gratis. Coordinamos día y hora por WhatsApp.</p></div></details>
+        <details><summary>Más preguntas</summary><div class="body"><p><a class="link" href="faq.html">Ver todas las preguntas frecuentes</a></p></div></details>
+      </div>
+    </div>
+    <form class="form" data-wa="Hola FlowHive, les escribo desde la web:">
+      <div class="two">
+        <div class="field"><label for="c-n">Nombre <span class="req">*</span></label><input id="c-n" required data-label="Nombre" autocomplete="name"></div>
+        <div class="field"><label for="c-t">Celular</label><input id="c-t" data-label="Celular" inputmode="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="c-a">Asunto <span class="req">*</span></label>
+        <select id="c-a" required data-label="Asunto"><option value="">Elige una opción</option><option>Consulta sobre un producto</option><option>Estado de mi pedido</option><option>Pieza a medida</option><option>Mayoristas</option><option>Otro</option></select></div>
+      <div class="field"><label for="c-m">Mensaje <span class="req">*</span></label><textarea id="c-m" required data-label="Mensaje"></textarea></div>
+      <button class="btn btn-dark" type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+
+  <section>
+    <div class="wrap" style="display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:32px">
+      <span class="label">También estamos en</span>
+      <div style="display:flex;gap:24px;font-size:14px;font-weight:500">
+        <a class="link" href="https://www.linkedin.com/in/luis-angel-portocarrero-lopez-412937382/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="link" href="https://github.com/luism9p" target="_blank" rel="noopener">GitHub</a>
+        <a class="link" href="/works">Proyectos</a>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>

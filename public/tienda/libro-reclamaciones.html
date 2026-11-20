@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Libro de Reclamaciones — FlowHive</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="" data-init="reclamo">
+<main>
+  <div class="wrap page-hero">
+    <span class="label">Legal</span>
+    <h1>Libro de <span class="serif">Reclamaciones.</span></h1>
+    <p>Conforme al Código de Protección y Defensa del Consumidor (Ley N.° 29571), ponemos a tu disposición nuestro Libro de Reclamaciones virtual.</p>
+  </div>
+
+  <div class="wrap narrow" style="padding-bottom:clamp(56px,8vw,112px)">
+    <!-- TODO (obligatorio antes de publicar): este formulario abre un correo. Un Libro de Reclamaciones virtual
+         debe numerar cada hoja de forma correlativa, guardar el registro y enviar copia al consumidor.
+         Conéctalo a un backend o a un servicio especializado. -->
+    <div class="note" style="margin-top:0">
+      <b>[Razón social]</b> · RUC <b>[número]</b> · <b>[Dirección]</b>, Piura, Perú.<br>
+      <b>Reclamo:</b> disconformidad con los productos o servicios. <b>Queja:</b> disconformidad con la atención, no relacionada con el producto.<br>
+      Responderemos en un plazo máximo de 15 días hábiles.
+    </div>
+
+    <form class="form" id="reclamoForm" style="margin-top:32px">
+      <fieldset>
+        <legend>1. Datos del consumidor</legend>
+        <div class="two">
+          <div class="field"><label for="r-n">Nombres y apellidos <span class="req">*</span></label><input id="r-n" required data-label="Nombre" autocomplete="name"></div>
+          <div class="field"><label for="fecha">Fecha</label><input id="fecha" readonly data-label="Fecha"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="r-dt">Tipo de documento <span class="req">*</span></label><select id="r-dt" required data-label="Tipo de documento"><option>DNI</option><option>Carné de extranjería</option><option>Pasaporte</option><option>RUC</option></select></div>
+          <div class="field"><label for="r-d">Número de documento <span class="req">*</span></label><input id="r-d" required data-label="Número de documento" inputmode="numeric"></div>
+        </div>
+        <div class="field"><label for="r-a">Domicilio <span class="req">*</span></label><input id="r-a" required data-label="Domicilio" autocomplete="street-address"></div>
+        <div class="two">
+          <div class="field"><label for="r-t">Teléfono <span class="req">*</span></label><input id="r-t" required data-label="Teléfono" inputmode="tel" autocomplete="tel"></div>
+          <div class="field"><label for="r-e">Correo electrónico <span class="req">*</span></label><input id="r-e" type="email" required data-label="Correo" autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="r-p">Si eres menor de edad, nombre de tu padre, madre o apoderado</label><input id="r-p" data-label="Padre, madre o apoderado"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Producto o servicio</legend>
+        <div class="two">
+          <div class="field"><label for="r-b">Tipo <span class="req">*</span></label><select id="r-b" required data-label="Bien contratado"><option>Producto</option><option>Servicio</option></select></div>
+          <div class="field"><label for="r-m">Monto reclamado (S/)</label><input id="r-m" data-label="Monto reclamado" inputmode="decimal"></div>
+        </div>
+        <div class="field"><label for="r-desc">Descripción del producto o servicio <span class="req">*</span></label><input id="r-desc" required data-label="Descripción del bien" placeholder="Ej. Lámpara Ola, color Arena, pedido del 10/11"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Detalle</legend>
+        <div class="radios" style="grid-template-columns:1fr 1fr">
+          <label class="radio"><input type="radio" name="tipo" value="Reclamo" checked data-label="Tipo"><div><b>Reclamo</b><span>Sobre el producto o servicio</span></div></label>
+          <label class="radio"><input type="radio" name="tipo" value="Queja" data-label="Tipo"><div><b>Queja</b><span>Sobre la atención</span></div></label>
+        </div>
+        <div class="field"><label for="r-det">Detalle <span class="req">*</span></label><textarea id="r-det" required data-label="Detalle"></textarea></div>
+        <div class="field"><label for="r-ped">Pedido <span class="req">*</span></label><textarea id="r-ped" required data-label="Pedido del consumidor" placeholder="¿Qué solicitas que hagamos?"></textarea></div>
+      </fieldset>
+
+      <label class="check"><input type="checkbox" required> <span>Declaro que los datos son verdaderos y acepto la <a class="link" href="privacidad.html" target="_blank">política de privacidad</a>.</span></label>
+      <button class="btn btn-dark" type="submit" style="justify-self:start">Enviar reclamo</button>
+      <div id="recDone" hidden class="note">Se abrió tu correo con el reclamo. Envíalo para completar el registro; te responderemos al correo indicado en un máximo de 15 días hábiles.</div>
+      <p class="muted" style="font-size:12.5px">La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.</p>
+    </form>
+  </div>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>
