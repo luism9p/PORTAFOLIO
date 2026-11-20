@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Materiales — FlowHive</title>
+<meta name="description" content="Con qué y cómo fabricamos: PLA de origen vegetal, impresión 3D capa por capa y componentes eléctricos.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="">
+<main>
+  <div class="wrap page-hero">
+    <span class="label">Materiales</span>
+    <h1>Hecho con plantas, <span class="serif">capa por capa.</span></h1>
+    <p>Elegimos materiales que se ven bien, duran y tienen menor impacto. Esto es lo que hay dentro de cada pieza.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="story-art" style="aspect-ratio:21/8;border-radius:4px;background:var(--surface)"><svg viewBox="0 0 1400 530" preserveAspectRatio="xMidYMid slice" aria-hidden="true" id="mat"></svg></div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="values">
+        <div class="value"><span class="n">PLA</span><h3>Bioplástico de origen vegetal</h3><p>El ácido poliláctico se obtiene de almidón de maíz o caña de azúcar. Es rígido, ligero y no necesita petróleo como materia prima.</p></div>
+        <div class="value"><span class="n">0.2 mm</span><h3>Impresión por capas</h3><p>Cada pieza se construye con cientos de capas finas. Esas líneas son la textura natural del proceso y hacen cada pieza única.</p></div>
+        <div class="value"><span class="n">0</span><h3>Moldes y sobreproducción</h3><p>Imprimimos solo lo que se pide. No hay inventario que termine en la basura.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap with-toc">
+    <nav class="toc"><a href="#pla">Sobre el PLA</a><a href="#electrico">Componentes eléctricos</a><a href="#empaque">Empaque</a><a href="#limites">Lo que debes saber</a></nav>
+    <div class="prose">
+      <h2 id="pla" style="margin-top:0">Sobre el PLA</h2>
+      <p>Usamos filamento PLA de proveedores que garantizan su composición. Es un material inodoro y seguro para uso decorativo en interiores.</p>
+      <p>El PLA es compostable en <b>plantas de compostaje industrial</b>, no en el compost de casa ni en el ambiente. Si ya no quieres una pieza, tráela al taller y le damos una segunda vida.</p>
+
+      <h2 id="electrico">Componentes eléctricos</h2>
+      <p>Nuestras lámparas usan portalámparas E27, cable textil o de PVC, interruptor de cable y foco LED cálido de bajo consumo. Las lámparas pequeñas usan LED integrado con cable USB-C. La pantalla de PLA nunca está en contacto con fuentes de calor.</p>
+      <div class="note">Usa solo focos LED de hasta 9 W. Los focos incandescentes o halógenos generan calor y pueden deformar la pantalla.</div>
+
+      <h2 id="empaque">Empaque</h2>
+      <p>Enviamos en cajas de cartón reutilizadas o recicladas, con relleno de papel. Sin plástico de burbujas cuando es posible.</p>
+
+      <h2 id="limites">Lo que debes saber</h2>
+      <ul>
+        <li>El PLA se ablanda por encima de 55 °C aproximadamente. No dejes las piezas al sol directo por horas, dentro de un auto o cerca de hornos.</li>
+        <li>Los floreros llevan un sellado interior para agua, pero no son aptos para lavavajillas.</li>
+        <li>Las piezas no están pensadas para contacto con alimentos.</li>
+        <li>Los colores pueden variar ligeramente entre lotes de filamento.</li>
+      </ul>
+      <p>Para mantener tus piezas como nuevas, revisa la <a href="cuidado.html">guía de cuidado</a>.</p>
+    </div>
+  </div>
+</main>
+<script src="assets/app.js"></script>
+<script>
+(() => { let s=''; for(let i=0;i<54;i++){ const y=10+i*10; s+=`<rect x="0" y="${y}" width="1400" height="7" rx="3.5" fill="${['#E6D8C3','#D8C9B2','#C9B89E'][i%3]}"/>`; }
+  document.getElementById('mat').innerHTML = s + '<text x="48" y="500" fill="#1D1B19" font-family="Manrope" font-size="15" letter-spacing="4">CAPAS DE 0.2 MM · PLA</text>'; })();
+</script>
+</body>
+</html>

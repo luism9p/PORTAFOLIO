@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finalizar pedido — FlowHive</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="" data-init="carrito">
+<main>
+  <div class="wrap page-hero" style="padding-bottom:32px">
+    <span class="label">Paso final</span>
+    <h1>Tu pedido<span class="serif">.</span></h1>
+    <p>Completa tus datos y te enviamos el pedido por WhatsApp para confirmarlo. Pagas recién cuando confirmemos color, fecha de entrega y envío.</p>
+  </div>
+
+  <form class="wrap checkout" id="checkoutForm">
+    <div class="form">
+      <fieldset>
+        <legend>1. Tus datos</legend>
+        <div class="two">
+          <div class="field"><label for="nombre">Nombre y apellido <span class="req">*</span></label><input id="nombre" name="nombre" required autocomplete="name"></div>
+          <div class="field"><label for="celular">Celular / WhatsApp <span class="req">*</span></label><input id="celular" name="celular" required inputmode="tel" autocomplete="tel" placeholder="9XX XXX XXX" pattern="[0-9 +]{9,15}"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Entrega</legend>
+        <div class="radios" id="zones"></div>
+        <div id="addrFields" class="form">
+          <div class="two">
+            <div class="field"><label for="distrito">Distrito y provincia <span class="req">*</span></label><input id="distrito" name="distrito" data-req placeholder="Ej. Castilla, Piura"></div>
+            <div class="field"><label for="direccion">Dirección <span class="req">*</span></label><input id="direccion" name="direccion" data-req autocomplete="street-address" placeholder="Calle, número, urbanización"></div>
+          </div>
+          <div class="field"><label for="referencia">Referencia</label><input id="referencia" name="referencia" placeholder="Ej. frente al parque, puerta verde"><small>Para envíos fuera de Piura, indica la agencia Shalom u Olva más cercana.</small></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Forma de pago</legend>
+        <div class="radios" id="payments"></div>
+        <p class="muted" style="font-size:13px">No pedimos datos de tarjeta en esta página. Te enviamos los datos de pago por WhatsApp al confirmar.</p>
+      </fieldset>
+
+      <div class="field"><label for="notas">Notas del pedido</label><textarea id="notas" name="notas" placeholder="¿Es un regalo? ¿Necesitas una fecha específica? ¿Algún cambio de color?"></textarea></div>
+      <label class="check"><input type="checkbox" required> <span>Acepto los <a class="link" href="terminos.html" target="_blank">términos y condiciones</a> y la <a class="link" href="privacidad.html" target="_blank">política de privacidad</a>.</span></label>
+    </div>
+
+    <aside class="summary">
+      <h2>Resumen</h2>
+      <div id="coLines"></div>
+      <div id="coTotals" style="margin-top:18px"></div>
+      <button class="btn btn-dark" style="width:100%" id="placeOrder" type="submit">Enviar pedido por WhatsApp</button>
+      <p class="dr-note">Se abrirá WhatsApp con el detalle de tu pedido. Respondemos de lunes a sábado.</p>
+      <div id="coDone" hidden class="note" style="margin-bottom:0">
+        <b>¡Listo! Revisa WhatsApp.</b><br>Si no se abrió, escríbenos al <a class="link" href="https://wa.me/51904767959" target="_blank" rel="noopener">+51 904 767 959</a>.
+        <br><button type="button" class="link" id="clearCart" style="margin-top:8px;font-size:13px">Ya envié mi pedido, vaciar carrito</button>
+      </div>
+    </aside>
+  </form>
+</main>
+<script src="assets/app.js"></script>
+</body>
+</html>
