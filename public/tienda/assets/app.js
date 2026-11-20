@@ -32,7 +32,6 @@ const COLORS = {
 // Fotos reales: img/productos/<id>-<n>-<vista>.webp — orden de la galería: principal, ambiente/complementaria, medidas, detalle.
 const IMG = 'img/productos/';
 const photos = (id, views) => views.map(([file, alt]) => ({src: IMG + `${id}-${file}.webp`, alt}));
-// TODO: reemplazar con nombres, precios, medidas y fotos reales (los productos sin `photos` usan ilustraciones).
 // TODO: confirmar precios de Faro, Brisa, Bruma, Alga y Duna (son provisionales).
 const PRODUCTS = [
   {id:'faro', name:'Lámpara Faro', cat:'Lámparas', price:319, shape:'tower', colors:['Terracota'], badge:'Nuevo', size:'Alto 25 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
@@ -50,19 +49,8 @@ const PRODUCTS = [
   {id:'duna', name:'Jarrón Duna', cat:'Floreros y Jarrones', price:99, shape:'vase', colors:['Terracota'], badge:'Nuevo', size:'Alto 17,2 cm', time:'Impreso a pedido en Piura',
     desc:'Cuerpo redondeado con estrías verticales profundas, como las crestas que el viento dibuja en las dunas del norte. En terracota luce con pampas, espigas y flores secas. Su tamaño compacto va bien en mesas de centro, repisas y libreros.',
     photos: photos('duna', [['1-principal','Jarrón Duna en terracota con pampas'],['2-ambiente','Jarrón Duna con flores secas junto a una vela dorada'],['3-medidas','Jarrón Duna con medidas: 172 mm de alto'],['4-detalle','Detalle de las estrías del Jarrón Duna con hierbas secas']])},
-  {id:'ola', name:'Lámpara Ola', cat:'Lámparas', price:289, shape:'dome', colors:['Arena','Hueso','Salvia','Carbón'], badge:'Más vendida', size:'32 × 32 × 38 cm', time:'28 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Pantalla ondulada inspirada en las olas de Lobitos y Máncora. Reparte la luz en franjas suaves sobre la pared. Base y pantalla intercambiables.'},
-  {id:'callampa', name:'Lámpara Callampa', cat:'Lámparas', price:249, shape:'mush', colors:['Terracota','Hueso','Lavanda'], size:'30 × 30 × 34 cm', time:'22 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Nuestra lámpara hongo: sombrero ancho y tallo estriado. Luz baja y cálida para mesas de noche y salas.'},
-  {id:'sechura', name:'Lámpara Sechura', cat:'Lámparas', price:269, shape:'cone', colors:['Arena','Arcilla','Salvia'], size:'34 × 34 × 36 cm', time:'24 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Pantalla cónica con estrías que recuerdan las dunas del desierto de Sechura. Proyecta sombras lineales sobre la pared.'},
-  {id:'luna', name:'Lámpara Luna Mini', cat:'Lámparas', price:179, shape:'globe', colors:['Hueso','Coral','Niebla'], size:'20 × 20 × 24 cm', time:'14 h de impresión', light:'LED integrado, cable USB-C', desc:'Versión de mesa compacta con pantalla esférica. Perfecta para escritorios y habitaciones de niños.'},
-  {id:'marea', name:'Florero Marea', cat:'Floreros y Jarrones', price:129, shape:'vase', colors:['Océano','Hueso','Coral','Niebla'], size:'14 × 14 × 26 cm', time:'9 h de impresión', desc:'Florero de cuerpo ondulado con interior sellado e impermeable. Para flores frescas o secas.'},
-  {id:'algarrobo', name:'Florero Algarrobo', cat:'Floreros y Jarrones', price:109, shape:'slim', colors:['Musgo','Arena','Carbón'], size:'9 × 9 × 30 cm', time:'7 h de impresión', desc:'Alto y delgado, pensado para una sola rama. Un homenaje al algarrobo, el árbol de Piura.'},
-  {id:'conchas', name:'Set Conchas de Mar', cat:'Conchas de Mar', price:59, shape:'tray', img:'/images/projects/conchas-de-mar.jpg', colors:['Hueso','Coral','Arena'], badge:'Clásico', size:'Set de 3 piezas', time:'6 h de impresión', desc:'Nuestra línea original, inspirada en las playas del norte. Conchas decorativas para bandejas, repisas o como portajoyas.'},
-  {id:'catacaos', name:'Macetero Catacaos', cat:'Maceteros', price:99, shape:'bowl', colors:['Terracota','Salvia','Hueso'], size:'20 × 20 × 15 cm', time:'10 h de impresión', desc:'Macetero bajo y ancho con drenaje oculto, con guiño a la tradición alfarera de Catacaos. Para suculentas y cactus.'},
-  {id:'panal', name:'Macetero Panal', cat:'Maceteros', price:89, shape:'pot', colors:['Miel','Hueso','Salvia','Carbón','Terracota','Océano','Lavanda','Coral'], size:'14 × 14 × 13 cm', time:'8 h de impresión', desc:'El macetero de la casa: hexagonal, apilable y en ocho colores. Incluye plato de drenaje.'},
-  {id:'colmena', name:'Portavelas Colmena', cat:'Accesorios', price:49, shape:'candle', colors:['Miel','Hueso','Carbón'], size:'8 × 8 × 7 cm', time:'3 h de impresión', desc:'Portavelas estriado para velas de 5 cm de diámetro. Se vende por unidad. No dejar la vela encendida sin supervisión.'},
-  {id:'ondas', name:'Bandeja Ondas', cat:'Accesorios', price:69, shape:'plate', colors:['Arena','Lavanda','Océano'], size:'28 × 16 × 3 cm', time:'5 h de impresión', desc:'Bandeja para llaves, joyas o perfumes, con borde ondulado.'},
 ];
-const CATS = ['Todo','Lámparas','Floreros y Jarrones','Maceteros','Conchas de Mar','Accesorios'];
+const CATS = ['Todo','Lámparas','Floreros y Jarrones'];
 
 /* ---------- utilidades ---------- */
 const $ = (s, r=document) => r.querySelector(s);
@@ -173,7 +161,7 @@ function layout(){
         </div>
         <div><h4>Tienda</h4><ul>
           <li><a href="index.html#tienda">Todo</a></li><li><a href="index.html?cat=Lámparas#tienda">Lámparas</a></li>
-          <li><a href="index.html?cat=Floreros%20y%20Jarrones#tienda">Floreros y jarrones</a></li><li><a href="index.html#serie">Serie Panal</a></li>
+          <li><a href="index.html?cat=Floreros%20y%20Jarrones#tienda">Floreros y jarrones</a></li><li><a href="index.html#serie">Colecciones</a></li>
           <li><a href="/catalogo">Catálogo 3D</a></li></ul></div>
         <div><h4>Ayuda</h4><ul>
           <li><a href="envios.html">Envíos y devoluciones</a></li><li><a href="materiales.html">Materiales</a></li>
@@ -286,10 +274,14 @@ const pages = {
     $('#chips').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if(b){ filter=b.dataset.cat; draw(); } });
     $('#sort').addEventListener('change', e => { sort=e.target.value; draw(); });
     draw();
-    const panal = byId('panal');
-    $('#seriesGrid').innerHTML = panal.colors.slice(0,6).map(c=>`
-      <a class="series-item" href="producto.html?id=panal&c=${encodeURIComponent(c)}">${art('pot',c,{label:'Panal '+c})}<p>Panal ${c}</p><span>${money(panal.price)}</span></a>`).join('');
-    $('#heroArt').insertAdjacentHTML('afterbegin', art('dome','Arena',{label:'Lámpara Ola en color Arena'}));
+    // Colecciones: cada producto con su foto de ambiente (2.ª de la galería)
+    $('#seriesGrid').innerHTML = PRODUCTS.filter(p=>p.photos).map(p=>{ const f = p.photos[1] || p.photos[0];
+      return `<a class="series-item" href="producto.html?id=${p.id}"><img src="${f.src}" alt="${esc(f.alt)}" loading="lazy"><p>${p.name}</p><span>${money(p.price)}</span></a>`; }).join('');
+    // Hero: producto destacado con foto real
+    const hero = byId('faro'), hf = hero.photos[0], ha = $('#heroArt');
+    ha.href = `producto.html?id=${hero.id}`;
+    ha.insertAdjacentHTML('afterbegin', `<img src="${hf.src}" alt="${esc(hf.alt)}">`);
+    $('.hero-tag', ha).innerHTML = `<span>${hero.name} — ${hero.colors[0]}</span><span>${money(hero.price)}</span>`;
   },
 
   producto(){
