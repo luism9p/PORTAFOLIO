@@ -27,12 +27,13 @@ const PAYMENTS = [
 
 const COLORS = {
   'Arena':'#E6D8C3','Hueso':'#F1ECE2','Carbón':'#3A3836','Terracota':'#C46A45','Salvia':'#A7B39A',
-  'Océano':'#5F84A0','Coral':'#E8957A','Lavanda':'#B9AFCF','Musgo':'#6F7B4F','Arcilla':'#B88B6B','Niebla':'#B8C4CC','Miel':'#E2B15B'
+  'Océano':'#5F84A0','Coral':'#E8957A','Lavanda':'#B9AFCF','Musgo':'#6F7B4F','Arcilla':'#B88B6B','Niebla':'#B8C4CC','Miel':'#E2B15B',
+  'Oliva':'#A3A85A','Ciruela':'#5E3A8C'
 };
 // Fotos reales: img/productos/<id>-<n>-<vista>.webp — orden de la galería: principal, ambiente/complementaria, medidas, detalle.
 const IMG = 'img/productos/';
 const photos = (id, views) => views.map(([file, alt]) => ({src: IMG + `${id}-${file}.webp`, alt}));
-// TODO: confirmar precios de Faro, Brisa, Bruma, Alga y Duna (son provisionales).
+// TODO: confirmar precios de Faro, Brisa, Bruma, Remolino, Medusa, Junco, Salitre, Alga y Duna (son provisionales).
 const PRODUCTS = [
   {id:'faro', name:'Lámpara Faro', cat:'Lámparas', price:319, shape:'tower', colors:['Terracota'], badge:'Nuevo', size:'Alto 25 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
     desc:'Un aro continuo en terracota que abraza una pantalla de luz blanca. Encendida, la pantalla brilla como la linterna de un faro de la costa piurana y el aro se tiñe de un naranja cálido. Pensada para aparadores, repisas y escritorios; de cerca se aprecian sus capas finas, con un acabado mate casi cerámico.',
@@ -43,6 +44,18 @@ const PRODUCTS = [
   {id:'bruma', name:'Lámpara Bruma', cat:'Lámparas', price:279, shape:'globe', colors:['Hueso'], badge:'Nuevo', size:'Alto 26,6 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
     desc:'Tres volúmenes acanalados apilados sobre un trípode. Al encenderla, las estrías filtran la luz y llenan el ambiente de un brillo cálido y nebuloso, como la bruma de la mañana en la playa. Luce sobre una mesa baja, una repisa o en el piso junto al sofá.',
     photos: photos('bruma', [['1-principal','Lámpara Bruma acanalada sobre pedestal de piedra'],['2-ambiente','Lámpara Bruma encendida junto a un sofá'],['3-medidas','Lámpara Bruma con medidas: 266 mm de alto'],['4-detalle','Detalle de las estrías iluminadas de la Lámpara Bruma']])},
+  {id:'remolino', name:'Lámpara Remolino', cat:'Lámparas', price:299, shape:'cone', colors:['Hueso'], badge:'Nuevo', size:'Alto 22 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Una pieza escultórica que gira sobre sí misma como un remolino de arena en el desierto de Sechura. Sus estrías en espiral siguen la torsión y, al encenderla, la luz cálida recorre cada curva. Funciona como lámpara y como objeto decorativo en aparadores, repisas y mesas de centro.',
+    photos: photos('remolino', [['1-principal','Lámpara Remolino en hueso iluminada sobre pedestal blanco'],['2-ambiente','Lámpara Remolino encendida sobre un aparador junto a una monstera al atardecer'],['3-medidas','Lámpara Remolino con medidas: 220 mm de alto'],['4-detalle','Detalle de las estrías en espiral de la Lámpara Remolino encendida']])},
+  {id:'medusa', name:'Lámpara Medusa', cat:'Lámparas', price:289, shape:'mush', colors:['Ciruela'], badge:'Nuevo', size:'Alto 24,3 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Una pantalla crema plisada que flota sobre una base ciruela acanalada, como una medusa en el mar de Máncora. Da una luz baja y envolvente, perfecta para mesas de noche, salas y rincones de lectura. El contraste entre la pantalla y la base la vuelve protagonista incluso apagada.',
+    photos: photos('medusa', [['1-principal','Lámpara Medusa con pantalla crema y base ciruela sobre pedestal'],['2-ambiente','Lámpara Medusa encendida en una mesa junto al sofá'],['3-medidas','Lámpara Medusa con medidas: 243 mm de alto'],['4-detalle','Detalle de la pantalla plisada y la base ciruela acanalada de la Lámpara Medusa']])},
+  {id:'junco', name:'Lámpara Junco', cat:'Lámparas', price:269, shape:'tower', colors:['Oliva'], badge:'Nuevo', size:'Alto 20 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Un cubo translúcido en verde oliva con estrías finas, como un haz de juncos de los humedales del norte, sobre una base de madera. Encendida, la luz se filtra en líneas doradas y tiñe el ambiente de un verde cálido. Ideal para alféizares, escritorios y mesas auxiliares.',
+    photos: photos('junco', [['1-principal','Lámpara Junco en verde oliva con base de madera sobre pedestal'],['2-ambiente','Lámpara Junco encendida en el alféizar al atardecer'],['3-medidas','Lámpara Junco con medidas: 200 mm de alto'],['4-detalle','Detalle de las estrías translúcidas y la base de madera de la Lámpara Junco']])},
+  {id:'salitre', name:'Lámpara Salitre', cat:'Lámparas', price:259, shape:'tower', colors:['Hueso'], badge:'Nuevo', size:'Alto 21 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Un cilindro de textura granulada, como la sal que se cristaliza en las salinas de la costa piurana, sobre una base plateada. Encendida, su superficie brilla con una luz cálida y uniforme, sin reflejos. Perfecta para mesas de noche y repisas.',
+    photos: photos('salitre', [['1-principal','Lámpara Salitre blanca con base plateada sobre pedestal'],['2-ambiente','Lámpara Salitre encendida en la mesa de noche junto a la cama'],['3-medidas','Lámpara Salitre con medidas: 210 mm de alto'],['4-detalle','Detalle de la textura granulada de la Lámpara Salitre encendida']])},
   {id:'alga', name:'Jarrón Alga', cat:'Floreros y Jarrones', price:119, shape:'slim', colors:['Musgo','Hueso'], badge:'Nuevo', size:'Alto 20,4 cm', time:'Impreso a pedido en Piura',
     desc:'Un jarrón cilíndrico con relieves ondulados que suben como algas meciéndose bajo el agua. Funciona solo o en pareja: el musgo y el marfil se complementan. Perfecto para ramas de olivo, eucalipto seco y flores preservadas.',
     photos: photos('alga', [['1-principal','Jarrones Alga en marfil y musgo con eucalipto seco sobre pedestal'],['2-ambiente','Jarrón Alga en musgo con ramas de olivo junto a la ventana'],['3-medidas','Jarrón Alga con medidas: 204 mm de alto'],['4-detalle','Detalle del relieve ondulado del Jarrón Alga en marfil']])},
