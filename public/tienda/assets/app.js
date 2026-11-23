@@ -7,7 +7,6 @@
 const SHOP = {
   whatsapp: '51904767959',
   whatsappHuman: '+51 904 767 959',
-  email: 'portocarrerolopezluisangel@gmail.com',
   city: 'Piura, Perú',
   freeShipFrom: 250,
 };
@@ -402,14 +401,14 @@ const pages = {
 
   reclamo(){
     // El Libro de Reclamaciones virtual debe registrar y numerar cada hoja y enviar copia al consumidor.
-    // TODO: conectar a un backend o servicio de libro de reclamaciones. Mientras tanto se envía por correo.
+    // TODO: conectar a un backend o servicio de libro de reclamaciones. Mientras tanto se envía por WhatsApp.
     $('#fecha').value = new Date().toLocaleDateString('es-PE');
     $('#reclamoForm').addEventListener('submit', e => {
       e.preventDefault(); const f = e.target;
       const body = $$('[data-label]', f).map(el => {
         if(el.type==='radio' && !el.checked) return null;
         return el.value.trim() ? `${el.dataset.label}: ${el.value.trim()}` : null; }).filter(Boolean).join('\n');
-      location.href = `mailto:${SHOP.email}?subject=${encodeURIComponent('Libro de Reclamaciones — '+f.tipo.value)}&body=${encodeURIComponent(body)}`;
+      location.href = waLink(`Libro de Reclamaciones — ${f.tipo.value}\n\n${body}`);
       $('#recDone').hidden = false;
     });
   },
