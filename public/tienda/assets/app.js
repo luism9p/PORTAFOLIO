@@ -153,7 +153,7 @@ function layout(){
     <header class="site"><div class="wrap hdr">
       <nav class="nav" aria-label="Principal">${nav.map(([h,t,k])=>`<a href="${h}" class="${k===page?'on':''}">${t}</a>`).join('')}</nav>
       <button class="menu-btn" data-menu aria-label="Abrir menú">Menú</button>
-      <a href="index.html" class="logo" aria-label="FlowHive inicio">${ICON_HIVE}FLOWHIVE</a>
+      <a href="index.html" class="logo" aria-label="FlowHive inicio"><img src="/images/logo-dark.png" alt="" width="28" height="28">FLOWHIVE</a>
       <div class="hdr-r">
         <a href="contacto.html" class="hide-m ${page==='contacto'?'link':''}">Contacto</a>
         <button class="cart-btn" data-cart aria-label="Abrir carrito">Carrito <span class="cart-count" id="cartCount">0</span></button>

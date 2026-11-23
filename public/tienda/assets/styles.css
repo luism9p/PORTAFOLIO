@@ -30,7 +30,7 @@ header.site{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--
 .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--ink);transition:right .3s ease}
 .nav a:hover::after,.nav a.on::after{right:0}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.32em;font-size:17px}
-.logo svg{width:24px;height:24px}
+.logo svg,.logo img{width:28px;height:28px;object-fit:contain}
 .hdr-r{display:flex;justify-content:flex-end;gap:22px;align-items:center;font-size:13px;font-weight:500}
 .cart-btn{display:flex;align-items:center;gap:8px}
 .cart-count{min-width:20px;height:20px;border-radius:10px;background:var(--ink);color:var(--bg);font-size:11px;display:grid;place-items:center;padding:0 6px;transition:transform .2s}
