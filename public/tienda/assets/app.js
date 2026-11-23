@@ -27,24 +27,43 @@ const PAYMENTS = [
 
 const COLORS = {
   'Arena':'#E6D8C3','Hueso':'#F1ECE2','Carbón':'#3A3836','Terracota':'#C46A45','Salvia':'#A7B39A',
-  'Océano':'#5F84A0','Coral':'#E8957A','Lavanda':'#B9AFCF','Musgo':'#6F7B4F','Arcilla':'#B88B6B','Niebla':'#B8C4CC','Miel':'#E2B15B'
+  'Océano':'#5F84A0','Coral':'#E8957A','Lavanda':'#B9AFCF','Musgo':'#6F7B4F','Arcilla':'#B88B6B','Niebla':'#B8C4CC','Miel':'#E2B15B',
+  'Oliva':'#A3A85A','Ciruela':'#5E3A8C'
 };
-// TODO: reemplazar con nombres, precios, medidas y fotos reales.
+// Fotos reales: img/productos/<id>-<n>-<vista>.webp — orden de la galería: principal, ambiente/complementaria, medidas, detalle.
+const IMG = 'img/productos/';
+const photos = (id, views) => views.map(([file, alt]) => ({src: IMG + `${id}-${file}.webp`, alt}));
+// TODO: confirmar precios de Faro, Brisa, Bruma, Remolino, Medusa, Junco, Salitre, Alga y Duna (son provisionales).
 const PRODUCTS = [
-  {id:'ola', name:'Lámpara Ola', cat:'Lámparas', price:289, shape:'dome', colors:['Arena','Hueso','Salvia','Carbón'], badge:'Más vendida', size:'32 × 32 × 38 cm', time:'28 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Pantalla ondulada inspirada en las olas de Lobitos y Máncora. Reparte la luz en franjas suaves sobre la pared. Base y pantalla intercambiables.'},
-  {id:'callampa', name:'Lámpara Callampa', cat:'Lámparas', price:249, shape:'mush', colors:['Terracota','Hueso','Lavanda'], size:'30 × 30 × 34 cm', time:'22 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Nuestra lámpara hongo: sombrero ancho y tallo estriado. Luz baja y cálida para mesas de noche y salas.'},
-  {id:'faro', name:'Lámpara Faro', cat:'Lámparas', price:319, shape:'tower', colors:['Hueso','Océano','Carbón'], badge:'Nuevo', size:'18 × 18 × 46 cm', time:'30 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Una columna de luz alta y esbelta, inspirada en los faros de la costa piurana. Ideal para rincones y aparadores.'},
-  {id:'sechura', name:'Lámpara Sechura', cat:'Lámparas', price:269, shape:'cone', colors:['Arena','Arcilla','Salvia'], size:'34 × 34 × 36 cm', time:'24 h de impresión', light:'Foco LED E27 cálido incluido', desc:'Pantalla cónica con estrías que recuerdan las dunas del desierto de Sechura. Proyecta sombras lineales sobre la pared.'},
-  {id:'luna', name:'Lámpara Luna Mini', cat:'Lámparas', price:179, shape:'globe', colors:['Hueso','Coral','Niebla'], size:'20 × 20 × 24 cm', time:'14 h de impresión', light:'LED integrado, cable USB-C', desc:'Versión de mesa compacta con pantalla esférica. Perfecta para escritorios y habitaciones de niños.'},
-  {id:'marea', name:'Florero Marea', cat:'Floreros', price:129, shape:'vase', colors:['Océano','Hueso','Coral','Niebla'], size:'14 × 14 × 26 cm', time:'9 h de impresión', desc:'Florero de cuerpo ondulado con interior sellado e impermeable. Para flores frescas o secas.'},
-  {id:'algarrobo', name:'Florero Algarrobo', cat:'Floreros', price:109, shape:'slim', colors:['Musgo','Arena','Carbón'], size:'9 × 9 × 30 cm', time:'7 h de impresión', desc:'Alto y delgado, pensado para una sola rama. Un homenaje al algarrobo, el árbol de Piura.'},
-  {id:'conchas', name:'Set Conchas de Mar', cat:'Conchas de Mar', price:59, shape:'tray', img:'/images/projects/conchas-de-mar.jpg', colors:['Hueso','Coral','Arena'], badge:'Clásico', size:'Set de 3 piezas', time:'6 h de impresión', desc:'Nuestra línea original, inspirada en las playas del norte. Conchas decorativas para bandejas, repisas o como portajoyas.'},
-  {id:'catacaos', name:'Macetero Catacaos', cat:'Maceteros', price:99, shape:'bowl', colors:['Terracota','Salvia','Hueso'], size:'20 × 20 × 15 cm', time:'10 h de impresión', desc:'Macetero bajo y ancho con drenaje oculto, con guiño a la tradición alfarera de Catacaos. Para suculentas y cactus.'},
-  {id:'panal', name:'Macetero Panal', cat:'Maceteros', price:89, shape:'pot', colors:['Miel','Hueso','Salvia','Carbón','Terracota','Océano','Lavanda','Coral'], size:'14 × 14 × 13 cm', time:'8 h de impresión', desc:'El macetero de la casa: hexagonal, apilable y en ocho colores. Incluye plato de drenaje.'},
-  {id:'colmena', name:'Portavelas Colmena', cat:'Accesorios', price:49, shape:'candle', colors:['Miel','Hueso','Carbón'], size:'8 × 8 × 7 cm', time:'3 h de impresión', desc:'Portavelas estriado para velas de 5 cm de diámetro. Se vende por unidad. No dejar la vela encendida sin supervisión.'},
-  {id:'ondas', name:'Bandeja Ondas', cat:'Accesorios', price:69, shape:'plate', colors:['Arena','Lavanda','Océano'], size:'28 × 16 × 3 cm', time:'5 h de impresión', desc:'Bandeja para llaves, joyas o perfumes, con borde ondulado.'},
+  {id:'faro', name:'Lámpara Faro', cat:'Lámparas', price:319, shape:'tower', colors:['Terracota'], badge:'Nuevo', size:'Alto 25 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Un aro continuo en terracota que abraza una pantalla de luz blanca. Encendida, la pantalla brilla como la linterna de un faro de la costa piurana y el aro se tiñe de un naranja cálido. Pensada para aparadores, repisas y escritorios; de cerca se aprecian sus capas finas, con un acabado mate casi cerámico.',
+    photos: photos('faro', [['1-principal','Lámpara Faro en terracota sobre pedestal de piedra'],['2-ambiente','Lámpara Faro encendida sobre un aparador al atardecer'],['3-medidas','Lámpara Faro con medidas: 250 mm de alto'],['4-detalle','Detalle de la textura de capas de la Lámpara Faro en terracota']])},
+  {id:'brisa', name:'Lámpara Brisa', cat:'Lámparas', price:299, shape:'cone', colors:['Carbón'], badge:'Nuevo', size:'Alto 31 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Una base escultórica en carbón que se curva como una rama empujada por el viento del norte, coronada por una pantalla arena de textura acanalada. Da una luz suave y difusa, ideal para mesas de noche y rincones de lectura.',
+    photos: photos('brisa', [['1-principal','Lámpara Brisa con base escultórica carbón y pantalla arena'],['2-ambiente','Lámpara Brisa encendida junto a la cama'],['3-medidas','Lámpara Brisa con medidas: 310 mm de alto'],['4-detalle','Detalle de la textura acanalada de la pantalla de la Lámpara Brisa']])},
+  {id:'bruma', name:'Lámpara Bruma', cat:'Lámparas', price:279, shape:'globe', colors:['Hueso'], badge:'Nuevo', size:'Alto 26,6 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Tres volúmenes acanalados apilados sobre un trípode. Al encenderla, las estrías filtran la luz y llenan el ambiente de un brillo cálido y nebuloso, como la bruma de la mañana en la playa. Luce sobre una mesa baja, una repisa o en el piso junto al sofá.',
+    photos: photos('bruma', [['1-principal','Lámpara Bruma acanalada sobre pedestal de piedra'],['2-ambiente','Lámpara Bruma encendida junto a un sofá'],['3-medidas','Lámpara Bruma con medidas: 266 mm de alto'],['4-detalle','Detalle de las estrías iluminadas de la Lámpara Bruma']])},
+  {id:'remolino', name:'Lámpara Remolino', cat:'Lámparas', price:299, shape:'cone', colors:['Hueso'], badge:'Nuevo', size:'Alto 22 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Una pieza escultórica que gira sobre sí misma como un remolino de arena en el desierto de Sechura. Sus estrías en espiral siguen la torsión y, al encenderla, la luz cálida recorre cada curva. Funciona como lámpara y como objeto decorativo en aparadores, repisas y mesas de centro.',
+    photos: photos('remolino', [['1-principal','Lámpara Remolino en hueso iluminada sobre pedestal blanco'],['2-ambiente','Lámpara Remolino encendida sobre un aparador junto a una monstera al atardecer'],['3-medidas','Lámpara Remolino con medidas: 220 mm de alto'],['4-detalle','Detalle de las estrías en espiral de la Lámpara Remolino encendida']])},
+  {id:'medusa', name:'Lámpara Medusa', cat:'Lámparas', price:289, shape:'mush', colors:['Ciruela'], badge:'Nuevo', size:'Alto 24,3 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Una pantalla crema plisada que flota sobre una base ciruela acanalada, como una medusa en el mar de Máncora. Da una luz baja y envolvente, perfecta para mesas de noche, salas y rincones de lectura. El contraste entre la pantalla y la base la vuelve protagonista incluso apagada.',
+    photos: photos('medusa', [['1-principal','Lámpara Medusa con pantalla crema y base ciruela sobre pedestal'],['2-ambiente','Lámpara Medusa encendida en una mesa junto al sofá'],['3-medidas','Lámpara Medusa con medidas: 243 mm de alto'],['4-detalle','Detalle de la pantalla plisada y la base ciruela acanalada de la Lámpara Medusa']])},
+  {id:'junco', name:'Lámpara Junco', cat:'Lámparas', price:269, shape:'tower', colors:['Oliva'], badge:'Nuevo', size:'Alto 20 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Un cubo translúcido en verde oliva con estrías finas, como un haz de juncos de los humedales del norte, sobre una base de madera. Encendida, la luz se filtra en líneas doradas y tiñe el ambiente de un verde cálido. Ideal para alféizares, escritorios y mesas auxiliares.',
+    photos: photos('junco', [['1-principal','Lámpara Junco en verde oliva con base de madera sobre pedestal'],['2-ambiente','Lámpara Junco encendida en el alféizar al atardecer'],['3-medidas','Lámpara Junco con medidas: 200 mm de alto'],['4-detalle','Detalle de las estrías translúcidas y la base de madera de la Lámpara Junco']])},
+  {id:'salitre', name:'Lámpara Salitre', cat:'Lámparas', price:259, shape:'tower', colors:['Hueso'], badge:'Nuevo', size:'Alto 21 cm', time:'Impresa a pedido en Piura', light:'Foco LED E27 cálido incluido',
+    desc:'Un cilindro de textura granulada, como la sal que se cristaliza en las salinas de la costa piurana, sobre una base plateada. Encendida, su superficie brilla con una luz cálida y uniforme, sin reflejos. Perfecta para mesas de noche y repisas.',
+    photos: photos('salitre', [['1-principal','Lámpara Salitre blanca con base plateada sobre pedestal'],['2-ambiente','Lámpara Salitre encendida en la mesa de noche junto a la cama'],['3-medidas','Lámpara Salitre con medidas: 210 mm de alto'],['4-detalle','Detalle de la textura granulada de la Lámpara Salitre encendida']])},
+  {id:'alga', name:'Jarrón Alga', cat:'Floreros y Jarrones', price:119, shape:'slim', colors:['Musgo','Hueso'], badge:'Nuevo', size:'Alto 20,4 cm', time:'Impreso a pedido en Piura',
+    desc:'Un jarrón cilíndrico con relieves ondulados que suben como algas meciéndose bajo el agua. Funciona solo o en pareja: el musgo y el marfil se complementan. Perfecto para ramas de olivo, eucalipto seco y flores preservadas.',
+    photos: photos('alga', [['1-principal','Jarrones Alga en marfil y musgo con eucalipto seco sobre pedestal'],['2-ambiente','Jarrón Alga en musgo con ramas de olivo junto a la ventana'],['3-medidas','Jarrón Alga con medidas: 204 mm de alto'],['4-detalle','Detalle del relieve ondulado del Jarrón Alga en marfil']])},
+  {id:'duna', name:'Jarrón Duna', cat:'Floreros y Jarrones', price:99, shape:'vase', colors:['Terracota'], badge:'Nuevo', size:'Alto 17,2 cm', time:'Impreso a pedido en Piura',
+    desc:'Cuerpo redondeado con estrías verticales profundas, como las crestas que el viento dibuja en las dunas del norte. En terracota luce con pampas, espigas y flores secas. Su tamaño compacto va bien en mesas de centro, repisas y libreros.',
+    photos: photos('duna', [['1-principal','Jarrón Duna en terracota con pampas'],['2-ambiente','Jarrón Duna con flores secas junto a una vela dorada'],['3-medidas','Jarrón Duna con medidas: 172 mm de alto'],['4-detalle','Detalle de las estrías del Jarrón Duna con hierbas secas']])},
 ];
-const CATS = ['Todo','Lámparas','Floreros','Maceteros','Conchas de Mar','Accesorios'];
+const CATS = ['Todo','Lámparas','Floreros y Jarrones'];
 
 /* ---------- utilidades ---------- */
 const $ = (s, r=document) => r.querySelector(s);
@@ -92,6 +111,8 @@ function art(shape, colorName, opts={}){
   return `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${esc(opts.label||'')}"><defs>${defs}</defs>${g}</svg>`;
 }
 function media(p, color, opts={}){
+  if(p.photos && !opts.zoom)
+    return `<img src="${p.photos[0].src}" alt="${esc(p.photos[0].alt)}" loading="lazy">`;
   if(p.img && color === p.colors[0] && !opts.zoom)
     return `<img src="${p.img}" alt="${esc(p.name)}" loading="lazy" onerror="this.outerHTML=art('${p.shape}','${color}')">`;
   return art(p.shape, color, {label:`${p.name} ${color}`, ...opts});
@@ -153,7 +174,7 @@ function layout(){
         </div>
         <div><h4>Tienda</h4><ul>
           <li><a href="index.html#tienda">Todo</a></li><li><a href="index.html?cat=Lámparas#tienda">Lámparas</a></li>
-          <li><a href="index.html?cat=Floreros#tienda">Floreros</a></li><li><a href="index.html#serie">Serie Panal</a></li>
+          <li><a href="index.html?cat=Floreros%20y%20Jarrones#tienda">Floreros y jarrones</a></li><li><a href="index.html#serie">Colecciones</a></li>
           <li><a href="/catalogo">Catálogo 3D</a></li></ul></div>
         <div><h4>Ayuda</h4><ul>
           <li><a href="envios.html">Envíos y devoluciones</a></li><li><a href="materiales.html">Materiales</a></li>
@@ -266,10 +287,14 @@ const pages = {
     $('#chips').addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if(b){ filter=b.dataset.cat; draw(); } });
     $('#sort').addEventListener('change', e => { sort=e.target.value; draw(); });
     draw();
-    const panal = byId('panal');
-    $('#seriesGrid').innerHTML = panal.colors.slice(0,6).map(c=>`
-      <a class="series-item" href="producto.html?id=panal&c=${encodeURIComponent(c)}">${art('pot',c,{label:'Panal '+c})}<p>Panal ${c}</p><span>${money(panal.price)}</span></a>`).join('');
-    $('#heroArt').insertAdjacentHTML('afterbegin', art('dome','Arena',{label:'Lámpara Ola en color Arena'}));
+    // Colecciones: cada producto con su foto de ambiente (2.ª de la galería)
+    $('#seriesGrid').innerHTML = PRODUCTS.filter(p=>p.photos).map(p=>{ const f = p.photos[1] || p.photos[0];
+      return `<a class="series-item" href="producto.html?id=${p.id}"><img src="${f.src}" alt="${esc(f.alt)}" loading="lazy"><p>${p.name}</p><span>${money(p.price)}</span></a>`; }).join('');
+    // Hero: producto destacado con foto real
+    const hero = byId('faro'), hf = hero.photos[0], ha = $('#heroArt');
+    ha.href = `producto.html?id=${hero.id}`;
+    ha.insertAdjacentHTML('afterbegin', `<img src="${hf.src}" alt="${esc(hf.alt)}">`);
+    $('.hero-tag', ha).innerHTML = `<span>${hero.name} — ${hero.colors[0]}</span><span>${money(hero.price)}</span>`;
   },
 
   producto(){
@@ -280,12 +305,12 @@ const pages = {
     document.title = `${p.name} — FlowHive`;
     $('#crumbCat').textContent = p.cat; $('#crumbCat').href = `index.html?cat=${encodeURIComponent(p.cat)}#tienda`;
     $('#crumbName').textContent = p.name;
-    const views = c => [media(p,c), art(p.shape,c,{zoom:true,label:p.name+' detalle'}), art(p.shape,c,{label:p.name+' vista', horizontal: !(SHAPES[p.shape].h)})];
+    const views = c => p.photos ? p.photos.map((f,i)=>`<img src="${f.src}" alt="${esc(f.alt)}" ${i?'loading="lazy"':''}>`) : [media(p,c), art(p.shape,c,{zoom:true,label:p.name+' detalle'}), art(p.shape,c,{label:p.name+' vista', horizontal: !(SHAPES[p.shape].h)})];
     const draw = () => {
       const v = views(color);
       $('#pdp').innerHTML = `
-      <div class="pdp-gallery">
-        <div class="pdp-thumbs">${v.map((h,i)=>`<button class="${i===view?'on':''}" data-view="${i}" aria-label="Vista ${i+1}">${h}</button>`).join('')}</div>
+      <div class="pdp-gallery${p.photos?' has-photos':''}">
+        <div class="pdp-thumbs">${v.map((h,i)=>`<button class="${i===view?'on':''}" data-view="${i}" aria-label="${p.photos?esc(p.photos[i].alt):'Vista '+(i+1)}">${h}</button>`).join('')}</div>
         <div class="pdp-main">${p.badge?`<span class="badge">${p.badge}</span>`:''}${v[view]}</div>
       </div>
       <div class="pdp-info">
