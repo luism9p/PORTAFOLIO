@@ -88,7 +88,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .brand { display: inline-flex; align-items: center; }
 .brand img { display: block; height: 32px; width: auto; }
 .nav { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 500; letter-spacing: -0.01em; }
-.nav__bag { display: inline-flex; align-items: center; gap: 8px; }
+.nav__order {
+  display: inline-flex; align-items: center; height: 34px; padding: 0 12px;
+  border: 1px solid var(--black); border-radius: 6px; line-height: 1; white-space: nowrap;
+  transition: background-color .2s, color .2s;
+}
+.nav__order:hover { background: var(--black); color: var(--cream); }
 
 /* ───────── Hero ───────── */
 .hero { position: relative; height: var(--hero-h); overflow: hidden; }
@@ -332,8 +337,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   :root { --hero-h: clamp(520px, 135vw, 780px); --hero-x: 24px; --gutter: 16px; --gap: 12px; }
   .announce { font-size: 12px; }
   .nav { gap: 16px; font-size: 13px; }
-  .nav__account { display: none; }
-  .nav__bag span { display: none; }
+  .nav__order { height: 32px; padding: 0 10px; }
   .hero__img { object-position: center right; }
   /* velo crema para que el texto negro se lea sobre la lámpara al recortar */
   .hero::after {
@@ -401,5 +405,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 @media (max-width: 420px) {
   .footer__cols { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+}
+
+/* pantallas muy angostas: los enlaces y el botón del header caben en una línea */
+@media (max-width: 359px) {
+  .nav { gap: 10px; font-size: 12px; }
+  .nav__order { padding: 0 8px; }
 }
 

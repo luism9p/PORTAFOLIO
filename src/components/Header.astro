@@ -1,8 +1,10 @@
 ---
-import Icons from './Icons.astro';
-import { waHref } from '../lib/links';
+import { waLink, site } from '../lib/links';
 // solid: cabecera de la ficha de producto (fondo crema fijo, sin hero debajo, enlaces a la home con prefijo "/").
-const { solid = false } = Astro.props;
+// mensaje: texto del pedido por WhatsApp (en la ficha lleva el nombre del producto).
+const { solid = false, mensaje = site.mensajePedido } = Astro.props;
+const base = solid ? '/' : '';
+const orderHref = waLink(mensaje);
 ---
 <header class:list={['site-header', { 'site-header--solid': solid }]} data-header>
   <!-- Logo completo en pantallas ≥ 640 px y monograma en móvil (<picture>, sin JS). Siempre negro: el texto del header es negro con y sin scroll. -->
@@ -12,19 +14,9 @@ const { solid = false } = Astro.props;
       <img src="/brand/logo/flowhive-negro.svg" alt="flowhive" width="154" height="32" loading="eager" decoding="async" fetchpriority="high" />
     </picture>
   </a>
-  {solid ? (
-    <nav class="nav" aria-label="Principal">
-      <a href="/#productos">tienda</a>
-      <a href="/#nosotros">nosotros</a>
-      <a href={waHref || '#'} data-wa-ubicacion="header" target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined}>contacto</a>
-      <a class="nav__bag" href="#" aria-label="Carrito"><Icons name="bag" size={20} /></a>
-    </nav>
-  ) : (
-    <nav class="nav" aria-label="Principal">
-      <a href="#productos">Tienda</a>
-      <a href="#nosotros">Nosotros</a>
-      <a class="nav__account" href="#">Mi cuenta</a>
-      <a class="nav__bag" href="#" aria-label="Bolsa"><span>Bolsa</span> <Icons name="bag" size={20} /></a>
-    </nav>
-  )}
+  <nav class="nav" aria-label="Principal">
+    <a href={`${base}#productos`}>Tienda</a>
+    <a href={`${base}#nosotros`}>Nosotros</a>
+    {orderHref && <a class="nav__order" href={orderHref} data-wa-ubicacion="header" target="_blank" rel="noopener">Pedir por WhatsApp</a>}
+  </nav>
 </header>

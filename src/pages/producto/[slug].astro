@@ -13,7 +13,7 @@ import ProductFaq from '../../components/ProductFaq.astro';
 import SpecSheet from '../../components/SpecSheet.astro';
 import RelatedProducts from '../../components/RelatedProducts.astro';
 import Footer from '../../components/Footer.astro';
-import { products, sections, hasPrice, formatPrice, priceMessage } from '../../lib/products';
+import { products, sections, hasPrice, formatPrice, priceMessage, interestMessage } from '../../lib/products';
 import { waDigits } from '../../lib/links';
 
 // Plantilla dinámica: una página estática por producto de src/data/products.json.
@@ -28,7 +28,7 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
 ---
 <Base title={title} description={product.descripcion} bodyClass="pdp" producto={product.nombre}>
   <Announcement>colección costa norte · hecha a mano en lobitos</Announcement>
-  <Header solid />
+  <Header solid mensaje={interestMessage(product)} />
   <main class="pdp__main">
     <div class="pdp__grid">
       <ProductGallery product={product} />
