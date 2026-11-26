@@ -1,18 +1,18 @@
 ---
 import { waDigits } from '../lib/links';
-import { hasPrice, formatPrice, priceMessage } from '../lib/products';
+import { hasPrice, formatPrice, interestMessage, priceMessage } from '../lib/products';
 // Tarjeta de información de la ficha: etiqueta, nombre, precio, descripción, ficha, variantes y botones.
 const { product } = Astro.props;
 const { nombre, tipoDetalle, etiqueta, precio, precioAnterior, descripcion, material, alto_mm, luz, variantes } = product;
 const opciones = variantes?.opciones ?? [];
 const first = opciones[0];
 const msg = (v?: { nombre: string }) =>
-  `Hola FlowHive 👋 Quiero pedir ${tipoDetalle === 'florero' ? 'el florero' : 'la lámpara'} ${nombre}${v && variantes ? ` (${variantes.etiqueta}: ${v.nombre})` : ''}.`;
+  `${interestMessage(product)}${v && variantes ? ` (${variantes.etiqueta}: ${v.nombre})` : ''}`;
 const waHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(msg(first))}` : '';
 const priced = hasPrice(product);
 const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
 ---
-<section class="pinfo card-box" data-product={product.slug} data-name={nombre} data-type={tipoDetalle} data-variant-label={variantes?.etiqueta ?? ''} data-wa={waDigits}>
+<section class="pinfo card-box" data-product={product.slug} data-msg={interestMessage(product)} data-variant-label={variantes?.etiqueta ?? ''} data-wa={waDigits}>
   {etiqueta && <p class="pinfo__tag">{etiqueta.toLowerCase()}</p>}
   <h1 class="pinfo__name">{nombre}</h1>
   <p class="pinfo__type">{tipoDetalle}</p>
@@ -21,7 +21,7 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
     {priced
       ? <><span class="pinfo__now">{formatPrice(precio)}</span>{precioAnterior && <s class="pinfo__was">{formatPrice(precioAnterior)}</s>}</>
       : consultHref
-        ? <a class="pinfo__consult" href={consultHref} target="_blank" rel="noopener">consultar precio</a>
+        ? <a class="pinfo__consult" data-wa-ubicacion="producto_precio" href={consultHref} target="_blank" rel="noopener">consultar precio</a>
         : <span class="pinfo__pending">consultar precio</span>}
   </p>
 
@@ -49,4 +49,4 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
   )}
 
   <button class="pbtn pbtn--primary" type="button" data-add>añadir al carrito</button>
-  <a class="pbtn pbtn--outline" data-wa-link href={waHref || undefined} target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined} aria-disabled={waHref ? undefined : 'true'}>pedir por whatsapp</a></section>
+  <a class="pbtn pbtn--outline" data-wa-link data-wa-ubicacion="producto" href={waHref || undefined} target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined} aria-disabled={waHref ? undefined : 'true'}>pedir por whatsapp</a></section>

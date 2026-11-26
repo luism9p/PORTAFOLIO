@@ -1,0 +1,45 @@
+---
+// Aviso de cookies. GA4 y Clarity solo se cargan si el visitante acepta (ver src/scripts/analytics.ts).
+// Los IDs salen de las variables de entorno; sin ellas no hay aviso ni se carga nada.
+const gaId = import.meta.env.PUBLIC_GA_ID ?? '';
+const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? '';
+---
+{(gaId || clarityId) && (
+  <div class="consent" role="region" aria-label="Aviso de cookies" data-consent data-ga={gaId} data-clarity={clarityId} hidden>
+    <p class="consent__text">Usamos cookies para medir las visitas y mejorar la tienda.</p>
+    <div class="consent__actions">
+      <button class="consent__btn" type="button" data-consent-choice="rejected">Rechazar</button>
+      <button class="consent__btn consent__btn--ok" type="button" data-consent-choice="accepted">Aceptar</button>
+    </div>
+  </div>
+)}
+
+<script>
+  import '../scripts/analytics';
+</script>
+
+<style is:global>
+  .consent {
+    position: fixed; left: 20px; bottom: 20px; z-index: 80;
+    width: min(420px, calc(100vw - 40px)); display: flex; flex-direction: column; gap: 14px;
+    padding: 18px 20px; background: #FFFCF4; color: var(--black); font-family: var(--sans);
+    border: 1px solid rgba(9, 3, 2, .08); border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(9, 3, 2, .16), 0 2px 8px rgba(9, 3, 2, .08);
+  }
+  .consent[hidden] { display: none; }
+  .consent__text { margin: 0; font-size: 15px; line-height: 1.35; letter-spacing: -0.01em; }
+  .consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .consent__btn {
+    height: 42px; padding: 0 14px; border: 1px solid var(--black); border-radius: 8px;
+    background: transparent; color: var(--black); font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+  .consent__btn--ok { background: var(--black); color: var(--cream); }
+  body.pdp .consent { text-transform: lowercase; }
+
+  @media (max-width: 899px) {
+    .consent { left: 8px; right: 8px; bottom: 8px; width: auto; gap: 10px; padding: 14px; }
+    /* mientras el aviso está visible, no tapa el botón de WhatsApp ni la barra de compra */
+    html .wa { bottom: calc(14px + var(--consent-h, 0px)); }
+    html .stickybuy { bottom: var(--consent-h, 0px); }
+  }
+</style>

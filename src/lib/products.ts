@@ -47,9 +47,11 @@ export const isLamp = (p: Product) => p.tipoDetalle !== 'florero';
 /** ¿Existe el archivo en public/? (para imágenes que todavía no se han subido). */
 export const publicExists = (path: string) => existsSync(join(process.cwd(), 'public', path));
 
-/** Mensaje de WhatsApp para consultar el precio mientras no haya uno publicado. */
-export const priceMessage = (p: Product) =>
-  `Hola FlowHive 👋 Quiero consultar el precio ${isLamp(p) ? 'de la lámpara' : 'del florero'} ${p.nombre}.`;
+/** Mensajes de WhatsApp desde un producto: siempre incluyen su nombre. */
+export const interestMessage = (p: Product) =>
+  `Hola FlowHive 👋 Me interesa ${isLamp(p) ? 'la lámpara' : 'el florero'} ${p.nombre.toUpperCase()}`;
+/** Para consultar el precio mientras no haya uno publicado. */
+export const priceMessage = (p: Product) => `${interestMessage(p)}. ¿Me pasas el precio?`;
 
 /**
  * Secciones de la ficha: usa el bloque "marca" de src/data/products.json y deja que cada producto

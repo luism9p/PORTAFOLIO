@@ -26,7 +26,7 @@ const title = `${product.nombre} · ${product.tipoDetalle} | FlowHive`;
 const sec = sections(product);
 const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
 ---
-<Base title={title} description={product.descripcion} bodyClass="pdp">
+<Base title={title} description={product.descripcion} bodyClass="pdp" producto={product.nombre}>
   <Announcement>colección costa norte · hecha a mano en lobitos</Announcement>
   <Header solid />
   <main class="pdp__main">
@@ -54,7 +54,7 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
       <p class="stickybuy__price">
         {hasPrice(product)
           ? formatPrice(product.precio)
-          : consultHref ? <a href={consultHref} target="_blank" rel="noopener">consultar precio</a> : 'consultar precio'}
+          : consultHref ? <a href={consultHref} data-wa-ubicacion="barra_compra" target="_blank" rel="noopener">consultar precio</a> : 'consultar precio'}
       </p>
     </div>
     <button class="pbtn pbtn--primary stickybuy__btn" type="button" data-add>añadir al carrito</button>
@@ -98,10 +98,8 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
     const info = document.querySelector<HTMLElement>('[data-product]');
     const wa = document.querySelector<HTMLAnchorElement>('[data-wa-link]');
     const label = info?.dataset.variantLabel ?? '';
-    const buildMessage = (variant?: string) => {
-      const art = info?.dataset.type === 'florero' ? 'el florero' : 'la lámpara';
-      return `Hola FlowHive 👋 Quiero pedir ${art} ${info?.dataset.name}${variant && label ? ` (${label}: ${variant})` : ''}.`;
-    };
+    const buildMessage = (variant?: string) =>
+      `${info?.dataset.msg}${variant && label ? ` (${label}: ${variant})` : ''}`;
     document.querySelectorAll<HTMLInputElement>('[data-variants] input').forEach((input) => {
       input.addEventListener('change', () => {
         const nameEl = document.querySelector('[data-variant-name]');

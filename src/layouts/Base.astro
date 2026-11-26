@@ -1,6 +1,9 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import SmoothScroll from '../components/SmoothScroll.astro';
-const { title, description, bodyClass } = Astro.props;
+import Consent from '../components/Consent.astro';
+// producto: nombre del producto en su ficha; acompaña al evento whatsapp_click.
+const { title, description, bodyClass, producto } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -21,8 +24,11 @@ const { title, description, bodyClass } = Astro.props;
     <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
   </head>
-  <body class={bodyClass}>
+  <body class={bodyClass} data-producto={producto}>
     <SmoothScroll />
     <slot />
+    <Consent />
+    <!-- Vercel Web Analytics: no usa cookies, va siempre -->
+    <Analytics />
   </body>
 </html>

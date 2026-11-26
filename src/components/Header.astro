@@ -16,7 +16,7 @@ const { solid = false } = Astro.props;
     <nav class="nav" aria-label="Principal">
       <a href="/#productos">tienda</a>
       <a href="/#nosotros">nosotros</a>
-      <a href={waHref || '#'} target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined}>contacto</a>
+      <a href={waHref || '#'} data-wa-ubicacion="header" target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined}>contacto</a>
       <a class="nav__bag" href="#" aria-label="Carrito"><Icons name="bag" size={20} /></a>
     </nav>
   ) : (

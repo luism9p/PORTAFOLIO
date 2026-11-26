@@ -16,12 +16,12 @@ const cols = [
   { title: 'Social', links: [
     { label: 'Instagram', href: site.instagram, external: true },
     { label: 'TikTok', href: '#' },
-    { label: 'WhatsApp', href: waHref || '#', external: !!waHref },
+    { label: 'WhatsApp', href: waHref || '#', external: !!waHref, ubicacion: 'footer' },
   ] },
   { title: 'Oficial', links: [
     { label: 'Envíos y cambios', href: '#' },
     { label: 'Privacidad', href: '#' },
-    { label: 'Contacto', href: waHref || '#', external: !!waHref },
+    { label: 'Contacto', href: waHref || '#', external: !!waHref, ubicacion: 'footer_contacto' },
   ] },
 ];
 ---
@@ -33,7 +33,7 @@ const cols = [
           <h2 class="footer__heading">{c.title}</h2>
           <ul>
             {c.links.map((l) => (
-              <li><a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a></li>
+              <li><a href={l.href} data-wa-ubicacion={l.ubicacion} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a></li>
             ))}
           </ul>
         </div>
@@ -44,7 +44,7 @@ const cols = [
       <div class="newsletter__body">
         <h3 class="newsletter__title">10 % de dscto. en tu primer pedido.</h3>
         <p class="newsletter__text">Escríbenos por WhatsApp y te lo aplicamos al toque.</p>
-        <a class="btn btn--dark newsletter__cta" href={discountHref || undefined} target={discountHref ? '_blank' : undefined} rel={discountHref ? 'noopener' : undefined} aria-disabled={discountHref ? undefined : 'true'}>Pedir mi 10 % por WhatsApp</a>
+        <a class="btn btn--dark newsletter__cta" data-wa-ubicacion="newsletter" href={discountHref || undefined} target={discountHref ? '_blank' : undefined} rel={discountHref ? 'noopener' : undefined} aria-disabled={discountHref ? undefined : 'true'}>Pedir mi 10 % por WhatsApp</a>
       </div>
     </div>
     <div class="footer__legal"><span>FlowHive® 2026</span></div>

@@ -9,7 +9,7 @@ const { nombre, tipo, alto_mm, etiqueta, precio, imagenes, slug } = product;
 const sizes = '(min-width: 1280px) 20vw, (min-width: 900px) 30vw, 72vw';
 ---
 <article class:list={['card', { 'card--lower': lower }]} data-slug={slug}>
-  <div class="card__media">
+  <div class="card__media" data-medidas={hover === 'medidas' ? nombre : undefined}>
     <a class="card__link" href={productUrl(slug)} aria-label={`${nombre}, ${tipo.toLowerCase()} de ${alto_mm} mm`}>
       <Img class="card__img card__img--main" base={imagenes.tarjeta} alt={`${nombre}: ${tipo.toLowerCase()} impresa en 3D`} sizes={sizes} />
       <Img class="card__img card__img--alt" base={imagenes[hover]} alt="" sizes={sizes} />
