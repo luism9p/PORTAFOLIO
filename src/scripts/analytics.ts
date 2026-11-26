@@ -7,7 +7,6 @@ type Choice = 'accepted' | 'rejected';
 const KEY = 'fh-consent-2';
 const OLD_KEY = 'fh-consent';
 const DEBUG_KEY = 'fh-ga-debug';
-const VIEWED_KEY = 'fh-tarjetas-vistas';
 const w = window as any;
 const box = document.querySelector<HTMLElement>('[data-consent]');
 const gaId = box?.dataset.ga ?? '';
@@ -89,6 +88,8 @@ function start() {
     }
     // Un PageView por carga: sin esto, Meta añade otro cada vez que cambia el historial.
     w.fbq.disablePushState = true;
+    // Sin eventos automáticos (SubscribedButtonClick y similares): solo PageView, Contact y ViewContent. Va antes de 'init'.
+    w.fbq('set', 'autoConfig', false, metaId);
     w.fbq('init', metaId);
     w.fbq('track', 'PageView');
     whenIdle(() => addScript('https://connect.facebook.net/en_US/fbevents.js'));
@@ -134,44 +135,47 @@ document.addEventListener('click', onClick, true);
 // clic con la rueda (abrir en pestaña nueva)
 document.addEventListener('auxclick', (e) => { if (e.button === 1) onClick(e); }, true);
 
-// ── producto_hover: ver las medidas de una tarjeta (mouse encima ≥ 0,5 s, una vez por producto y página) ──
-const seen = new Set<string>();
-document.querySelectorAll<HTMLElement>('[data-medidas]').forEach((media) => {
+// ── Tarjetas de producto: producto_hover (GA4 y Clarity) y ViewContent (Meta) ──
+/**
+ * Llama a `fn` cuando alguien mueve el mouse sobre `el` y se queda 0,5 s. No usa pointerenter: también se
+ * dispara si la tarjeta pasa bajo un puntero quieto al hacer scroll, y ahí la posición en pantalla no cambia.
+ */
+function onMouseInterest(el: HTMLElement, fn: () => void) {
+  let origin: { x: number; y: number } | undefined;
   let timer: number | undefined;
-  media.addEventListener('pointerenter', (e) => {
-    if (e.pointerType !== 'mouse') return;
-    timer = window.setTimeout(() => {
-      const producto = media.dataset.medidas ?? '';
+  el.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse' || timer !== undefined) return;
+    origin ??= { x: e.screenX, y: e.screenY };
+    // al menos 4 px de recorrido: descarta los temblores y los eventos sin movimiento
+    if (Math.hypot(e.screenX - origin.x, e.screenY - origin.y) >= 4) timer = window.setTimeout(fn, 500);
+  });
+  el.addEventListener('pointerleave', () => {
+    window.clearTimeout(timer);
+    timer = origin = undefined;
+  });
+}
+
+/** Un evento por producto y visita (la pestaña: se recuerda en sessionStorage al pasar de una página a otra). */
+function watchCards(attr: 'medidas' | 'tarjeta', event: string) {
+  const key = `fh-visto-${event}`;
+  let stored: string[] = [];
+  try { stored = JSON.parse(sessionStorage.getItem(key) ?? '[]'); } catch {}
+  const seen = new Set<string>(stored);
+  document.querySelectorAll<HTMLElement>(`[data-${attr}]`).forEach((el) => {
+    const producto = el.dataset[attr] ?? '';
+    const send = () => {
       if (!active || seen.has(producto)) return;
       seen.add(producto);
-      track('producto_hover', { producto });
-    }, 500);
+      try { sessionStorage.setItem(key, JSON.stringify([...seen])); } catch {}
+      track(event, { producto });
+    };
+    onMouseInterest(el, send);
+    // 'click' es el toque en móvil (los deslizamientos del carrusel no lo disparan) y el clic con el mouse.
+    el.addEventListener('click', send, true);
   });
-  media.addEventListener('pointerleave', () => window.clearTimeout(timer));
-});
-
-// ── Tarjetas de producto (Meta ViewContent): mouse encima ≥ 0,5 s o toque/clic, una vez por producto y visita ──
-// La visita es la pestaña: la lista se guarda en sessionStorage para no repetir al pasar de una página a otra.
-const readViewed = (): string[] => {
-  try { return JSON.parse(sessionStorage.getItem(VIEWED_KEY) ?? '[]'); } catch { return []; }
-};
-const viewed = new Set<string>(readViewed());
-function viewCard(producto: string) {
-  if (!active || viewed.has(producto)) return;
-  viewed.add(producto);
-  try { sessionStorage.setItem(VIEWED_KEY, JSON.stringify([...viewed])); } catch {}
-  track('tarjeta_producto', { producto });
 }
-document.querySelectorAll<HTMLElement>('[data-tarjeta]').forEach((card) => {
-  const producto = card.dataset.tarjeta ?? '';
-  let timer: number | undefined;
-  card.addEventListener('pointerenter', (e) => {
-    if (e.pointerType === 'mouse') timer = window.setTimeout(() => viewCard(producto), 500);
-  });
-  card.addEventListener('pointerleave', () => window.clearTimeout(timer));
-  // 'click' cubre el toque en móvil sin contar los deslizamientos del carrusel.
-  card.addEventListener('click', () => viewCard(producto), true);
-});
+watchCards('medidas', 'producto_hover'); // tarjetas de la home que muestran las medidas
+watchCards('tarjeta', 'tarjeta_producto'); // todas las tarjetas de producto
 
 // ── Aviso de cookies ──
 // --consent-h deja que en móvil el botón de WhatsApp y la barra de compra suban mientras el aviso está visible.
