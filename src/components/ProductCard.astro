@@ -1,21 +1,26 @@
 ---
 import Img from './Img.astro';
 import Icons from './Icons.astro';
-import { hasPrice, formatPrice, productUrl } from '../lib/products';
+import { hasPrice, formatPrice, productUrl, interestMessage } from '../lib/products';
+import { waLink } from '../lib/links';
 // hover: foto que aparece al pasar el mouse (home: "medidas"; relacionados de la ficha: "ambiente").
 // lower: título y precio en minúsculas tipo oración (ficha de producto).
 const { product, hover = 'medidas', lower = false } = Astro.props;
 const { nombre, tipo, alto_mm, etiqueta, precio, imagenes, slug } = product;
 const sizes = '(min-width: 1280px) 20vw, (min-width: 900px) 30vw, 72vw';
+const orderHref = waLink(interestMessage(product));
+// data-producto: el clic a WhatsApp de la tarjeta se mide con este producto, no con el de la ficha que la contiene.
 ---
-<article class:list={['card', { 'card--lower': lower }]} data-slug={slug} data-tarjeta={nombre}>
+<article class:list={['card', { 'card--lower': lower }]} data-slug={slug} data-tarjeta={nombre} data-producto={nombre}>
   <div class="card__media" data-medidas={hover === 'medidas' ? nombre : undefined}>
     <a class="card__link" href={productUrl(slug)} aria-label={`${nombre}, ${tipo.toLowerCase()} de ${alto_mm} mm`}>
       <Img class="card__img card__img--main" base={imagenes.tarjeta} alt={`${nombre}: ${tipo.toLowerCase()} impresa en 3D`} sizes={sizes} />
       <Img class="card__img card__img--alt" base={imagenes[hover]} alt="" sizes={sizes} />
     </a>
     {etiqueta && <span class="tag">{lower ? etiqueta.toLowerCase() : etiqueta}</span>}
-    <button class="card__bag" type="button" aria-label={`Añadir ${nombre} a la bolsa`}><Icons name="bag" size={18} /></button>
+    {orderHref && (
+      <a class="card__wa" href={orderHref} data-wa-ubicacion="tarjeta" target="_blank" rel="noopener" aria-label={`Pedir ${nombre} por WhatsApp`}><Icons name="whatsapp" size={18} /></a>
+    )}
   </div>
   <div class="card__info">
     <div class="card__row">

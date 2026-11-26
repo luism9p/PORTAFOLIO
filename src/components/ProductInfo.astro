@@ -1,14 +1,12 @@
 ---
-import { waDigits } from '../lib/links';
-import { hasPrice, formatPrice, interestMessage, priceMessage } from '../lib/products';
+import { waDigits, waLink } from '../lib/links';
+import { hasPrice, formatPrice, interestMessage, orderMessage, priceMessage } from '../lib/products';
 // Tarjeta de información de la ficha: etiqueta, nombre, precio, descripción, ficha, variantes y botones.
 const { product } = Astro.props;
 const { nombre, tipoDetalle, etiqueta, precio, precioAnterior, descripcion, material, alto_mm, luz, variantes } = product;
 const opciones = variantes?.opciones ?? [];
 const first = opciones[0];
-const msg = (v?: { nombre: string }) =>
-  `${interestMessage(product)}${v && variantes ? ` (${variantes.etiqueta}: ${v.nombre})` : ''}`;
-const waHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(msg(first))}` : '';
+const waHref = waLink(orderMessage(product));
 const priced = hasPrice(product);
 const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
 ---
@@ -48,5 +46,5 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
     </fieldset>
   )}
 
-  <button class="pbtn pbtn--primary" type="button" data-add>añadir al carrito</button>
-  <a class="pbtn pbtn--outline" data-wa-link data-wa-ubicacion="producto" href={waHref || undefined} target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined} aria-disabled={waHref ? undefined : 'true'}>pedir por whatsapp</a></section>
+  <a class="pbtn pbtn--primary" data-wa-link data-wa-ubicacion="ficha" href={waHref || undefined} target={waHref ? '_blank' : undefined} rel={waHref ? 'noopener' : undefined} aria-disabled={waHref ? undefined : 'true'}>pedir por whatsapp</a>
+</section>

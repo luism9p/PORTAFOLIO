@@ -120,9 +120,7 @@ body.pdp { background: var(--page); }
 }
 .pbtn--primary { margin-top: 22px; background: var(--black); color: var(--cream); }
 .pbtn--primary:hover { background: #2a1a14; border-color: #2a1a14; }
-.pbtn--outline { margin-top: 10px; background: transparent; color: var(--black); }
-.pbtn--outline:hover { background: var(--sand-soft); }
-.pbtn--outline[aria-disabled="true"] { opacity: .5; pointer-events: none; }
+.pbtn[aria-disabled="true"] { opacity: .5; pointer-events: none; }
 
 /* ───────── Acordeones ───────── */
 .pacc { padding: 4px 24px; }
@@ -161,15 +159,6 @@ body.pdp { background: var(--page); }
 .card--lower .card__name { text-transform: none; letter-spacing: -0.01em; font-size: 15px; }
 .card--lower .card__price { font-size: 15px; }
 .card--lower .card__meta { color: var(--muted); }
-
-/* ───────── Aviso ───────── */
-.toast {
-  position: fixed; left: 50%; bottom: 96px; z-index: 60; width: max-content; max-width: calc(100vw - 32px);
-  padding: 12px 18px; border-radius: 12px; background: var(--black); color: var(--cream);
-  font-size: 14px; text-align: center; opacity: 0; pointer-events: none;
-  transform: translate(-50%, 12px); transition: opacity .3s, transform .3s;
-}
-.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
 
 /* ───────── Secciones bajo la ficha (filas de tarjetas, gap 12px) ───────── */
 .row1, .split, .know, .spec { margin-top: 12px; }
@@ -286,7 +275,6 @@ body.pdp { background: var(--page); }
   .related__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card--lower .card__row { flex-direction: column; gap: 2px; }
 
-  .toast { bottom: 92px; }
   .pdp .footer { padding-bottom: 72px; }
   .stickybuy {
     left: 0; right: 0; bottom: 0; width: auto;
@@ -299,7 +287,7 @@ body.pdp { background: var(--page); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gal__slide, .acc__icon, .stickybuy, .toast { transition-duration: .01s; }
+  .gal__slide, .acc__icon, .stickybuy { transition-duration: .01s; }
   .has-js .reveal { transition: none; opacity: 1; transform: none; }
   .acc[open] .acc__body { animation: none; }
 }

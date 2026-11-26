@@ -13,8 +13,8 @@ import ProductFaq from '../../components/ProductFaq.astro';
 import SpecSheet from '../../components/SpecSheet.astro';
 import RelatedProducts from '../../components/RelatedProducts.astro';
 import Footer from '../../components/Footer.astro';
-import { products, sections, hasPrice, formatPrice, priceMessage, interestMessage } from '../../lib/products';
-import { waDigits } from '../../lib/links';
+import { products, sections, hasPrice, formatPrice, priceMessage, interestMessage, orderMessage } from '../../lib/products';
+import { waDigits, waLink } from '../../lib/links';
 
 // Plantilla dinámica: una página estática por producto de src/data/products.json.
 export function getStaticPaths() {
@@ -25,6 +25,7 @@ const title = `${product.nombre} · ${product.tipoDetalle} | FlowHive`;
 // Bloque "marca" + sobrescrituras del producto (videoHero, videoSplit, faq, ficha).
 const sec = sections(product);
 const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
+const orderHref = waLink(orderMessage(product));
 ---
 <Base title={title} description={product.descripcion} bodyClass="pdp" producto={product.nombre}>
   <Announcement>colección costa norte · hecha a mano en lobitos</Announcement>
@@ -48,7 +49,7 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
   <Footer base="/" />
 
   <!-- Barra de compra fija: aparece cuando la tarjeta de compra sale de la pantalla -->
-  <div class="stickybuy" data-buybar aria-label={`Comprar ${product.nombre}`}>
+  <div class="stickybuy" data-buybar aria-label={`Pedir ${product.nombre}`}>
     <div class="stickybuy__info">
       <p class="stickybuy__name">{product.nombre}</p>
       <p class="stickybuy__price">
@@ -57,9 +58,8 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
           : consultHref ? <a href={consultHref} data-wa-ubicacion="barra_compra" target="_blank" rel="noopener">consultar precio</a> : 'consultar precio'}
       </p>
     </div>
-    <button class="pbtn pbtn--primary stickybuy__btn" type="button" data-add>añadir al carrito</button>
+    {orderHref && <a class="pbtn pbtn--primary stickybuy__btn" data-wa-link data-wa-ubicacion="ficha" href={orderHref} target="_blank" rel="noopener">pedir por whatsapp</a>}
   </div>
-  <div class="toast" role="status" aria-live="polite" data-toast></div>
 
   <script>
     document.documentElement.classList.add('has-js');
@@ -94,9 +94,9 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
       });
     }
 
-    // ── Variante: actualiza el nombre y el mensaje de WhatsApp ──
+    // ── Variante: actualiza el nombre y el mensaje de WhatsApp (botón de la tarjeta y barra fija) ──
     const info = document.querySelector<HTMLElement>('[data-product]');
-    const wa = document.querySelector<HTMLAnchorElement>('[data-wa-link]');
+    const waLinks = document.querySelectorAll<HTMLAnchorElement>('[data-wa-link]');
     const label = info?.dataset.variantLabel ?? '';
     const buildMessage = (variant?: string) =>
       `${info?.dataset.msg}${variant && label ? ` (${label}: ${variant})` : ''}`;
@@ -104,21 +104,11 @@ const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURICompon
       input.addEventListener('change', () => {
         const nameEl = document.querySelector('[data-variant-name]');
         if (nameEl) nameEl.textContent = input.value;
-        if (wa && info?.dataset.wa) wa.href = `https://wa.me/${info.dataset.wa}?text=${encodeURIComponent(buildMessage(input.value))}`;
+        if (!info?.dataset.wa) return;
+        const href = `https://wa.me/${info.dataset.wa}?text=${encodeURIComponent(buildMessage(input.value))}`;
+        waLinks.forEach((a) => (a.href = href));
       });
     });
-
-    // ── Añadir al carrito: todavía no hay tienda en línea ──
-    const toast = document.querySelector<HTMLElement>('[data-toast]')!;
-    let timer: number | undefined;
-    document.querySelectorAll<HTMLButtonElement>('[data-add]').forEach((b) =>
-      b.addEventListener('click', () => {
-        toast.textContent = 'la compra en línea abre pronto. por ahora, pídelo por whatsapp.';
-        toast.classList.add('is-visible');
-        clearTimeout(timer);
-        timer = window.setTimeout(() => toast.classList.remove('is-visible'), 4000);
-      })
-    );
 
     // ── Barra de compra fija: visible mientras la tarjeta de compra no se ve ──
     // También se oculta cuando el footer entra en pantalla, para no tapar su contenido.
