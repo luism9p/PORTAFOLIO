@@ -1,18 +1,23 @@
-// Analíticas con consentimiento: GA4 y Microsoft Clarity se cargan en diferido y solo si el visitante acepta.
+// Analíticas con consentimiento: GA4, Microsoft Clarity y el píxel de Meta se cargan en diferido y solo si el visitante acepta.
 // Eventos: whatsapp_click (todos los enlaces a wa.me), ver_coleccion y producto_hover.
+// Meta recibe PageView (cada carga), Contact (cada whatsapp_click) y ViewContent (tarjetas de producto).
 type Choice = 'accepted' | 'rejected';
 
-const KEY = 'fh-consent';
+// "-2": el aviso ahora menciona publicidad, así que quien aceptó el texto anterior vuelve a verlo.
+const KEY = 'fh-consent-2';
+const OLD_KEY = 'fh-consent';
 const DEBUG_KEY = 'fh-ga-debug';
+const VIEWED_KEY = 'fh-tarjetas-vistas';
 const w = window as any;
 const box = document.querySelector<HTMLElement>('[data-consent]');
 const gaId = box?.dataset.ga ?? '';
 const clarityId = box?.dataset.clarity ?? '';
+const metaId = box?.dataset.meta ?? '';
 let active = false;
 let debug = false;
 
-const read = (): string | null => {
-  try { return localStorage.getItem(KEY); } catch { return null; }
+const read = (key: string): string | null => {
+  try { return localStorage.getItem(key); } catch { return null; }
 };
 const save = (choice: Choice) => {
   try { localStorage.setItem(KEY, choice); } catch {}
@@ -67,14 +72,50 @@ function start() {
     w.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' });
     whenIdle(() => addScript(`https://www.clarity.ms/tag/${encodeURIComponent(clarityId)}`));
   }
+
+  // Sin la imagen <noscript> del código de Meta: se pediría aunque no haya consentimiento.
+  if (metaId) {
+    if (!w.fbq) {
+      // La cola de Meta: guarda las llamadas hasta que baje fbevents.js, que necesita el objeto `arguments`.
+      const fbq: any = function () {
+        if (fbq.callMethod) fbq.callMethod.apply(fbq, arguments);
+        else fbq.queue.push(arguments);
+      };
+      fbq.queue = [];
+      fbq.push = fbq;
+      fbq.loaded = true;
+      fbq.version = '2.0';
+      w.fbq = w._fbq = fbq;
+    }
+    // Un PageView por carga: sin esto, Meta añade otro cada vez que cambia el historial.
+    w.fbq.disablePushState = true;
+    w.fbq('init', metaId);
+    w.fbq('track', 'PageView');
+    whenIdle(() => addScript('https://connect.facebook.net/en_US/fbevents.js'));
+  }
 }
 
-/** Sin consentimiento no se registra nada. */
-function track(name: string, params: Record<string, string>) {
+type Params = Record<string, string>;
+
+/** Eventos que también van a Meta, con su nombre estándar y sus datos. */
+const META_EVENTS: Record<string, (p: Params) => [string, Params]> = {
+  whatsapp_click: ({ ubicacion, producto }) =>
+    ['Contact', { content_category: ubicacion, ...(producto ? { content_name: producto } : {}) }],
+  tarjeta_producto: ({ producto }) => ['ViewContent', { content_name: producto }],
+};
+/** Estos no van a GA4 ni a Clarity (allí las tarjetas ya se miden con producto_hover). */
+const META_ONLY = new Set(['tarjeta_producto']);
+
+/** Una sola llamada por evento para todos los destinos. Sin consentimiento no se registra nada. */
+function track(name: string, params: Params) {
   if (!active) return;
-  // La marca va en cada evento: con ponerla solo en 'config', las peticiones no la llevaban y DebugView no los veía.
-  w.gtag?.('event', name, debug ? { ...params, debug_mode: true } : params);
-  w.clarity?.('event', name);
+  if (!META_ONLY.has(name)) {
+    // La marca va en cada evento: con ponerla solo en 'config', las peticiones no la llevaban y DebugView no los veía.
+    w.gtag?.('event', name, debug ? { ...params, debug_mode: true } : params);
+    w.clarity?.('event', name);
+  }
+  const meta = META_EVENTS[name]?.(params);
+  if (meta) w.fbq?.('track', ...meta);
 }
 
 // ── Clics: delegados en el documento, así cubren también los enlaces cuyo mensaje cambia con la variante ──
@@ -109,6 +150,29 @@ document.querySelectorAll<HTMLElement>('[data-medidas]').forEach((media) => {
   media.addEventListener('pointerleave', () => window.clearTimeout(timer));
 });
 
+// ── Tarjetas de producto (Meta ViewContent): mouse encima ≥ 0,5 s o toque/clic, una vez por producto y visita ──
+// La visita es la pestaña: la lista se guarda en sessionStorage para no repetir al pasar de una página a otra.
+const readViewed = (): string[] => {
+  try { return JSON.parse(sessionStorage.getItem(VIEWED_KEY) ?? '[]'); } catch { return []; }
+};
+const viewed = new Set<string>(readViewed());
+function viewCard(producto: string) {
+  if (!active || viewed.has(producto)) return;
+  viewed.add(producto);
+  try { sessionStorage.setItem(VIEWED_KEY, JSON.stringify([...viewed])); } catch {}
+  track('tarjeta_producto', { producto });
+}
+document.querySelectorAll<HTMLElement>('[data-tarjeta]').forEach((card) => {
+  const producto = card.dataset.tarjeta ?? '';
+  let timer: number | undefined;
+  card.addEventListener('pointerenter', (e) => {
+    if (e.pointerType === 'mouse') timer = window.setTimeout(() => viewCard(producto), 500);
+  });
+  card.addEventListener('pointerleave', () => window.clearTimeout(timer));
+  // 'click' cubre el toque en móvil sin contar los deslizamientos del carrusel.
+  card.addEventListener('click', () => viewCard(producto), true);
+});
+
 // ── Aviso de cookies ──
 // --consent-h deja que en móvil el botón de WhatsApp y la barra de compra suban mientras el aviso está visible.
 const setHeight = () => {
@@ -121,7 +185,8 @@ const showBanner = (show: boolean) => {
   setHeight();
 };
 
-const stored = read();
+// Un rechazo anterior se respeta sin volver a preguntar.
+const stored = read(KEY) ?? (read(OLD_KEY) === 'rejected' ? 'rejected' : null);
 if (stored === 'accepted') start();
 else if (stored !== 'rejected') showBanner(true);
 

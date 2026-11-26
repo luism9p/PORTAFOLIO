@@ -1,12 +1,13 @@
 ---
-// Aviso de cookies. GA4 y Clarity solo se cargan si el visitante acepta (ver src/scripts/analytics.ts).
+// Aviso de cookies. GA4, Clarity y el píxel de Meta solo se cargan si el visitante acepta (ver src/scripts/analytics.ts).
 // Los IDs salen de las variables de entorno; sin ellas no hay aviso ni se carga nada.
 const gaId = import.meta.env.PUBLIC_GA_ID ?? '';
 const clarityId = import.meta.env.PUBLIC_CLARITY_ID ?? '';
+const metaId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
 ---
-{(gaId || clarityId) && (
-  <div class="consent" role="region" aria-label="Aviso de cookies" data-consent data-ga={gaId} data-clarity={clarityId} hidden>
-    <p class="consent__text">Usamos cookies para medir las visitas y mejorar la tienda.</p>
+{(gaId || clarityId || metaId) && (
+  <div class="consent" role="region" aria-label="Aviso de cookies" data-consent data-ga={gaId} data-clarity={clarityId} data-meta={metaId} hidden>
+    <p class="consent__text">Usamos cookies para medir las visitas, mejorar la tienda y mostrar publicidad.</p>
     <div class="consent__actions">
       <button class="consent__btn" type="button" data-consent-choice="rejected">Rechazar</button>
       <button class="consent__btn consent__btn--ok" type="button" data-consent-choice="accepted">Aceptar</button>
