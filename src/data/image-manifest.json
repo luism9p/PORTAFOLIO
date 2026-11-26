@@ -1,0 +1,439 @@
+{
+ "destacado/coleccion-lobitos": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "editorial/editorial-medusa": {
+  "widths": [
+   800,
+   1280
+  ],
+  "width": 1912,
+  "height": 823
+ },
+ "hero/hero": {
+  "widths": [
+   800,
+   1280,
+   1916
+  ],
+  "width": 1916,
+  "height": 821
+ },
+ "instagram/ig-01-faro-retrato": {
+  "widths": [
+   400,
+   640,
+   900,
+   1254
+  ],
+  "width": 1254,
+  "height": 1254
+ },
+ "instagram/ig-02-duna-playa": {
+  "widths": [
+   400,
+   640,
+   900,
+   1254
+  ],
+  "width": 1254,
+  "height": 1254
+ },
+ "instagram/ig-03-jarrones-manos": {
+  "widths": [
+   400,
+   640,
+   900,
+   1254
+  ],
+  "width": 1254,
+  "height": 1254
+ },
+ "instagram/ig-04-lampara-ventana": {
+  "widths": [
+   400,
+   640,
+   900,
+   1254
+  ],
+  "width": 1254,
+  "height": 1254
+ },
+ "instagram/ig-04-lectura-nocturna": {
+  "widths": [
+   400,
+   640,
+   900,
+   1254
+  ],
+  "width": 1254,
+  "height": 1254
+ },
+ "newsletter/newsletter-remolino": {
+  "widths": [
+   600,
+   900,
+   1536
+  ],
+  "width": 1536,
+  "height": 1024
+ },
+ "productos/alga/alga-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/alga/alga-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/alga/alga-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/alga/alga-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/brisa/brisa-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/brisa/brisa-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/brisa/brisa-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/brisa/brisa-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/bruma/bruma-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/bruma/bruma-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/bruma/bruma-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/bruma/bruma-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/duna/duna-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/duna/duna-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/duna/duna-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/duna/duna-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/faro/faro-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/faro/faro-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/faro/faro-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/faro/faro-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/junco/junco-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/junco/junco-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/junco/junco-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/junco/junco-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/medusa/medusa-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/medusa/medusa-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/medusa/medusa-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/medusa/medusa-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/remolino/remolino-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/remolino/remolino-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/remolino/remolino-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/remolino/remolino-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ },
+ "productos/salitre/salitre-01-tarjeta": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/salitre/salitre-02-medidas": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/salitre/salitre-03-ambiente": {
+  "widths": [
+   400,
+   640,
+   900,
+   1122
+  ],
+  "width": 1122,
+  "height": 1402
+ },
+ "productos/salitre/salitre-04-macro": {
+  "widths": [
+   640,
+   1024,
+   1448
+  ],
+  "width": 1448,
+  "height": 1086
+ }
+}

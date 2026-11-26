@@ -1,0 +1,26 @@
+---
+const items = ['Impreso en Lobitos', 'Tecnología Bambu Lab', 'PLA biodegradable', 'Diseño a medida', 'Envíos a todo el Perú'];
+---
+<section class="trust" aria-label="Hecho con">
+  <p class="trust__label">Hecho con</p>
+  <div class="trust__viewport">
+    <div class="trust__track">
+      <ul class="trust__list">
+        {items.map((t, i) => (
+          <>
+            {i > 0 && <li class="hex" aria-hidden="true" />}
+            <li>{t}</li>
+          </>
+        ))}
+      </ul>
+      <ul class="trust__list trust__list--dup" aria-hidden="true">
+        {items.map((t, i) => (
+          <>
+            {i > 0 && <li class="hex" />}
+            <li>{t}</li>
+          </>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

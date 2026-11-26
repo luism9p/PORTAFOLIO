@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import Base from '../layouts/Base.astro';
+import Announcement from '../components/Announcement.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Tagline from '../components/Tagline.astro';
+import Carousel from '../components/Carousel.astro';
+import FeaturedCard from '../components/FeaturedCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import Editorial from '../components/Editorial.astro';
+import Instagram from '../components/Instagram.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { listed } from '../lib/products';
+
+const limited = listed.filter((p) => p.coleccion === 'edicion-limitada');
+const catalog = listed.filter((p) => p.coleccion === 'nuestros-productos');
+---
+<Base title="FlowHive · Lámparas y jarrones impresos en 3D" description="Lámparas y jarrones de diseño impresos en 3D en Lobitos, Perú. Envíos a todo el Perú y diseños a medida.">
+  <Announcement />
+  <Header />
+  <main>
+    <Hero />
+    <Tagline />
+    <Carousel id="edicion-limitada" label="Edición limitada">
+      <FeaturedCard />
+      {limited.map((p) => <ProductCard product={p} />)}
+    </Carousel>
+    <Carousel id="productos" label="Nuestros productos">
+      {catalog.map((p) => <ProductCard product={p} />)}
+    </Carousel>
+    <TrustStrip />
+    <Editorial />
+    <Instagram />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+  <script>
+    // Navbar: transparente sobre el hero, crema con blur al bajar más de 60 px.
+    const header = document.querySelector<HTMLElement>('[data-header]');
+    const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Flechas de los carruseles: desplazan una tarjeta y se desactivan en los extremos.
+    document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+      const track = root.querySelector<HTMLElement>('.carousel__track')!;
+      const prev = root.querySelector<HTMLButtonElement>('[data-dir="-1"]')!;
+      const next = root.querySelector<HTMLButtonElement>('[data-dir="1"]')!;
+      const update = () => {
+        const max = track.scrollWidth - track.clientWidth;
+        // Si todo cabe sin desplazar, las flechas quedan activas (como en la referencia).
+        prev.disabled = max > 1 && track.scrollLeft <= 1;
+        next.disabled = max > 1 && track.scrollLeft >= max - 1;
+      };
+      const step = () => {
+        const first = track.firstElementChild as HTMLElement | null;
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return (first?.offsetWidth ?? track.clientWidth) + gap;
+      };
+      [prev, next].forEach((b) =>
+        b.addEventListener('click', () => {
+          track.scrollBy({ left: Number(b.dataset.dir) * step(), behavior: 'smooth' });
+        })
+      );
+      track.addEventListener('scroll', update, { passive: true });
+      new ResizeObserver(update).observe(track);
+      update();
+    });
+  </script>
+</Base>

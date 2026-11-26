@@ -1,0 +1,27 @@
+---
+import Img from './Img.astro';
+// Fila 4: una sola tarjeta a todo el ancho con la tabla a la izquierda y la imagen de detalle a la derecha.
+// Imagen: ficha.imagen del producto (p. ej. /images/marca/medusa-detalle.jpg); si no hay, su foto de detalle; si tampoco, placeholder.
+const { ficha, product } = Astro.props;
+const macro = product.imagenes?.macro;
+---
+<section class="spec card-box" aria-labelledby="spec-title">
+  <div class="spec__body">
+    <h2 class="sec-title" id="spec-title">{ficha.titulo}</h2>
+    <dl class="spec__table">
+      {ficha.filas.map((f) => (
+        <div class="spec__row">
+          <dt>{f.etiqueta}</dt>
+          <dd>{f.valor}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="spec__media">
+    {ficha.imagen
+      ? <img src={ficha.imagen} alt={ficha.alt} width="1448" height="1086" loading="lazy" decoding="async" />
+      : macro
+        ? <Img base={macro} alt={ficha.alt} sizes="(min-width: 900px) 48vw, 100vw" />
+        : <div class="ph" role="img" aria-label={ficha.alt}><span class="ph__name">{product.nombre.toLowerCase()}</span><span class="ph__view">detalle</span></div>}
+  </div>
+</section>

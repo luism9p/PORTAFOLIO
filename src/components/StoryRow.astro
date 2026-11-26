@@ -1,0 +1,32 @@
+---
+import Vid from './Vid.astro';
+// Fila 1: tarjeta con el video de marca a la izquierda y, a la derecha, "lo que la hace única" en grilla 2×2.
+// Las imágenes de cada ítem (/images/marca/unica-*.jpg) son opcionales: si el archivo no existe queda solo el fondo arena.
+const { hero, unica } = Astro.props;
+const n = unica.tarjetas.length;
+---
+<section class="row1" aria-label="Sobre esta pieza">
+  <div class="vcard">
+    <Vid src={hero.src} poster={hero.poster} preload="auto" />
+    <div class="vcard__shade" aria-hidden="true"></div>
+    <div class="vcard__text reveal" data-reveal>
+      <h2 class="vcard__title">{hero.titulo}</h2>
+      <p class="vcard__line">{hero.linea}</p>
+    </div>
+  </div>
+
+  <div class="uniq card-box">
+    <h2 class="sec-title" id="uniq-title">{unica.titulo}</h2>
+    <ul class:list={['uniq__grid', { 'uniq__grid--odd': n % 2 === 1 }]} aria-labelledby="uniq-title">
+      {unica.tarjetas.map((t) => (
+        <li class="uitem">
+          <div class:list={['uitem__media', { 'has-img': !!t.imagen }]}>
+            {t.imagen && <img src={t.imagen} alt="" width="800" height="800" loading="lazy" decoding="async" />}
+            <h3 class="uitem__title">{t.titulo}</h3>
+          </div>
+          <p class="uitem__text">{t.texto}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

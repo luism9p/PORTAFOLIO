@@ -1,0 +1,57 @@
+---
+// SmoothScroll.astro — Lenis global smooth scroll para Astro
+// Sin restricciones de prefers-reduced-motion. Siempre activo.
+---
+<script>
+  import Lenis from 'lenis';
+
+  // ─── Easing exponencial suave ───────────────────────────────────────────────
+  const easing = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
+
+  // ─── Instancia global ───────────────────────────────────────────────────────
+  const lenis = new Lenis({
+    duration:      1.2,
+    easing,
+    smoothWheel:   true,
+    wheelMultiplier: 1,
+    syncTouch:     false,   // deja el scroll táctil nativo en móvil
+    overscroll:    false,
+  });
+
+  // Exponer en window para que otros scripts puedan usarlo
+  (window as any).__lenis = lenis;
+
+  // ─── RAF loop ───────────────────────────────────────────────────────────────
+  let rafId: number;
+  function raf(time: number) {
+    lenis.raf(time);
+    rafId = requestAnimationFrame(raf);
+  }
+  rafId = requestAnimationFrame(raf);
+
+  // ─── Anclas: scroll suave a #id ─────────────────────────────────────────────
+  document.addEventListener('click', (e) => {
+    const anchor = (e.target as Element).closest('a[href^="#"]') as HTMLAnchorElement | null;
+    if (!anchor) return;
+    const id = anchor.getAttribute('href')!;
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    // Lenis ya descuenta el scroll-margin-top del destino (la navbar fija no lo tapa).
+    lenis.scrollTo(target as HTMLElement, { offset: 0, duration: 1.2, easing });
+  });
+
+  // ─── API pública global: pausar / reanudar ───────────────────────────────────
+  // Uso desde cualquier script:
+  //   window.__lenis.stop()   → pausar (menú móvil, modal abierto)
+  //   window.__lenis.start()  → reanudar
+  //   window.__lenis.scrollTo('#section') → navegar
+
+  // ─── Limpieza en navegación SPA / View Transitions de Astro ────────────────
+  document.addEventListener('astro:before-swap', () => {
+    cancelAnimationFrame(rafId);
+    lenis.destroy();
+  });
+</script>
+

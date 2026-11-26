@@ -1,0 +1,19 @@
+---
+import Vid from './Vid.astro';
+const { split } = Astro.props;
+const { izquierda, derecha } = split;
+---
+<section class="split" aria-label="Videos de la colección">
+  <div class="split__item">
+    <Vid src={izquierda.src} poster={izquierda.poster} />
+    {izquierda.texto && (
+      <>
+        <div class="split__shade" aria-hidden="true"></div>
+        <p class="split__text reveal" data-reveal>{izquierda.texto}</p>
+      </>
+    )}
+  </div>
+  <div class="split__item">
+    <Vid src={derecha.src} poster={derecha.poster} />
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import Img from './Img.astro';
+import { galleryViews } from '../lib/products';
+// Escritorio: miniaturas verticales + imagen principal con fade. Móvil: carrusel con swipe y puntos.
+const { product } = Astro.props;
+const { nombre, tipoDetalle, imagenes } = product;
+const views = galleryViews.map((v, i) => ({
+  ...v,
+  i,
+  base: imagenes ? imagenes[v.key] : null,
+  alt: `${nombre}, ${tipoDetalle}: ${v.label}`,
+}));
+---
+<div class="gal" data-gallery aria-roledescription="galería de imágenes" aria-label={`Imágenes de ${nombre}`}>
+  <div class="gal__thumbs">
+    {views.map((v) => (
+      <button class:list={['gal__thumb', { 'is-active': v.i === 0 }]} type="button" data-index={v.i} aria-label={`Ver ${v.label}`} aria-pressed={v.i === 0 ? 'true' : 'false'}>
+        {v.base
+          ? <Img base={v.base} alt="" sizes="64px" />
+          : <span class="ph ph--thumb" aria-hidden="true">{v.i + 1}</span>}
+      </button>
+    ))}
+  </div>
+  <div class="gal__stage">
+    <div class="gal__slides" data-slides tabindex="0">
+      {views.map((v) => (
+        <figure class:list={['gal__slide', { 'is-active': v.i === 0 }]} data-index={v.i}>
+          {v.base
+            ? <Img base={v.base} alt={v.alt} eager={v.i === 0} sizes="(min-width: 900px) 52vw, 100vw" />
+            : <div class="ph" role="img" aria-label={v.alt}><span class="ph__name">{nombre.toLowerCase()}</span><span class="ph__view">{v.label}</span></div>}
+        </figure>
+      ))}
+    </div>
+    <div class="gal__dots" role="group" aria-label="Elegir imagen">
+      {views.map((v) => (
+        <button class:list={['gal__dot', { 'is-active': v.i === 0 }]} type="button" data-index={v.i} aria-label={`Imagen ${v.i + 1} de ${views.length}`}></button>
+      ))}
+    </div>
+  </div>
+</div>

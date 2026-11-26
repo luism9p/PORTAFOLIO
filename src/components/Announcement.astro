@@ -1,0 +1,8 @@
+---
+const hasSlot = Astro.slots.has('default');
+---
+<div class="announce">
+  {hasSlot
+    ? <p><slot /></p>
+    : <p>Envíos a todo el Perú | <em class="serif">Diseños personalizados a pedido</em></p>}
+</div>

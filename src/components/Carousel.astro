@@ -1,0 +1,14 @@
+---
+import Icons from './Icons.astro';
+const { id, label } = Astro.props;
+---
+<section class="shelf" id={id} aria-labelledby={`${id}-label`}>
+  <h2 class="shelf__label" id={`${id}-label`}>{label}</h2>
+  <div class="carousel" data-carousel>
+    <div class="carousel__track" tabindex="0" role="region" aria-label={label}>
+      <slot />
+    </div>
+    <button class="arrow arrow--sq arrow--prev" type="button" data-dir="-1" aria-label="Anterior"><Icons name="chevron-left" size={18} /></button>
+    <button class="arrow arrow--sq arrow--next" type="button" data-dir="1" aria-label="Siguiente"><Icons name="chevron-right" size={18} /></button>
+  </div>
+</section>

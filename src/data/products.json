@@ -1,0 +1,366 @@
+{
+  "marca": {
+    "videoHero": {
+      "src": "/videos/marca/brisa-encendido.mp4",
+      "poster": "/videos/marca/brisa-encendido-poster.jpg",
+      "titulo": "luz con forma propia",
+      "linea": "diseñada e impresa a mano en lobitos"
+    },
+    "unica": {
+      "titulo": "lo que la hace única",
+      "tarjetas": [
+        {
+          "titulo": "Material",
+          "texto": "PLA mate de alta calidad, resistente y ligero.",
+          "imagen": "/images/marca/unica-material.jpg"
+        },
+        {
+          "titulo": "Capas",
+          "texto": "Impresa capa por capa; esas líneas le dan textura y filtran la luz.",
+          "imagen": "/images/marca/unica-capas.jpg"
+        },
+        {
+          "titulo": "Luz",
+          "texto": "luz LED cálida con cable USB e interruptor. No calienta la pieza.",
+          "soloLamparas": true,
+          "imagen": "/images/marca/unica-luz.jpg"
+        },
+        {
+          "titulo": "Hecho en Lobitos",
+          "texto": "Diseñada e impresa a pedido frente al mar.",
+          "imagen": "/images/marca/unica-lobitos.jpg"
+        }
+      ]
+    },
+    "videoSplit": {
+      "izquierda": {
+        "src": "/videos/marca/salitre-noche.mp4",
+        "poster": "/videos/marca/salitre-noche-poster.jpg",
+        "texto": "hecha para tus noches"
+      },
+      "derecha": {
+        "src": "/videos/marca/alga-textura.mp4",
+        "poster": "/videos/marca/alga-textura-poster.jpg"
+      }
+    },
+    "saber": {
+      "titulo": "lo que debes saber sobre",
+      "video": {
+        "src": "/videos/marca/impresion-capas.mp4",
+        "poster": "/videos/marca/impresion-capas-poster.jpg"
+      },
+      "faq": [
+        {
+          "pregunta": "¿qué foco usa?",
+          "respuesta": "Una luz LED cálida con cable USB e interruptor en línea. Puedes conectarla a cualquier cargador de celular o puerto USB.",
+          "soloLamparas": true
+        },
+        {
+          "pregunta": "¿se calienta?",
+          "respuesta": "No. Usa luz LED, que no calienta la pieza.",
+          "soloLamparas": true
+        },
+        {
+          "pregunta": "¿cómo la limpio?",
+          "respuesta": "Con un paño seco o un pincel suave. Sin agua ni alcohol."
+        },
+        {
+          "pregunta": "¿cuánto demora mi pedido?",
+          "respuesta": null
+        },
+        {
+          "pregunta": "¿puedo pedirla en otro color?",
+          "respuesta": "Sí, escríbenos por WhatsApp y te mostramos los colores disponibles."
+        }
+      ]
+    },
+    "ficha": {
+      "titulo": "ficha técnica",
+      "campos": [
+        {
+          "clave": "material",
+          "etiqueta": "material"
+        },
+        {
+          "clave": "alto",
+          "etiqueta": "alto"
+        },
+        {
+          "clave": "diametro",
+          "etiqueta": "diámetro",
+          "soloLamparas": false
+        },
+        {
+          "clave": "peso",
+          "etiqueta": "peso"
+        },
+        {
+          "clave": "luz",
+          "etiqueta": "luz",
+          "soloLamparas": true,
+          "valor": "LED USB, luz cálida"
+        },
+        {
+          "clave": "cable",
+          "etiqueta": "cable",
+          "soloLamparas": true
+        },
+        {
+          "clave": "alimentacion",
+          "etiqueta": "alimentación",
+          "soloLamparas": true,
+          "valor": "USB 5V"
+        }
+      ]
+    }
+  },
+  "productos": [
+    {
+      "slug": "medusa",
+      "nombre": "Medusa",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "Más deseado",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Pantalla acanalada en forma de hongo sobre una base de líneas verticales. Una luz cálida y suave para tu mesa.",
+      "material": "PLA mate",
+      "alto_mm": 243,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "edicion-limitada",
+      "imagenes": {
+        "tarjeta": "productos/medusa/medusa-01-tarjeta",
+        "medidas": "productos/medusa/medusa-02-medidas",
+        "ambiente": "productos/medusa/medusa-03-ambiente",
+        "macro": "productos/medusa/medusa-04-macro"
+      },
+      "ficha": {
+        "imagen": "/images/marca/medusa-detalle.jpg",
+        "alt": "Detalle de la lámpara Medusa: pantalla acanalada y base morada"
+      }
+    },
+    {
+      "slug": "faro",
+      "nombre": "Faro",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "Edición limitada",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Un aro naranja que enmarca una pantalla translúcida y deja pasar una luz cálida.",
+      "material": "PLA mate",
+      "alto_mm": 250,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "edicion-limitada",
+      "imagenes": {
+        "tarjeta": "productos/faro/faro-01-tarjeta",
+        "medidas": "productos/faro/faro-02-medidas",
+        "ambiente": "productos/faro/faro-03-ambiente",
+        "macro": "productos/faro/faro-04-macro"
+      }
+    },
+    {
+      "slug": "brisa",
+      "nombre": "Brisa",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Pantalla cónica clara sobre una base curva y oscura, para una luz tranquila.",
+      "material": "PLA mate",
+      "alto_mm": 310,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "edicion-limitada",
+      "imagenes": {
+        "tarjeta": "productos/brisa/brisa-01-tarjeta",
+        "medidas": "productos/brisa/brisa-02-medidas",
+        "ambiente": "productos/brisa/brisa-03-ambiente",
+        "macro": "productos/brisa/brisa-04-macro"
+      }
+    },
+    {
+      "slug": "duna",
+      "nombre": "Duna",
+      "tipo": "Jarrón",
+      "tipoDetalle": "florero",
+      "etiqueta": "Hecho en Lobitos",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Florero de líneas acanaladas en tono terracota, hecho para flores secas y ramas.",
+      "material": "PLA mate",
+      "alto_mm": 172,
+      "luz": "",
+      "variantes": null,
+      "coleccion": "edicion-limitada",
+      "imagenes": {
+        "tarjeta": "productos/duna/duna-01-tarjeta",
+        "medidas": "productos/duna/duna-02-medidas",
+        "ambiente": "productos/duna/duna-03-ambiente",
+        "macro": "productos/duna/duna-04-macro"
+      }
+    },
+    {
+      "slug": "remolino",
+      "nombre": "Remolino",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "Nuevo",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Una silueta que gira sobre sí misma: la luz recorre cada capa de la espiral.",
+      "material": "PLA mate",
+      "alto_mm": 220,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "nuestros-productos",
+      "imagenes": {
+        "tarjeta": "productos/remolino/remolino-01-tarjeta",
+        "medidas": "productos/remolino/remolino-02-medidas",
+        "ambiente": "productos/remolino/remolino-03-ambiente",
+        "macro": "productos/remolino/remolino-04-macro"
+      }
+    },
+    {
+      "slug": "salitre",
+      "nombre": "Salitre",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "Nuevo",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Cilindro de textura granulada sobre una base gris, con una luz suave y cálida.",
+      "material": "PLA mate",
+      "alto_mm": 210,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "nuestros-productos",
+      "imagenes": {
+        "tarjeta": "productos/salitre/salitre-01-tarjeta",
+        "medidas": "productos/salitre/salitre-02-medidas",
+        "ambiente": "productos/salitre/salitre-03-ambiente",
+        "macro": "productos/salitre/salitre-04-macro"
+      }
+    },
+    {
+      "slug": "junco",
+      "nombre": "Junco",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Pantalla cuadrada y acanalada en verde oliva que filtra una luz dorada.",
+      "material": "PLA mate",
+      "alto_mm": 200,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "nuestros-productos",
+      "imagenes": {
+        "tarjeta": "productos/junco/junco-01-tarjeta",
+        "medidas": "productos/junco/junco-02-medidas",
+        "ambiente": "productos/junco/junco-03-ambiente",
+        "macro": "productos/junco/junco-04-macro"
+      }
+    },
+    {
+      "slug": "bruma",
+      "nombre": "Bruma",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Capas redondeadas que se apilan sobre patas, para una luz difusa y envolvente.",
+      "material": "PLA mate",
+      "alto_mm": 266,
+      "luz": "cálida",
+      "variantes": {
+        "etiqueta": "patas",
+        "opciones": [
+          {
+            "id": "arena",
+            "nombre": "arena",
+            "detalle": "madera",
+            "color": "#D2B48C"
+          },
+          {
+            "id": "niebla",
+            "nombre": "niebla",
+            "detalle": "gris",
+            "color": "#A9ABAA"
+          },
+          {
+            "id": "noche",
+            "nombre": "noche",
+            "detalle": "negro",
+            "color": "#1B1614"
+          }
+        ]
+      },
+      "coleccion": "nuestros-productos",
+      "imagenes": {
+        "tarjeta": "productos/bruma/bruma-01-tarjeta",
+        "medidas": "productos/bruma/bruma-02-medidas",
+        "ambiente": "productos/bruma/bruma-03-ambiente",
+        "macro": "productos/bruma/bruma-04-macro"
+      }
+    },
+    {
+      "slug": "alga",
+      "nombre": "Alga",
+      "tipo": "Jarrón",
+      "tipoDetalle": "florero",
+      "etiqueta": "A pedido",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Florero de líneas onduladas, en blanco espuma o verde musgo.",
+      "material": "PLA mate",
+      "alto_mm": 204,
+      "luz": "",
+      "variantes": {
+        "etiqueta": "color",
+        "opciones": [
+          {
+            "id": "espuma",
+            "nombre": "espuma",
+            "detalle": "blanco",
+            "color": "#F4F0E6"
+          },
+          {
+            "id": "musgo",
+            "nombre": "musgo",
+            "detalle": "verde oliva",
+            "color": "#6F7B3B"
+          }
+        ]
+      },
+      "coleccion": "nuestros-productos",
+      "imagenes": {
+        "tarjeta": "productos/alga/alga-01-tarjeta",
+        "medidas": "productos/alga/alga-02-medidas",
+        "ambiente": "productos/alga/alga-03-ambiente",
+        "macro": "productos/alga/alga-04-macro"
+      }
+    },
+    {
+      "slug": "ola",
+      "nombre": "Ola",
+      "tipo": "Lámpara",
+      "tipoDetalle": "lámpara de mesa",
+      "etiqueta": "",
+      "precio": "PRECIO_PENDIENTE",
+      "precioAnterior": null,
+      "descripcion": "Una lámpara de mesa de líneas suaves, impresa en 3D.",
+      "material": "PLA mate",
+      "alto_mm": 220,
+      "luz": "cálida",
+      "variantes": null,
+      "coleccion": "nuestros-productos",
+      "imagenes": null
+    }
+  ]
+}

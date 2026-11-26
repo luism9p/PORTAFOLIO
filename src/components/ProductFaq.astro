@@ -1,0 +1,21 @@
+---
+import Vid from './Vid.astro';
+// Fila 3: video a la izquierda (a todo el alto) y, a la derecha, el título arriba y las preguntas abajo del todo.
+const { saber } = Astro.props;
+---
+<section class="know" aria-labelledby="know-title">
+  <div class="know__video">
+    <Vid src={saber.video.src} poster={saber.video.poster} />
+  </div>
+  <div class="know__body card-box">
+    <h2 class="know__title" id="know-title">{saber.titulo}</h2>
+    <dl class="faq">
+      {saber.faq.map((q) => (
+        <div class="faq__item">
+          <dt class="faq__q">{q.pregunta}</dt>
+          <dd class="faq__a">{q.respuesta}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

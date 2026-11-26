@@ -1,0 +1,56 @@
+---
+import Img from './Img.astro';
+import { site, waHref, waLink } from '../lib/links';
+const discountHref = waLink(site.mensajeDescuento);
+// base: '' en la home (anclas de la misma página) y '/' en otras páginas.
+const { base = '' } = Astro.props;
+
+const cols = [
+  { title: 'Navegar', links: [
+    { label: 'Tienda', href: `${base}#productos` },
+    { label: 'Diseño a medida', href: '#' },
+    { label: 'Para negocios', href: '#' },
+    { label: 'Preguntas frecuentes', href: '#' },
+    { label: 'Nosotros', href: `${base}#nosotros` },
+  ] },
+  { title: 'Social', links: [
+    { label: 'Instagram', href: site.instagram, external: true },
+    { label: 'TikTok', href: '#' },
+    { label: 'WhatsApp', href: waHref || '#', external: !!waHref },
+  ] },
+  { title: 'Oficial', links: [
+    { label: 'Envíos y cambios', href: '#' },
+    { label: 'Privacidad', href: '#' },
+    { label: 'Contacto', href: waHref || '#', external: !!waHref },
+  ] },
+];
+---
+<footer class="footer">
+  <div class="footer__main">
+    <nav class="footer__cols" aria-label="Pie de página">
+      {cols.map((c) => (
+        <div class="footer__col">
+          <h2 class="footer__heading">{c.title}</h2>
+          <ul>
+            {c.links.map((l) => (
+              <li><a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+    <div class="newsletter">
+      <Img class="newsletter__img" base="newsletter/newsletter-remolino" alt="Retrato junto a la lámpara Remolino" sizes="(min-width: 900px) 300px, 90vw" />
+      <div class="newsletter__body">
+        <h3 class="newsletter__title">10 % de dscto. en tu primer pedido.</h3>
+        <p class="newsletter__text">Escríbenos por WhatsApp y te lo aplicamos al toque.</p>
+        <a class="btn btn--dark newsletter__cta" href={discountHref || undefined} target={discountHref ? '_blank' : undefined} rel={discountHref ? 'noopener' : undefined} aria-disabled={discountHref ? undefined : 'true'}>Pedir mi 10 % por WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__legal"><span>FlowHive® 2026</span></div>
+  </div>
+  <div class="footer__brand">
+    <img src="/brand/logo/flowhive-negro.svg" alt="flowhive" width="880" height="183" loading="lazy" decoding="async" />
+  </div>
+  <div class="stamp" aria-hidden="true"><span>Hecho en Lobitos</span></div>
+</footer>

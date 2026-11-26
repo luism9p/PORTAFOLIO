@@ -1,0 +1,19 @@
+---
+// <video> de marca: sin sonido, en bucle, con poster y autoplay. El script de la página los pausa cuando salen
+// de pantalla y los reanuda al volver. Son loops suaves, así que se reproducen también con prefers-reduced-motion.
+const { src, poster, preload = 'metadata', label = '', class: cls } = Astro.props;
+---
+<video
+  class:list={['vid', cls]}
+  src={src}
+  poster={poster}
+  autoplay
+  muted
+  loop
+  playsinline
+  preload={preload}
+  data-vid
+  aria-label={label || undefined}
+  aria-hidden={label ? undefined : 'true'}
+  disablepictureinpicture
+></video>

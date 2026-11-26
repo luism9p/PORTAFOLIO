@@ -1,0 +1,28 @@
+---
+import Img from './Img.astro';
+import Icons from './Icons.astro';
+import site from '../data/site.json';
+const photos = [
+  { base: 'instagram/ig-01-faro-retrato', alt: 'Retrato junto a la lámpara Faro' },
+  { base: 'instagram/ig-02-duna-playa', alt: 'El jarrón Duna en la playa' },
+  { base: 'instagram/ig-03-jarrones-manos', alt: 'Manos sosteniendo jarrones impresos en 3D' },
+  { base: 'instagram/ig-04-lampara-ventana', alt: 'Lámpara encendida junto a una ventana al atardecer, con una mano acercándose' },
+];
+---
+<section class="ig" aria-labelledby="ig-title">
+  <div class="ig__head">
+    <h2 class="ig__title" id="ig-title">Sigue la buena luz</h2>
+    <a class="btn btn--dark btn--caps" href={site.instagram} target="_blank" rel="noopener">Síguenos</a>
+  </div>
+  <div class="carousel carousel--ig" data-carousel>
+    <div class="carousel__track" tabindex="0" role="region" aria-label="Fotos de Instagram">
+      {photos.map((p) => (
+        <a class="ig__item" href={site.instagram} target="_blank" rel="noopener" aria-label={p.alt}>
+          <Img base={p.base} alt={p.alt} sizes="(min-width: 900px) 23vw, 72vw" />
+        </a>
+      ))}
+    </div>
+    <button class="arrow arrow--lg arrow--prev" type="button" data-dir="-1" aria-label="Anterior"><Icons name="chevron-left" size={28} /></button>
+    <button class="arrow arrow--lg arrow--next" type="button" data-dir="1" aria-label="Siguiente"><Icons name="chevron-right" size={28} /></button>
+  </div>
+</section>

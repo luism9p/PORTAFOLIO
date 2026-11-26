@@ -1,0 +1,57 @@
+---
+// Acordeones nativos (<details>): accesibles y sin JS. El "+" gira a "×" al abrirse.
+// Textos en minúsculas (estilo de la ficha); solo las etiquetas van en mayúsculas pequeñas (CSS).
+const { product } = Astro.props;
+const { material, alto_mm, luz, tipoDetalle } = product;
+const items = [
+  {
+    title: 'Materiales y cuidado',
+    body: [
+      `impreso en 3d en ${material}. límpialo con un paño seco o apenas húmedo.`,
+      'evita el sol directo prolongado y las fuentes de calor: el PLA se deforma con el calor.',
+    ],
+  },
+  {
+    title: 'Medidas y especificaciones',
+    list: [
+      ['tipo', tipoDetalle],
+      ['alto', `${alto_mm} mm`],
+      ['material', material],
+      ...(luz ? [['luz', luz]] : []),
+    ],
+    body: ['las medidas son aproximadas: al ser piezas impresas en 3d puede haber pequeñas variaciones.'],
+  },
+  {
+    title: 'Envíos a todo el Perú',
+    body: [
+      'enviamos a todo el perú.',
+      'el costo y el tiempo de entrega dependen de tu ciudad: escríbenos por whatsapp y lo coordinamos contigo antes de confirmar tu pedido.',
+    ],
+  },
+  {
+    title: 'Hecho en Lobitos',
+    body: [
+      'cada pieza se diseña e imprime en nuestro taller en lobitos, en la costa norte del perú.',
+      'trabajamos capa por capa con impresión 3d para lograr formas que no vas a encontrar en otra tienda, con materiales que cuidan el mar.',
+    ],
+  },
+];
+---
+<section class="pacc card-box" aria-label="Más información">
+  {items.map((it) => (
+    <details class="acc">
+      <summary class="acc__sum">
+        <span class="acc__label">{it.title}</span>
+        <span class="acc__icon" aria-hidden="true"></span>
+      </summary>
+      <div class="acc__body">
+        {it.list && (
+          <dl class="acc__list">
+            {it.list.map(([k, v]) => <div><dt>{k}:</dt><dd>{v}</dd></div>)}
+          </dl>
+        )}
+        {it.body.map((t) => <p>{t}</p>)}
+      </div>
+    </details>
+  ))}
+</section>

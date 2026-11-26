@@ -1,0 +1,14 @@
+---
+import ProductCard from './ProductCard.astro';
+import { related } from '../lib/products';
+const { product } = Astro.props;
+const items = related(product, 4);
+---
+{items.length > 0 && (
+  <section class="related" aria-labelledby="related-title">
+    <h2 class="related__title" id="related-title">de la misma colección</h2>
+    <div class="related__grid">
+      {items.map((p) => <ProductCard product={p} hover="ambiente" lower />)}
+    </div>
+  </section>
+)}
