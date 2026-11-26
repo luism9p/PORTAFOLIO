@@ -9,6 +9,7 @@ const box = document.querySelector<HTMLElement>('[data-consent]');
 const gaId = box?.dataset.ga ?? '';
 const clarityId = box?.dataset.clarity ?? '';
 let active = false;
+let debug = false;
 
 const read = (): string | null => {
   try { return localStorage.getItem(KEY); } catch { return null; }
@@ -56,7 +57,8 @@ function start() {
       ad_personalization: 'denied',
     });
     w.gtag('js', new Date());
-    w.gtag('config', gaId, isDebug() ? { debug_mode: true } : {});
+    debug = isDebug();
+    w.gtag('config', gaId, debug ? { debug_mode: true } : {});
     whenIdle(() => addScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`));
   }
 
@@ -70,7 +72,8 @@ function start() {
 /** Sin consentimiento no se registra nada. */
 function track(name: string, params: Record<string, string>) {
   if (!active) return;
-  w.gtag?.('event', name, params);
+  // La marca va en cada evento: con ponerla solo en 'config', las peticiones no la llevaban y DebugView no los veía.
+  w.gtag?.('event', name, debug ? { ...params, debug_mode: true } : params);
   w.clarity?.('event', name);
 }
 
