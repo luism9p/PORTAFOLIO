@@ -1,8 +1,8 @@
 ---
-import { waLink, site } from '../lib/links';
+import { waLink } from '../lib/links';
 // solid: cabecera de la ficha de producto (fondo crema fijo, sin hero debajo, enlaces a la home con prefijo "/").
-// mensaje: texto del pedido por WhatsApp (en la ficha lleva el nombre del producto).
-const { solid = false, mensaje = site.mensajePedido } = Astro.props;
+// mensaje: texto del pedido por WhatsApp (en la ficha lleva el nombre del producto; sin él, el general).
+const { solid = false, mensaje } = Astro.props;
 const base = solid ? '/' : '';
 const orderHref = waLink(mensaje);
 ---

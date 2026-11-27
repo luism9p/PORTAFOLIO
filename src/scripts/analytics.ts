@@ -1,5 +1,5 @@
 // Analíticas con consentimiento: GA4, Microsoft Clarity y el píxel de Meta se cargan en diferido y solo si el visitante acepta.
-// Eventos: whatsapp_click (todos los enlaces a wa.me), ver_coleccion y producto_hover.
+// Eventos: whatsapp_click (todos los enlaces a WhatsApp), ver_coleccion y producto_hover.
 // Meta recibe PageView (cada carga), Contact (cada whatsapp_click) y ViewContent (tarjetas de producto).
 type Choice = 'accepted' | 'rejected';
 
@@ -122,7 +122,8 @@ function track(name: string, params: Params) {
 // ── Clics: delegados en el documento, así cubren también los enlaces cuyo mensaje cambia con la variante ──
 function onClick(event: Event) {
   const target = event.target instanceof Element ? event.target : null;
-  const wa = target?.closest<HTMLAnchorElement>('a[href*="wa.me/"]');
+  // api.whatsapp.com es el formato de la tienda (src/lib/links.ts); wa.me se sigue reconociendo
+  const wa = target?.closest<HTMLAnchorElement>('a[href*="api.whatsapp.com/send"], a[href*="wa.me/"]');
   if (wa) {
     const producto = wa.closest<HTMLElement>('[data-producto]')?.dataset.producto;
     track('whatsapp_click', { ubicacion: wa.dataset.waUbicacion ?? 'otro', ...(producto ? { producto } : {}) });

@@ -1,7 +1,7 @@
 ---
 import Icons from './Icons.astro';
-import { waLink, site } from '../lib/links';
-const href = waLink(site.mensajeInfo);
+import { waLink } from '../lib/links';
+const href = waLink();
 ---
 {href && (
   <a class="wa" data-wa-ubicacion="flotante" href={href} target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">

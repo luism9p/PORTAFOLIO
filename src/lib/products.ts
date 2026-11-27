@@ -49,7 +49,7 @@ export const publicExists = (path: string) => existsSync(join(process.cwd(), 'pu
 
 /** Mensajes de WhatsApp desde un producto: siempre incluyen su nombre. */
 export const interestMessage = (p: Product) =>
-  `Hola FlowHive 👋 Me interesa ${isLamp(p) ? 'la lámpara' : 'el florero'} ${p.nombre.toUpperCase()}`;
+  `Hola FlowHive, me interesa ${isLamp(p) ? 'la lámpara' : 'el florero'} ${p.nombre.toUpperCase()}`;
 /** Pedido: el nombre del producto y, si tiene variantes, la elegida (al cargar, la primera). */
 export const orderMessage = (p: Product, variant = p.variantes?.opciones?.[0]?.nombre) =>
   `${interestMessage(p)}${variant && p.variantes ? ` (${p.variantes.etiqueta}: ${variant})` : ''}`;

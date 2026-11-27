@@ -1,5 +1,5 @@
 ---
-import { waDigits, waLink } from '../lib/links';
+import { waLink } from '../lib/links';
 import { hasPrice, formatPrice, interestMessage, orderMessage, priceMessage } from '../lib/products';
 // Tarjeta de información de la ficha: etiqueta, nombre, precio, descripción, ficha, variantes y botones.
 const { product } = Astro.props;
@@ -8,9 +8,9 @@ const opciones = variantes?.opciones ?? [];
 const first = opciones[0];
 const waHref = waLink(orderMessage(product));
 const priced = hasPrice(product);
-const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
+const consultHref = waLink(priceMessage(product));
 ---
-<section class="pinfo card-box" data-product={product.slug} data-msg={interestMessage(product)} data-variant-label={variantes?.etiqueta ?? ''} data-wa={waDigits}>
+<section class="pinfo card-box" data-product={product.slug} data-msg={interestMessage(product)} data-variant-label={variantes?.etiqueta ?? ''}>
   {etiqueta && <p class="pinfo__tag">{etiqueta.toLowerCase()}</p>}
   <h1 class="pinfo__name">{nombre}</h1>
   <p class="pinfo__type">{tipoDetalle}</p>

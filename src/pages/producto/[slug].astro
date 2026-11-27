@@ -14,7 +14,7 @@ import SpecSheet from '../../components/SpecSheet.astro';
 import RelatedProducts from '../../components/RelatedProducts.astro';
 import Footer from '../../components/Footer.astro';
 import { products, sections, hasPrice, formatPrice, priceMessage, interestMessage, orderMessage } from '../../lib/products';
-import { waDigits, waLink } from '../../lib/links';
+import { waLink } from '../../lib/links';
 
 // Plantilla dinámica: una página estática por producto de src/data/products.json.
 export function getStaticPaths() {
@@ -24,7 +24,7 @@ const { product } = Astro.props;
 const title = `${product.nombre} · ${product.tipoDetalle} | FlowHive`;
 // Bloque "marca" + sobrescrituras del producto (videoHero, videoSplit, faq, ficha).
 const sec = sections(product);
-const consultHref = waDigits ? `https://wa.me/${waDigits}?text=${encodeURIComponent(priceMessage(product))}` : '';
+const consultHref = waLink(priceMessage(product));
 const orderHref = waLink(orderMessage(product));
 ---
 <Base title={title} description={product.descripcion} bodyClass="pdp" producto={product.nombre}>
@@ -62,6 +62,7 @@ const orderHref = waLink(orderMessage(product));
   </div>
 
   <script>
+    import { waLink } from '../../lib/links';
     document.documentElement.classList.add('has-js');
     const mobile = window.matchMedia('(max-width: 899px)');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -104,9 +105,8 @@ const orderHref = waLink(orderMessage(product));
       input.addEventListener('change', () => {
         const nameEl = document.querySelector('[data-variant-name]');
         if (nameEl) nameEl.textContent = input.value;
-        if (!info?.dataset.wa) return;
-        const href = `https://wa.me/${info.dataset.wa}?text=${encodeURIComponent(buildMessage(input.value))}`;
-        waLinks.forEach((a) => (a.href = href));
+        const href = waLink(buildMessage(input.value));
+        if (href) waLinks.forEach((a) => (a.href = href));
       });
     });
 

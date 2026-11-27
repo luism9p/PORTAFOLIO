@@ -1,6 +1,7 @@
 ---
 import Img from './Img.astro';
-import { site, waHref, waLink } from '../lib/links';
+import { site, waLink } from '../lib/links';
+const waHref = waLink();
 const discountHref = waLink(site.mensajeDescuento);
 // base: '' en la home (anclas de la misma página) y '/' en otras páginas.
 const { base = '' } = Astro.props;
