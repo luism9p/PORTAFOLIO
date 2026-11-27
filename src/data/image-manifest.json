@@ -93,7 +93,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #cebeb2 4.5%, #beafa3 13.6%, #beafa3 22.7%, #d5c6b9 31.8%, #d5c6b9 40.9%, #d5c3b3 50.0%, #beac9f 59.1%, #beac9d 68.2%, #bba899 77.3%, #aa998c 86.4%, #a69587 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #b0a195 4.5%, #ac9d91 13.6%, #a09185 22.7%, #a09185 31.8%, #ad9f93 40.9%, #ad9f93 50.0%, #ab9d91 59.1%, #ab9d91 68.2%, #ad9f95 77.3%, #ad9f95 86.4%, #a89a91 95.5%) right / 50.5% 100% no-repeat #d5c3b3"
  },
  "productos/alga/alga-02-medidas": {
   "widths": [
@@ -103,7 +104,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #d2c5be 4.5%, #cfc3bc 13.6%, #cfc3bc 22.7%, #cfc3bb 31.8%, #cfc3bb 40.9%, #cfc3bc 50.0%, #cfc3bc 59.1%, #cfc3bc 68.2%, #cfc2bb 77.3%, #cfc2bb 86.4%, #cfc2bb 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #cfc2ba 4.5%, #cfc2ba 13.6%, #cec2ba 22.7%, #cec1b9 31.8%, #cec1b9 40.9%, #cec1b9 50.0%, #cdc1b9 59.1%, #ccc0b8 68.2%, #ccc0b8 77.3%, #ccbfb7 86.4%, #cabeb6 95.5%) right / 50.5% 100% no-repeat #cfc3bc"
  },
  "productos/alga/alga-03-ambiente": {
   "widths": [
@@ -113,7 +115,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/alga/alga-03-ambiente-fondo.webp\") center / auto 100% no-repeat #958263"
  },
  "productos/alga/alga-04-macro": {
   "widths": [
@@ -122,7 +125,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/alga/alga-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #9b8a79"
  },
  "productos/brisa/brisa-01-tarjeta": {
   "widths": [
@@ -132,7 +136,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #cc996d 4.5%, #cc996d 13.6%, #cc996d 22.7%, #f4c594 31.8%, #f4c594 40.9%, #f4c594 50.0%, #ebbb8e 59.1%, #e1b48a 68.2%, #bf9977 77.3%, #a88870 86.4%, #a0836c 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #8a7769 4.5%, #8e7b6c 13.6%, #917e6e 22.7%, #917e6f 31.8%, #917e6f 40.9%, #957f6f 50.0%, #957f6f 59.1%, #947f6f 68.2%, #937e6e 77.3%, #927d6d 86.4%, #8f7766 95.5%) right / 50.5% 100% no-repeat #f4c594"
  },
  "productos/brisa/brisa-02-medidas": {
   "widths": [
@@ -142,7 +147,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c7bab2 4.5%, #c8bbb4 13.6%, #c9bdb6 22.7%, #c9bdb6 31.8%, #c9bdb6 40.9%, #c9bdb6 50.0%, #c9bdb6 59.1%, #c9bcb5 68.2%, #c8bcb4 77.3%, #c7bbb4 86.4%, #c7bab3 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #c3b6af 4.5%, #c4b7b0 13.6%, #c5b8b1 22.7%, #c5b9b2 31.8%, #c5b9b2 40.9%, #c5b9b2 50.0%, #c5b9b2 59.1%, #c5b8b1 68.2%, #c6b9b2 77.3%, #c6b9b2 86.4%, #c6bab2 95.5%) right / 50.5% 100% no-repeat #c9bdb6"
  },
  "productos/brisa/brisa-03-ambiente": {
   "widths": [
@@ -152,7 +158,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/brisa/brisa-03-ambiente-fondo.webp\") center / auto 100% no-repeat #895e37"
  },
  "productos/brisa/brisa-04-macro": {
   "widths": [
@@ -161,7 +168,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/brisa/brisa-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #613f24"
  },
  "productos/bruma/bruma-01-tarjeta": {
   "widths": [
@@ -171,7 +179,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c5a48c 4.5%, #c5a48c 13.6%, #f0e2d8 22.7%, #f9e2d8 31.8%, #f9d8b8 40.9%, #f5cdac 50.0%, #e5bfa0 59.1%, #e1b99b 68.2%, #c9a58a 77.3%, #bb9980 86.4%, #a3856b 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #a28b7a 4.5%, #a28b7a 13.6%, #a68e7c 22.7%, #a9907f 31.8%, #a99080 40.9%, #a9907f 50.0%, #a88f7e 59.1%, #a88f7e 68.2%, #a48c7c 77.3%, #9c8575 86.4%, #8b7461 95.5%) right / 50.5% 100% no-repeat #f5cdac"
  },
  "productos/bruma/bruma-02-medidas": {
   "widths": [
@@ -181,7 +190,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #bdb1a9 4.5%, #beb2aa 13.6%, #bfb3ab 22.7%, #bfb3ab 31.8%, #c1b6ae 40.9%, #c2b6ae 50.0%, #c2b6ae 59.1%, #c2b6ad 68.2%, #c0b4ab 77.3%, #bfb1a8 86.4%, #bcb0a7 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #baaca3 4.5%, #b9aca3 13.6%, #b8aca4 22.7%, #b8aca4 31.8%, #b5aaa1 40.9%, #b5a89f 50.0%, #b4a69d 59.1%, #b2a59b 68.2%, #afa198 77.3%, #aa9c92 86.4%, #a79a8f 95.5%) right / 50.5% 100% no-repeat #c2b6ae"
  },
  "productos/bruma/bruma-03-ambiente": {
   "widths": [
@@ -191,7 +201,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/bruma/bruma-03-ambiente-fondo.webp\") center / auto 100% no-repeat #a6723f"
  },
  "productos/bruma/bruma-04-macro": {
   "widths": [
@@ -200,7 +211,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/bruma/bruma-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #c0905d"
  },
  "productos/duna/duna-01-tarjeta": {
   "widths": [
@@ -210,7 +222,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #b4a69c 4.5%, #b4a69c 13.6%, #b4a69c 22.7%, #c3b5ac 31.8%, #c3b5ac 40.9%, #c3b5ac 50.0%, #c3b5ac 59.1%, #c5b6ad 68.2%, #c5b6ad 77.3%, #c4b6ad 86.4%, #c4b5ac 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #a5988e 4.5%, #a5988e 13.6%, #a2958c 22.7%, #a2958c 31.8%, #aea097 40.9%, #aea097 50.0%, #a6988f 59.1%, #a1958b 68.2%, #9a8d84 77.3%, #8b7e75 86.4%, #7d7067 95.5%) right / 50.5% 100% no-repeat #c3b5ac"
  },
  "productos/duna/duna-02-medidas": {
   "widths": [
@@ -220,7 +233,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c0b5af 4.5%, #c1b6af 13.6%, #c3b9b2 22.7%, #c3b9b2 31.8%, #c4b9b2 40.9%, #c4b9b1 50.0%, #c4bab2 59.1%, #c5bab3 68.2%, #c6bbb4 77.3%, #c6bcb5 86.4%, #c6bcb5 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #bfb4ad 4.5%, #c0b5ad 13.6%, #c0b5ae 22.7%, #c1b6ae 31.8%, #c0b5ae 40.9%, #bfb4ad 50.0%, #bfb4ac 59.1%, #beb3ac 68.2%, #beb3ac 77.3%, #beb4ac 86.4%, #beb4ac 95.5%) right / 50.5% 100% no-repeat #c4b9b1"
  },
  "productos/duna/duna-03-ambiente": {
   "widths": [
@@ -230,7 +244,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/duna/duna-03-ambiente-fondo.webp\") center / auto 100% no-repeat #9b7b65"
  },
  "productos/duna/duna-04-macro": {
   "widths": [
@@ -239,7 +254,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/duna/duna-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #99604c"
  },
  "productos/faro/faro-01-tarjeta": {
   "widths": [
@@ -249,7 +265,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #af9f92 4.5%, #af9f92 13.6%, #af9f92 22.7%, #af9f92 31.8%, #af9f92 40.9%, #b2a295 50.0%, #b2a295 59.1%, #b2a295 68.2%, #b0a093 77.3%, #ae9e91 86.4%, #ab9c8f 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #b2a296 4.5%, #b2a296 13.6%, #b2a296 22.7%, #b4a497 31.8%, #b4a497 40.9%, #b8a89b 50.0%, #b8a89b 59.1%, #b7a79a 68.2%, #b7a79a 77.3%, #b7a89b 86.4%, #b7a89b 95.5%) right / 50.5% 100% no-repeat #b2a295"
  },
  "productos/faro/faro-02-medidas": {
   "widths": [
@@ -259,7 +276,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #cbbfb6 4.5%, #ccbfb7 13.6%, #ccbfb8 22.7%, #ccbfb8 31.8%, #cbbfb8 40.9%, #cbbeb7 50.0%, #cabeb6 59.1%, #c9bdb5 68.2%, #c7bbb3 77.3%, #c5b9b1 86.4%, #c3b5ad 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #bdafa4 4.5%, #c1b2a8 13.6%, #c1b4aa 22.7%, #c2b5ac 31.8%, #c3b6ad 40.9%, #c3b6ad 50.0%, #c3b6ad 59.1%, #c3b6ad 68.2%, #c3b5ac 77.3%, #c1b4ac 86.4%, #c0b3ab 95.5%) right / 50.5% 100% no-repeat #cbbeb7"
  },
  "productos/faro/faro-03-ambiente": {
   "widths": [
@@ -269,7 +287,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/faro/faro-03-ambiente-fondo.webp\") center / auto 100% no-repeat #855433"
  },
  "productos/faro/faro-04-macro": {
   "widths": [
@@ -278,7 +297,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/faro/faro-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #b06b31"
  },
  "productos/junco/junco-01-tarjeta": {
   "widths": [
@@ -288,7 +308,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #bfaea3 4.5%, #c1afa5 13.6%, #c1afa5 22.7%, #c1afa5 31.8%, #c1afa5 40.9%, #c3b1a7 50.0%, #c3b1a7 59.1%, #c3b1a7 68.2%, #c3b1a8 77.3%, #c3b1a8 86.4%, #beada4 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #b19f93 4.5%, #bcaca2 13.6%, #bcaca2 22.7%, #b7a398 31.8%, #b7a398 40.9%, #b8a499 50.0%, #b8a499 59.1%, #b7a398 68.2%, #b6a398 77.3%, #b4a196 86.4%, #a8958a 95.5%) right / 50.5% 100% no-repeat #c3b1a7"
  },
  "productos/junco/junco-02-medidas": {
   "widths": [
@@ -298,7 +319,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #d2c6c1 4.5%, #d1c6c1 13.6%, #d1c7c1 22.7%, #d2c7c1 31.8%, #d2c7c1 40.9%, #d2c7c1 50.0%, #d0c5c0 59.1%, #cfc5bf 68.2%, #cfc4bf 77.3%, #cec4be 86.4%, #cec4be 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #c6bab3 4.5%, #c7bbb4 13.6%, #c7bbb4 22.7%, #c7bbb4 31.8%, #c6bab3 40.9%, #c6bab3 50.0%, #c5b9b2 59.1%, #c4b8b0 68.2%, #c1b5ae 77.3%, #c1b5ae 86.4%, #bfb4ac 95.5%) right / 50.5% 100% no-repeat #d2c7c1"
  },
  "productos/junco/junco-03-ambiente": {
   "widths": [
@@ -308,7 +330,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/junco/junco-03-ambiente-fondo.webp\") center / auto 100% no-repeat #94692d"
  },
  "productos/junco/junco-04-macro": {
   "widths": [
@@ -317,7 +340,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/junco/junco-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #896315"
  },
  "productos/medusa/medusa-01-tarjeta": {
   "widths": [
@@ -327,7 +351,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #b49e91 4.5%, #b49e91 13.6%, #aa9281 22.7%, #aa9281 31.8%, #aa907f 40.9%, #aa907f 50.0%, #ab9282 59.1%, #ac9585 68.2%, #b19887 77.3%, #b19887 86.4%, #ae9787 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #af9b8e 4.5%, #b09c8f 13.6%, #b09c8f 22.7%, #ac9688 31.8%, #ac9687 40.9%, #ac9687 50.0%, #ac9688 59.1%, #ab9688 68.2%, #ab9586 77.3%, #a58d7e 86.4%, #9e8575 95.5%) right / 50.5% 100% no-repeat #aa907f"
  },
  "productos/medusa/medusa-02-medidas": {
   "widths": [
@@ -337,7 +362,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c9beb8 4.5%, #c9beb8 13.6%, #cabeb8 22.7%, #cabfb9 31.8%, #cbbfb9 40.9%, #cbbfb9 50.0%, #cabeb9 59.1%, #cabeb8 68.2%, #c9bdb7 77.3%, #c8bdb7 86.4%, #c6bbb5 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #c2b6ae 4.5%, #c2b6af 13.6%, #c2b6af 22.7%, #c2b6af 31.8%, #c1b5ae 40.9%, #c1b5ae 50.0%, #c1b5ae 59.1%, #bfb3ac 68.2%, #beb3ab 77.3%, #bdb1aa 86.4%, #baaea6 95.5%) right / 50.5% 100% no-repeat #cbbfb9"
  },
  "productos/medusa/medusa-03-ambiente": {
   "widths": [
@@ -347,7 +373,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/medusa/medusa-03-ambiente-fondo.webp\") center / auto 100% no-repeat #835a35"
  },
  "productos/medusa/medusa-04-macro": {
   "widths": [
@@ -356,7 +383,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/medusa/medusa-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #a56f47"
  },
  "productos/remolino/remolino-01-tarjeta": {
   "widths": [
@@ -366,7 +394,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #a89b92 4.5%, #aa9d94 13.6%, #ada097 22.7%, #b0a299 31.8%, #b0a299 40.9%, #ac9e95 50.0%, #ac9e95 59.1%, #ac9e94 68.2%, #a89b92 77.3%, #a3958c 86.4%, #9e9187 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #ada298 4.5%, #b0a39a 13.6%, #b1a49b 22.7%, #b2a69c 31.8%, #b2a69c 40.9%, #b2a69c 50.0%, #b2a59c 59.1%, #b3a59c 68.2%, #b6a89f 77.3%, #baaca3 86.4%, #bbada4 95.5%) right / 50.5% 100% no-repeat #ac9e95"
  },
  "productos/remolino/remolino-02-medidas": {
   "widths": [
@@ -376,7 +405,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c3b7b1 4.5%, #c3b7b1 13.6%, #c3b7b1 22.7%, #c3b7b1 31.8%, #c3b7b1 40.9%, #c3b7b1 50.0%, #c4b7b1 59.1%, #c3b7b1 68.2%, #c2b7b1 77.3%, #c1b5af 86.4%, #c0b4ae 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #c0b4ad 4.5%, #c0b4ad 13.6%, #c0b4ae 22.7%, #c0b4ae 31.8%, #c0b4ad 40.9%, #bfb3ac 50.0%, #bdb2ab 59.1%, #bdb2ab 68.2%, #bdb2ab 77.3%, #bcb1aa 86.4%, #b8aca5 95.5%) right / 50.5% 100% no-repeat #c3b7b1"
  },
  "productos/remolino/remolino-03-ambiente": {
   "widths": [
@@ -386,7 +416,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/remolino/remolino-03-ambiente-fondo.webp\") center / auto 100% no-repeat #735438"
  },
  "productos/remolino/remolino-04-macro": {
   "widths": [
@@ -395,7 +426,8 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/remolino/remolino-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #7a5b3a"
  },
  "productos/salitre/salitre-01-tarjeta": {
   "widths": [
@@ -405,7 +437,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #c6b7af 4.5%, #c3b4ac 13.6%, #bfb1aa 22.7%, #beb1aa 31.8%, #beb1aa 40.9%, #beb0aa 50.0%, #bdafa9 59.1%, #bdafa9 68.2%, #bcada7 77.3%, #bbada6 86.4%, #b8aaa3 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #bcaba1 4.5%, #b9a89f 13.6%, #b9a89f 22.7%, #baaba2 31.8%, #baaba2 40.9%, #baaba2 50.0%, #b9aaa2 59.1%, #b9aaa1 68.2%, #b5a69d 77.3%, #b5a59d 86.4%, #b0a299 95.5%) right / 50.5% 100% no-repeat #beb0aa"
  },
  "productos/salitre/salitre-02-medidas": {
   "widths": [
@@ -415,7 +448,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "linear-gradient(to bottom, #d1c4be 4.5%, #d1c4be 13.6%, #d0c3bd 22.7%, #cfc3bd 31.8%, #cfc2bc 40.9%, #cfc2bc 50.0%, #cfc2bc 59.1%, #cfc2bc 68.2%, #cec1bb 77.3%, #cec1bb 86.4%, #cdc0ba 95.5%) left / 50.5% 100% no-repeat, linear-gradient(to bottom, #cabcb4 4.5%, #c9bcb4 13.6%, #c8bbb4 22.7%, #c8bbb4 31.8%, #c8bbb4 40.9%, #c8bbb5 50.0%, #c8bbb5 59.1%, #c8bbb5 68.2%, #c8bbb5 77.3%, #c9bbb4 86.4%, #c9bbb4 95.5%) right / 50.5% 100% no-repeat #cfc2bc"
  },
  "productos/salitre/salitre-03-ambiente": {
   "widths": [
@@ -425,7 +459,8 @@
    1122
   ],
   "width": 1122,
-  "height": 1402
+  "height": 1402,
+  "backdrop": "url(\"/img/productos/salitre/salitre-03-ambiente-fondo.webp\") center / auto 100% no-repeat #936b47"
  },
  "productos/salitre/salitre-04-macro": {
   "widths": [
@@ -434,6 +469,7 @@
    1448
   ],
   "width": 1448,
-  "height": 1086
+  "height": 1086,
+  "backdrop": "url(\"/img/productos/salitre/salitre-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #ab7d4b"
  }
 }

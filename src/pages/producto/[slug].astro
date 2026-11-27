@@ -67,32 +67,44 @@ const orderHref = waLink(orderMessage(product));
     const mobile = window.matchMedia('(max-width: 899px)');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ── Galería: miniaturas con fade (escritorio) / swipe con puntos (móvil) ──
+    // ── Galería: miniaturas con fade (escritorio) / swipe y miniaturas (móvil) ──
     const gal = document.querySelector<HTMLElement>('[data-gallery]');
     if (gal) {
       const slides = gal.querySelector<HTMLElement>('[data-slides]')!;
       const items = [...slides.querySelectorAll<HTMLElement>('.gal__slide')];
       const thumbs = [...gal.querySelectorAll<HTMLButtonElement>('.gal__thumb')];
-      const dots = [...gal.querySelectorAll<HTMLButtonElement>('.gal__dot')];
       let current = 0;
+      let target: number | undefined; // en móvil: foto a la que se está yendo tras tocar una miniatura
       const setActive = (i: number, scroll = false) => {
         current = Math.max(0, Math.min(items.length - 1, i));
         items.forEach((el, k) => el.classList.toggle('is-active', k === current));
         thumbs.forEach((el, k) => { el.classList.toggle('is-active', k === current); el.setAttribute('aria-pressed', String(k === current)); });
-        dots.forEach((el, k) => { el.classList.toggle('is-active', k === current); el.setAttribute('aria-current', String(k === current)); });
-        if (scroll && mobile.matches) slides.scrollTo({ left: current * slides.clientWidth, behavior: 'smooth' });
+        if (scroll && mobile.matches) {
+          target = current;
+          slides.scrollTo({ left: current * slides.clientWidth, behavior: 'smooth' });
+        }
       };
-      thumbs.forEach((b, i) => b.addEventListener('click', () => setActive(i)));
-      dots.forEach((b, i) => b.addEventListener('click', () => setActive(i, true)));
+      thumbs.forEach((b, i) => b.addEventListener('click', () => setActive(i, true)));
+      // si el dedo toma el control, manda la posición del carrusel
+      slides.addEventListener('touchstart', () => (target = undefined), { passive: true });
       slides.addEventListener('scroll', () => {
         if (!mobile.matches) return;
         const i = Math.round(slides.scrollLeft / (slides.clientWidth || 1));
+        if (target !== undefined) { if (i === target) target = undefined; return; }
         if (i !== current) setActive(i);
       }, { passive: true });
       slides.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') { setActive(current + 1, true); e.preventDefault(); }
         if (e.key === 'ArrowLeft') { setActive(current - 1, true); e.preventDefault(); }
       });
+    }
+
+    // ── Panel derecho: cuando no cabe en pantalla, la rueda lo desplaza a él y no a la página (Lenis) ──
+    const side = document.querySelector<HTMLElement>('.pdp__side');
+    if (side && 'ResizeObserver' in window) {
+      const check = () => side.toggleAttribute('data-lenis-prevent', !mobile.matches && side.scrollHeight > side.clientHeight + 1);
+      const sizes = new ResizeObserver(check);
+      [side, ...side.children].forEach((el) => sizes.observe(el));
     }
 
     // ── Variante: actualiza el nombre y el mensaje de WhatsApp (botón de la tarjeta y barra fija) ──

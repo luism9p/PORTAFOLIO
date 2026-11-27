@@ -11,6 +11,10 @@
   --page: #F1E4CC;               /* fondo de la ficha */
   --tile: #F1E6D6;               /* fondo de imágenes dentro de tarjetas */
   --radius-card: 24px;
+  --pdp-gap: 12px;
+  --announce-h: 40px;            /* barra de anuncios: ocupa pantalla al abrir la ficha */
+  /* alto visible para la galería y el panel: pantalla menos barra, header y márgenes */
+  --view-h: max(520px, calc(100vh - var(--announce-h) - var(--header-h) - 2 * var(--pdp-gap)));
 }
 body.pdp { background: var(--page); }
 .pdp .announce { color: #FDEFD6; }
@@ -23,10 +27,10 @@ body.pdp { background: var(--page); }
 }
 .pdp .nav a { text-transform: lowercase; }
 
-.pdp__main { max-width: 1920px; margin: 0 auto; padding: 12px 12px 0; }
+.pdp__main { max-width: 1920px; margin: 0 auto; padding: var(--pdp-gap) var(--pdp-gap) 0; }
 .pdp__grid {
   display: grid; grid-template-columns: minmax(0, 65fr) minmax(0, 35fr);
-  gap: 12px; align-items: start;
+  gap: var(--pdp-gap); align-items: start;
 }
 
 .card-box {
@@ -34,29 +38,40 @@ body.pdp { background: var(--page); }
   border: 1px solid rgba(229, 194, 164, .55);
 }
 
-/* ───────── Galería ───────── */
+/* ───────── Galería ─────────
+   Mide lo que se ve de pantalla; cada foto va completa sobre un fondo con el color de sus bordes. */
 .gal {
-  display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 16px;
-  padding: 16px; background: var(--sand-soft); border-radius: var(--radius-card);
+  position: relative; height: var(--view-h); overflow: hidden;
+  background: var(--sand-soft); border-radius: var(--radius-card);
 }
-.gal__thumbs { display: flex; flex-direction: column; gap: 10px; }
+.gal__stage, .gal__slides { position: absolute; inset: 0; }
+.gal__slides { outline-offset: -3px; border-radius: inherit; }
+.gal__slide {
+  --gal-pad: 96px;                                            /* hueco lateral: deja libres las miniaturas */
+  position: absolute; inset: 0; margin: 0; padding: 0 var(--gal-pad);
+  background: var(--backdrop, var(--sand));
+  opacity: 0; pointer-events: none; transition: opacity .4s ease;
+}
+.gal__slide.is-active { opacity: 1; pointer-events: auto; }
+/* La imagen ocupa justo el ancho de la foto, y sus bordes laterales se funden con el fondo (3 %). */
+.gal__slide img {
+  display: block; width: auto; height: 100%; max-width: 100%; margin: 0 auto;
+  object-fit: contain; object-position: center;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent);
+}
+.gal__thumbs {
+  position: absolute; left: 16px; top: 50%; z-index: 2; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px;
+}
 .gal__thumb {
   width: 64px; aspect-ratio: 4 / 5; padding: 0; overflow: hidden;
   border: 2px solid transparent; border-radius: 10px; background: var(--sand);
-  transition: border-color .2s;
+  box-shadow: 0 2px 10px rgba(9, 3, 2, .16); transition: border-color .2s;
 }
 .gal__thumb img { width: 100%; height: 100%; object-fit: cover; }
 .gal__thumb:hover { border-color: rgba(9, 3, 2, .35); }
 .gal__thumb.is-active { border-color: var(--black); }
-.gal__stage { position: relative; border-radius: 16px; overflow: hidden; background: var(--sand); }
-.gal__slides { display: grid; outline-offset: -3px; }
-.gal__slide {
-  grid-area: 1 / 1; margin: 0; aspect-ratio: 4 / 5;
-  opacity: 0; pointer-events: none; transition: opacity .4s ease;
-}
-.gal__slide.is-active { opacity: 1; pointer-events: auto; }
-.gal__slide img { width: 100%; height: 100%; object-fit: cover; }
-.gal__dots { display: none; }
 
 /* Placeholder mientras no hay fotos: fondo arena y nombre del producto */
 .ph {
@@ -68,13 +83,26 @@ body.pdp { background: var(--page); }
 .ph--thumb { width: 100%; height: 100%; font-size: 14px; font-weight: 500; }
 
 /* ───────── Tarjeta de información ───────── */
+/* Panel fijo bajo el header; nunca más alto que la pantalla (si no cabe, se desplaza por dentro) */
 .pdp__side {
-  position: sticky; top: calc(var(--header-h) + 16px);
-  display: flex; flex-direction: column; gap: 12px;
-  max-height: calc(100vh - var(--header-h) - 32px); overflow-y: auto; scrollbar-width: none;
+  position: sticky; top: calc(var(--header-h) + var(--pdp-gap));
+  display: flex; flex-direction: column; gap: var(--pdp-gap);
+  max-height: var(--view-h); overflow-y: auto;
+  border-radius: var(--radius-card); scrollbar-width: thin; scrollbar-color: var(--sand) transparent;
 }
-.pdp__side::-webkit-scrollbar { display: none; }
 .pdp__side > * { flex: none; }
+/* pantallas de poca altura: la ficha se aprieta para que quepa con menos desplazamiento */
+@media (min-width: 900px) and (max-height: 920px) {
+  .pinfo.card-box { padding: 18px 22px; }
+  .pinfo__tag { margin-bottom: 8px; }
+  .pinfo__name { font-size: 36px; }
+  .pinfo__price, .pinfo__desc { margin-top: 9px; }
+  .pinfo__desc { font-size: 15px; }
+  .pinfo__specs { margin-top: 11px; padding-top: 9px; gap: 3px; }
+  .variants { margin-top: 11px; padding-top: 9px; }
+  .pinfo .pbtn { margin-top: 13px; height: 48px; }
+  .pdp__side .acc__sum { padding: 11px 0; }
+}
 
 .pinfo { display: flex; flex-direction: column; }
 .pinfo__tag {
@@ -246,23 +274,24 @@ body.pdp { background: var(--page); }
   .pdp__grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .pdp__side { position: static; max-height: none; overflow: visible; }
 
-  .gal { grid-template-columns: minmax(0, 1fr); padding: 0; background: none; border-radius: 0; gap: 0; }
-  .gal__thumbs { display: none; }
-  .gal__stage { border-radius: 20px; }
+  /* foto a todo el ancho (4:5) y miniaturas en fila debajo */
+  .gal { height: auto; margin: -8px -8px 0; background: none; border-radius: 0; overflow: visible; }
+  .gal__stage, .gal__slides { position: static; }
   .gal__slides {
     display: flex; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
     scrollbar-width: none;
   }
   .gal__slides::-webkit-scrollbar { display: none; }
-  .gal__slide { flex: 0 0 100%; opacity: 1; pointer-events: auto; scroll-snap-align: center; scroll-snap-stop: always; }
-  .gal__dots { display: flex; justify-content: center; gap: 10px; position: absolute; left: 0; right: 0; bottom: 14px; pointer-events: none; }
-  .gal__dot {
-    position: relative; width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%;
-    background: rgba(9, 3, 2, .3); box-shadow: 0 0 0 1px rgba(253, 239, 214, .7); pointer-events: auto;
-    transition: background-color .2s, transform .2s;
+  .gal__slide {
+    --gal-pad: 0px;
+    position: relative; inset: auto; flex: 0 0 100%; aspect-ratio: 4 / 5;
+    /* en tablet o con la pantalla acostada no pasa del alto visible (menos las miniaturas) */
+    max-height: max(320px, calc(100vh - var(--announce-h) - var(--header-h) - 106px));
+    opacity: 1; pointer-events: auto; scroll-snap-align: center; scroll-snap-stop: always;
   }
-  .gal__dot::after { content: ''; position: absolute; inset: -10px; }
-  .gal__dot.is-active { background: var(--black); transform: scale(1.25); }
+  .gal__slide img { position: absolute; inset: 0; width: 100%; max-width: none; -webkit-mask-image: none; mask-image: none; }
+  .gal__thumbs { position: static; transform: none; flex-direction: row; justify-content: center; padding: 10px 8px 0; }
+  .gal__thumb { width: 56px; box-shadow: none; }
 
   .card-box { padding: 20px; }
   .pacc { padding: 2px 20px; }
