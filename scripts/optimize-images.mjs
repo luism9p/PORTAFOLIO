@@ -56,8 +56,10 @@ async function gradientBackdrop(file) {
   return `${gradient(left)} left / 50.5% 100% no-repeat, ${gradient(right)} right / 50.5% 100% no-repeat ${left[5]}`;
 }
 
-// Fotos de ambiente y detalle: un color no basta. Se prolongan sus bordes en espejo, cada vez más
-// desenfocados; colocada detrás y alineada con la foto, la prolongación continúa la escena sin corte.
+// Fotos de ambiente y detalle: un color no basta. El fondo se prolonga solo con una franja angosta de cada
+// borde: en espejo junto a la foto y cada vez más estirada y desenfocada hacia fuera. Colocado detrás y
+// alineado con la foto, continúa la escena sin corte y sin repetir el producto.
+const EDGE = 0.07; // parte de la foto, desde cada borde, que como máximo se usa para prolongarla
 async function sceneBackdrop(file, base, meta, srcTime) {
   const landscape = meta.width > meta.height;
   const width = landscape ? 1000 : Math.round((900 * meta.width) / meta.height);
@@ -65,26 +67,49 @@ async function sceneBackdrop(file, base, meta, srcTime) {
   // vertical: lienzo 2:1 a la altura de la foto; horizontal: lienzo 1,45 veces el ancho y casi cuadrado
   const x = landscape ? Math.round(width * 0.225) : Math.round((height * 2 - width) / 2);
   const y = landscape ? Math.round(((width + 2 * x) / 0.9 - height) / 2) : 0;
-  const out = join(OUT, `${base}-fondo.webp`);
+  const out = join(OUT, `${base}-fondo2.webp`);
   let fresh = false;
   try { fresh = (await stat(out)).mtimeMs > srcTime; } catch {}
-  const wide = await sharp(file).resize({ width, height, fit: 'fill' })
-    .extend({ left: x, right: x, top: y, bottom: y, extendWith: 'mirror' }).png().toBuffer();
-  if (!fresh) {
-    // el desenfoque entra poco a poco desde el borde de la foto (transparencia según la distancia)
-    const W = width + 2 * x, H = height + 2 * y, RAMP = 70;
-    const mask = Buffer.alloc(W * H);
-    for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
-      const d = Math.max(x - i, i - (x + width - 1), y - j, j - (y + height - 1), 0);
-      mask[j * W + i] = Math.round(Math.min(1, d / RAMP) * 255);
+  const photo = await sharp(file).resize({ width, height, fit: 'fill' }).removeAlpha().raw().toBuffer();
+  const W = width + 2 * x, H = height + 2 * y;
+  // qué punto de la foto se pinta en cada punto del lienzo (en un eje): fuera de ella, espejo que se va
+  // estirando y nunca pasa de la franja del borde
+  const source = (i, offset, size) => {
+    const p = i - offset, edge = size * EDGE;
+    const reach = (d) => Math.round(edge * (1 - Math.exp(-d / edge)));
+    if (p < 0) return reach(-p);
+    if (p >= size) return size - 1 - reach(p - (size - 1));
+    return p;
+  };
+  const columns = [...Array(W).keys()].map((i) => source(i, x, width));
+  const wide = Buffer.alloc(W * H * 3);
+  const sum = [0, 0, 0];
+  for (let j = 0; j < H; j++) {
+    const row = source(j, y, height) * width;
+    for (let i = 0; i < W; i++) {
+      const from = (row + columns[i]) * 3, to = (j * W + i) * 3;
+      for (let c = 0; c < 3; c++) sum[c] += wide[to + c] = photo[from + c];
     }
-    const blurred = await sharp(wide).blur(12).removeAlpha().joinChannel(mask, { raw: { width: W, height: H, channels: 1 } }).png().toBuffer();
-    await sharp(wide).composite([{ input: blurred }]).webp({ quality: 62 }).toFile(out);
   }
-  const [r, g, b] = (await sharp(wide).stats()).channels.map((c) => Math.round(c.mean));
+  const raw = { raw: { width: W, height: H, channels: 3 } };
+  if (!fresh) {
+    // dos desenfoques que entran poco a poco según la distancia a la foto: uno leve junto al borde y otro
+    // muy fuerte más lejos, que borra las rayas del estirado
+    const layer = async (sigma, start, ramp) => {
+      const mask = Buffer.alloc(W * H);
+      for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
+        const d = Math.max(x - i, i - (x + width - 1), y - j, j - (y + height - 1), 0);
+        mask[j * W + i] = Math.round(Math.min(1, Math.max(0, d - start) / ramp) * 255);
+      }
+      const input = await sharp(wide, raw).blur(sigma).removeAlpha().joinChannel(mask, { raw: { width: W, height: H, channels: 1 } }).png().toBuffer();
+      return { input };
+    };
+    await sharp(wide, raw).composite([await layer(10, 0, 50), await layer(45, 20, 170)]).webp({ quality: 62 }).toFile(out);
+  }
+  const [r, g, b] = sum.map((total) => Math.round(total / (W * H)));
   // el ancho de la foto en pantalla es el del hueco menos el margen lateral (--gal-pad)
   const size = landscape ? 'calc((100% - 2 * var(--gal-pad)) * 1.45) auto' : 'auto 100%';
-  return `url("/img/${base}-fondo.webp") center / ${size} no-repeat ${hex([r, g, b])}`;
+  return `url("/img/${base}-fondo2.webp") center / ${size} no-repeat ${hex([r, g, b])}`;
 }
 
 async function* walk(dir) {

@@ -116,7 +116,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/alga/alga-03-ambiente-fondo.webp\") center / auto 100% no-repeat #958263"
+  "backdrop": "url(\"/img/productos/alga/alga-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #ad977e"
  },
  "productos/alga/alga-04-macro": {
   "widths": [
@@ -126,7 +126,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/alga/alga-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #9b8a79"
+  "backdrop": "url(\"/img/productos/alga/alga-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #958472"
  },
  "productos/brisa/brisa-01-tarjeta": {
   "widths": [
@@ -159,7 +159,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/brisa/brisa-03-ambiente-fondo.webp\") center / auto 100% no-repeat #895e37"
+  "backdrop": "url(\"/img/productos/brisa/brisa-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #704d30"
  },
  "productos/brisa/brisa-04-macro": {
   "widths": [
@@ -169,7 +169,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/brisa/brisa-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #613f24"
+  "backdrop": "url(\"/img/productos/brisa/brisa-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #7f542f"
  },
  "productos/bruma/bruma-01-tarjeta": {
   "widths": [
@@ -202,7 +202,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/bruma/bruma-03-ambiente-fondo.webp\") center / auto 100% no-repeat #a6723f"
+  "backdrop": "url(\"/img/productos/bruma/bruma-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #6a4626"
  },
  "productos/bruma/bruma-04-macro": {
   "widths": [
@@ -212,7 +212,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/bruma/bruma-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #c0905d"
+  "backdrop": "url(\"/img/productos/bruma/bruma-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #b68759"
  },
  "productos/duna/duna-01-tarjeta": {
   "widths": [
@@ -245,7 +245,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/duna/duna-03-ambiente-fondo.webp\") center / auto 100% no-repeat #9b7b65"
+  "backdrop": "url(\"/img/productos/duna/duna-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #9c8069"
  },
  "productos/duna/duna-04-macro": {
   "widths": [
@@ -255,7 +255,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/duna/duna-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #99604c"
+  "backdrop": "url(\"/img/productos/duna/duna-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #9c6754"
  },
  "productos/faro/faro-01-tarjeta": {
   "widths": [
@@ -288,7 +288,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/faro/faro-03-ambiente-fondo.webp\") center / auto 100% no-repeat #855433"
+  "backdrop": "url(\"/img/productos/faro/faro-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #895835"
  },
  "productos/faro/faro-04-macro": {
   "widths": [
@@ -298,7 +298,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/faro/faro-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #b06b31"
+  "backdrop": "url(\"/img/productos/faro/faro-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #a56a34"
  },
  "productos/junco/junco-01-tarjeta": {
   "widths": [
@@ -331,7 +331,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/junco/junco-03-ambiente-fondo.webp\") center / auto 100% no-repeat #94692d"
+  "backdrop": "url(\"/img/productos/junco/junco-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #845c2d"
  },
  "productos/junco/junco-04-macro": {
   "widths": [
@@ -341,7 +341,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/junco/junco-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #896315"
+  "backdrop": "url(\"/img/productos/junco/junco-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #916416"
  },
  "productos/medusa/medusa-01-tarjeta": {
   "widths": [
@@ -374,7 +374,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/medusa/medusa-03-ambiente-fondo.webp\") center / auto 100% no-repeat #835a35"
+  "backdrop": "url(\"/img/productos/medusa/medusa-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #7a532f"
  },
  "productos/medusa/medusa-04-macro": {
   "widths": [
@@ -384,7 +384,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/medusa/medusa-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #a56f47"
+  "backdrop": "url(\"/img/productos/medusa/medusa-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #946340"
  },
  "productos/remolino/remolino-01-tarjeta": {
   "widths": [
@@ -417,7 +417,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/remolino/remolino-03-ambiente-fondo.webp\") center / auto 100% no-repeat #735438"
+  "backdrop": "url(\"/img/productos/remolino/remolino-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #4b341f"
  },
  "productos/remolino/remolino-04-macro": {
   "widths": [
@@ -427,7 +427,7 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/remolino/remolino-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #7a5b3a"
+  "backdrop": "url(\"/img/productos/remolino/remolino-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #81603d"
  },
  "productos/salitre/salitre-01-tarjeta": {
   "widths": [
@@ -460,7 +460,7 @@
   ],
   "width": 1122,
   "height": 1402,
-  "backdrop": "url(\"/img/productos/salitre/salitre-03-ambiente-fondo.webp\") center / auto 100% no-repeat #936b47"
+  "backdrop": "url(\"/img/productos/salitre/salitre-03-ambiente-fondo2.webp\") center / auto 100% no-repeat #8e6643"
  },
  "productos/salitre/salitre-04-macro": {
   "widths": [
@@ -470,6 +470,6 @@
   ],
   "width": 1448,
   "height": 1086,
-  "backdrop": "url(\"/img/productos/salitre/salitre-04-macro-fondo.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #ab7d4b"
+  "backdrop": "url(\"/img/productos/salitre/salitre-04-macro-fondo2.webp\") center / calc((100% - 2 * var(--gal-pad)) * 1.45) auto no-repeat #966b42"
  }
 }
